@@ -25,6 +25,11 @@ strong{
     color: #fa65fa;
 }
 
+.heading {
+    text-align: center;
+    font-size: 25px;
+}
+
 .image-container{
     height: 320px;
     position: relative;
