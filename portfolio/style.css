@@ -2,6 +2,7 @@ body{
     background-color: #000;
     font-family: fantasy;
     padding: 3%;
+    color: #ffffff;
 }
 
 h1 {
@@ -24,6 +25,17 @@ ul li:nth-child(odd) {
 strong{
     color: #fa65fa;
 }
+a {
+    color: #cf52c5;
+}
+
+a:active {
+    color: rgb(4, 0, 255);
+}
+
+a:visited {
+    color: rgb(92, 158, 212);
+}
 
 .heading {
     text-align: center;
@@ -41,10 +53,16 @@ strong{
     padding: 10px;
     background-color: #cf52c5;
     position: absolute;
-    left: 30%;
-    }
+    left: 25%;
+}
 
-IMG.displayes {
+.displayes-me:hover {
+    -webkit-transform: scale(2.2);
+    transform: scale(2.2);
+    transition: transform .5s ease;
+}
+
+IMG.displayes-me {
     display: block;
     margin-left: auto;
     margin-right: auto;
