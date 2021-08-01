@@ -91,3 +91,24 @@ IMG.displayes-me {
     top: 12%;
     left: 57%;
 }
+
+.redes {
+    float: top;
+    position: fixed;
+    bottom: 0px;
+    right:110px;
+    background-color: #9c9c9c;
+    border: 4px solid #ffffff;
+}
+.redes2 {
+    float: top;
+    position: fixed;
+    bottom: 0px;
+    right:20px;
+    background-color: #9c9c9c;
+    border: 4px solid #ffffff;
+}
+
+.footer-text{
+    text-align: center;
+}
