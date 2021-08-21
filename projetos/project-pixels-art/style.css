@@ -1,0 +1,39 @@
+* {
+  text-align: center;
+}
+
+.color {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+}
+
+.position1 {
+  background-color: black;
+}
+
+.position2 {
+  background-color: rgb(255, 0, 119);
+}
+
+.position3 {
+  background-color: rgb(255, 173, 173);
+}
+
+.position4 {
+  background-color: rgb(255, 214, 165);
+}
+
+#pixel-board {
+  font-size: 0;
+  margin: 0 auto;
+}
+
+.pixel {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid black;
+}
