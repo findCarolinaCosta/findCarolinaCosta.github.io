@@ -1,6 +1,5 @@
 body{
     background-color: #000;
-    font-family: fantasy;
     padding: 3%;
     color: #ffffff;
 }
@@ -38,13 +37,15 @@ a:visited {
 }
 
 .heading {
+    display: flex;
+    justify-content: center;
     text-align: center;
     font-size: 25px;
 }
 
 .image-container{
-    height: 320px;
-    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .displayes-me{
@@ -52,13 +53,12 @@ a:visited {
     height: 300px;
     padding: 10px;
     background-color: #cf52c5;
-    position: absolute;
     left: 25%;
 }
 
 .displayes-me:hover {
     -webkit-transform: scale(2.2);
-    transform: scale(2.2);
+    transform: scale(1.3);
     transition: transform .5s ease;
 }
 
@@ -67,14 +67,6 @@ IMG.displayes-me {
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
-}
-
-.central-text {
-    font-size: 20px;
-    text-align: left;
-    position: absolute;
-    top: 36%;
-    left: 47%;
 }
 
 .name-complete{
@@ -87,7 +79,8 @@ IMG.displayes-me {
 }
 
 #about {
-    position: absolute;
+    /* position: absolute; */
+    text-align: center;
     top: 12%;
     left: 57%;
 }
@@ -111,4 +104,19 @@ IMG.displayes-me {
 
 .footer-text{
     text-align: center;
+}
+
+.select:hover {
+    background-color: blueviolet;
+    color: white !important;
+    border-radius: 5px;
+}
+
+#image-main {
+    display: inline-block;
+}
+
+#about-main {
+    display: inline-block;
+    padding: 50px;
 }

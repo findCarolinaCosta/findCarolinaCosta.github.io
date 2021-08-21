@@ -3,86 +3,97 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio Carolina Pereira da Costa</title>
-
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
 <body>
-    <div class="heading">
-        <!-- Links internos para diferentes seções -->
+    <section>
         <h1>Sejam bem vindos ao <strong>meu portfólio</strong></h1>
-        <a href="#about">Sobre mim</a> &ensp;
-        <a href="#skills">Habilidades</a> &ensp;
-        <a href="#recommend">Recomendação</a> &ensp;
-        <!-- Link interno para minha foto teste-->
-        <a href="#pic">Minha Foto</a> &ensp;
-        <a href="" target="_blank">Projetos</a>
-    </div>
+    </section>
+    <header class="navbar">
+        <section class=" heading navbar-section">
+            <!-- Links internos para diferentes seções -->
+            <a href="#about" class="btn btn-link select">Sobre mim</a> &ensp;
+            <a href="#skills" class="btn btn-link select">Habilidades</a> &ensp;
+            <a href="#recommend" class="btn btn-link select">Recomendação</a> &ensp;
+            <!-- Link interno para minha foto teste-->
+            <a href="#pic" class="btn btn-link select">Minha Foto</a> &ensp;
+            <a href="" class="btn btn-link select" target="_blank">Projetos</a>
+        </section>
+    </header>
 
     <hr>
-    <div class="personal-information">
+    <div class=" personal-information">
         <!-- Nome completo -->
         <h2 class="name-complete">Carolina Pereira da Costa</h2>
 
         <!-- Descrição sobre mim -->
-        <div class="image-container">
+        <section class="image-container">
+            <div id="image-main">
+                <!-- Foto acompanhada de um texto desccrevendo a Foto (alt) -->
+                <img class="displayes-me" id="pic" width="300" src="images/Foto principal.jpg"
+                    alt="Carolina Pereira selfie">
+            </div>
+            <div id="about-main">
+                <h2 id="about">Sobre mim</h2>
+                <p class="central-text ">
+                    Sou estudante, tenho 24 anos e moro em <strong>Taboão da Serra; São Paulo - Brasil</strong>
+                </p>
+            </div>
+        </section>
+    </div>
 
-            <!-- Foto acompanhada de um texto desccrevendo a Foto (alt) -->
-            <img class="displayes-me" id="pic" width="300" src="images/Foto principal.jpg"
-                alt="Carolina Pereira selfie">
-
-            <h2 id="about">Sobre mim</h2>
-            <p class="central-text">
-                Sou estudante, tenho 24 anos e moro em <strong>Taboão da Serra; São Paulo - Brasil</strong>
-            </p>
+    <section class="">
+        <div class="personal-skills">
+            <hr>
+            <!-- Lista de habilidade, destaque nas que eu me orgulho-->
+            <ul class="list-style">
+                <h2 id="skills">Habilidades</h2>
+                <li><strong>Organizada</strong></li>
+                <li>Busco sempre me autoconhecer</li>
+                <li>Tenho muita curiosidade</li>
+                <li>Sou bastante crítica</li>
+                <li>Sou <strong>comprometida com tudo que me desafia</strong></li>
+                <li>E por fim, mas não menos importante, <strong>objetiva</strong></li>
+            </ul>
         </div>
-    </div>
-
-    <div class="personal-skills">
         <hr>
-        <!-- Lista de habilidade, destaque nas que eu me orgulho-->
-        <h2 id="skills">Habilidades</h2>
-        <ul class="list-style">
-            <li><strong>Organizada</strong></li>
-            <li>Busco sempre me autoconhecer</li>
-            <li>Tenho muita curiosidade</li>
-            <li>Sou bastante crítica</li>
-            <li>Sou <strong>comprometida com tudo que me desafia</strong></li>
-            <li>E por fim, mas não menos importante, <strong>objetiva</strong></li>
-        </ul>
-    </div>
-    <hr>
 
-    <div class="skills">
-        <h2>Competências</h2>
-        <ul>
-            <li>Unix</li>
-            <li>Bash</li>
-            <li>Git e GitHub</li>
-            <li><strong>HTML</strong></li>
-            <li><strong>CSS</strong></li>
-            <p><strong>Em desenvolvimento :)</strong></p>
-        </ul>
-    </div>
-    <hr>
+        <div class="skills">
+            <h2>Competências</h2>
+            <ul class="">
+                <li>Unix</li>
+                <li>Bash</li>
+                <li>Git e GitHub</li>
+                <li><strong>HTML</strong></li>
+                <li><strong>CSS</strong></li>
+                <p><strong>Em desenvolvimento :)</strong></p>
+            </ul>
+        </div>
+        </div>
+        <hr>
 
-    <div class="recommendation">
-        <!-- Link de um blog que eu goste -->
-        <h2 id="recommend">Recomendação:</h2>
-        <ol class="list-style">
-            <li><a href="https://pt.stackoverflow.com/" target="_blank">StackOverflow</a>: fórum de consulta, de
-                tudo um
-                pouco.</li>
-            <li><a href="https://blog.betrybe.com/" target="_blank">Betrybe blog</a>
-                </a>: pois é a Trybe tem blog, está
-                esperando o que? Boa leitura! </li>
-            <li><a href="https://github.com/" target="_blank">GitHub</a>: precisa nem de apresentação, enjoy</li>
-            <p>E por enquanto é só...</p>
-
-        </ol>
-    </div>
+        <div class="recommendation">
+            <!-- Link de um blog que eu goste -->
+            <h2 id=" recommend">Recomendação:</h2>
+            <ol class="list-style">
+                <li><a href="https://pt.stackoverflow.com/" target="_blank">StackOverflow</a>:
+                    fórum de consulta, de
+                    tudo um
+                    pouco.</li>
+                <li><a href="https://blog.betrybe.com/" target="_blank">Betrybe blog</a>
+                    </a>: pois é a Trybe tem blog, está
+                    esperando o que? Boa leitura! </li>
+                <li><a href="https://github.com/" target="_blank">GitHub</a>: precisa nem de
+                    apresentação, enjoy</li>
+                <p>E por enquanto é só...</p>
+            </ol>
+    </section>
     <hr>
     <div class="keywords">
         <!-- Palavras chaves -->
@@ -98,6 +109,7 @@
             © 2021 Carolina Pereira da Costa, todos os direitos reservados.
         </p>
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>
