@@ -1,0 +1,54 @@
+body{
+  background-color: #000;
+    color: #ffffff;
+    font-family: system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+}
+
+header {
+  padding: 20px;
+  background-color: #230a29;
+}
+
+header a {
+  font-size: 25px;
+}
+
+.h1-main {
+  margin: 25px;
+}
+
+.projects-container {
+  padding: 20px;
+  margin: 20px;
+  background-color: #cacaca;
+  color: #000;
+  border-radius: 20px;
+}
+
+.projects-container img {
+  border-radius: 20px;
+  width: 800px;
+}
+
+.project-description div {
+  margin: 15px;
+  font-size: 30px;
+}
+
+.select:hover {
+  background-color: blueviolet;
+  color: white !important;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  margin: 100px 10px 120px;
+  font-size: 25px;
+}
+
+.footer-text{
+  text-align: center;
+  margin-top: 24px;
+}
+ 
