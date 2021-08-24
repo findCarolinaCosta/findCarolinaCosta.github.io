@@ -27,15 +27,12 @@ header a {
 
 .projects-container img {
   border-radius: 20px;
+  width: 800px;
 }
 
 .project-description div {
   margin: 15px;
   font-size: 30px;
-}
-
-hr.projects-container {
-  color: rgb(235, 48, 48);
 }
 
 .select:hover {
@@ -54,3 +51,4 @@ footer {
   text-align: center;
   margin-top: 24px;
 }
+ 
