@@ -1,70 +1,71 @@
 /*==================== GOOGLE FONTS ====================*/
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 /*==================== VARIABLES CSS ====================*/
 :root {
-  --header-height: ;
+  --header-height: 48px;
 
   /*========== Colors ==========*/
   /* Change favorite color */
-  --hue-color: ; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
+  --hue-color: 250; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
 
   /* HSL color mode */
-  --first-color: ;
-  --first-color-second: ;
-  --first-color-alt: ;
-  --first-color-lighter: ;
-  --title-color: ;
-  --text-color: ;
-  --text-color-light: ;
-  --input-color: ;
-  --body-color: ;
-  --container-color: ;
+  --first-color: hsl(var(--hue-color), 69%, 61%);
+  --first-color-second: hsl(var(--hue-color), 69%, 61%);
+  --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+  --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+  --title-color: hsl(var(--hue-color), 8%, 15%);
+  --text-color: hsl(var(--hue-color), 8%, 45%);
+  --text-color-light: hsl(var(--hue-color), 8%, 65%);
+  --input-color: hsl(var(--hue-color), 70%, 96%);
+  --body-color: hsl(var(--hue-color), 60%, 99%);
+  --container-color: #fff;
 
   /*========== Font and typography ==========*/
-  --body-font: ;
+  --body-font: 'Poppins', sans-serif;;
 
   /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
-  --big-font-size: ;
-  --h1-font-size: ;
-  --h2-font-size: ;
-  --h3-font-size: ;
-  --normal-font-size: ;
-  --small-font-size: ;
-  --smaller-font-size: ;
+  --big-font-size: 32px;
+  --h1-font-size: 24px;
+  --h2-font-size: 20px;
+  --h3-font-size: 18px;
+  --normal-font-size: 15.008px;
+  --small-font-size: 13.008px;
+  --smaller-font-size: 11.84px;
 
   /*========== Font weight ==========*/
-  --font-medium: ;
-  --font-semi-bold: ;
+  --font-medium: 500;
+  --font-semi-bold: 600;
 
   /*========== Margenes Bottom ==========*/
   /* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
-  --mb-0-25: ;
-  --mb-0-5: ;
-  --mb-0-75: ;
-  --mb-1: ;
-  --mb-1-5: ;
-  --mb-2: ;
-  --mb-2-5: ;
-  --mb-3: ;
+  --mb-0-25: 4px;
+  --mb-0-5: 8px;
+  --mb-0-75: 12px;
+  --mb-1: 16px;
+  --mb-1-5: 24px;
+  --mb-2: 32px;
+  --mb-2-5: 40px;
+  --mb-3: 48px;
 
   /*========== z index ==========*/
-  --z-tooltip: ;
-  --z-fixed: ;
-  --z-modal: ;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
 }
 
 /* Font size for large devices */
 @media screen and (min-width: 968px) {
   :root {
-      --big-font-size: ;
-      --h1-font-size: ;
-      --h2-font-size: ;
-      --h3-font-size: ;
-      --normal-font-size: ;
-      --small-font-size: ;
-      --smaller-font-size: ;
+      --big-font-size: 48px;
+      --h1-font-size: 36px;
+      --h2-font-size: 24px;
+      --h3-font-size: 20px;
+      --normal-font-size: 16px;
+      --small-font-size: 14px;
+      --smaller-font-size: 13.0008px;
   }
+  
 }
 
 /*========== Variables Dark theme ==========*/
@@ -74,18 +75,162 @@
 
 
 /*==================== BASE ====================*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 0 var(--header-height) 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4 {
+  color: var(--font-semi-bold);
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 /*==================== REUSABLE CSS CLASSES ====================*/
+.section {
+  padding: 32px 0 64px;
+}
 
+.section__title {
+  font-size: var(--h1-font-size);
+}
+
+/* .section__subtitle {
+  display: block;
+  font-size: var(--small-font-size);
+  margin-bottom: var(--mb-3);
+}
+
+.section__title, .section__subtitle {
+  text-align: center;
+} */
 
 /*==================== LAYOUT ====================*/
+.container {
+  max-width: 768px;
+  margin-left: var(--mb-1-5);
+  margin-right: var(--mb-1-5);
+}
 
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.header {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0px;
+  z-index: var(--z-fixed);
+  background-color: var(--body-color);
+}
 
 /*==================== NAV ====================*/
+.nav {
+  max-width: 968px;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.nav__logo, .nav__toggle {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+.nav__logo:hover {
+  color: var(--first-color);
+}
+
+.nav__toggle {
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.nav__toggle:hover {
+  color: var(--first-color);
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--body-color);
+    padding: 32px 24px 64px;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
+    border-radius: 24px 24px 0 0;
+    transition: .3s;
+  }
+}
+
+.nav__list {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+.nav__icon {
+  font-size: 19px;
+}
+
+.nav__close {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--first-color);
+}
+
+.nav__close:hover {
+  color: var(--first-color-alt);
+}
 
 /* show menu */
+.show-menu {
+  bottom: 0;
+}
 
 
 /* Active link */
