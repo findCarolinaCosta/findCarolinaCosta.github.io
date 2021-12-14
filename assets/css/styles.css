@@ -120,7 +120,7 @@ img {
   font-size: var(--h1-font-size);
 }
 
-/* .section__subtitle {
+.section__subtitle {
   display: block;
   font-size: var(--small-font-size);
   margin-bottom: var(--mb-3);
@@ -128,7 +128,7 @@ img {
 
 .section__title, .section__subtitle {
   text-align: center;
-} */
+}
 
 /*==================== LAYOUT ====================*/
 .container {
