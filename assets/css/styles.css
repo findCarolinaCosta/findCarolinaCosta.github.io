@@ -1,5 +1,5 @@
 /*==================== GOOGLE FONTS ====================*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 /*==================== VARIABLES CSS ====================*/
 :root {
@@ -22,7 +22,7 @@
   --container-color: #fff;
 
   /*========== Font and typography ==========*/
-  --body-font: 'Poppins', sans-serif;;
+  --body-font: "Poppins", sans-serif;
 
   /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
   --big-font-size: 32px;
@@ -57,22 +57,19 @@
 /* Font size for large devices */
 @media screen and (min-width: 968px) {
   :root {
-      --big-font-size: 48px;
-      --h1-font-size: 36px;
-      --h2-font-size: 24px;
-      --h3-font-size: 20px;
-      --normal-font-size: 16px;
-      --small-font-size: 14px;
-      --smaller-font-size: 13.0008px;
+    --big-font-size: 48px;
+    --h1-font-size: 36px;
+    --h2-font-size: 24px;
+    --h3-font-size: 20px;
+    --normal-font-size: 16px;
+    --small-font-size: 14px;
+    --smaller-font-size: 13.0008px;
   }
-  
 }
 
 /*========== Variables Dark theme ==========*/
 
-
 /*========== Button Dark/Light ==========*/
-
 
 /*==================== BASE ====================*/
 * {
@@ -93,7 +90,10 @@ body {
   color: var(--text-color);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--font-semi-bold);
   font-weight: var(--font-semi-bold);
 }
@@ -126,7 +126,8 @@ img {
   margin-bottom: var(--mb-3);
 }
 
-.section__title, .section__subtitle {
+.section__title,
+.section__subtitle {
   text-align: center;
 }
 
@@ -160,7 +161,8 @@ img {
   align-items: center;
 }
 
-.nav__logo, .nav__toggle {
+.nav__logo,
+.nav__toggle {
   color: var(--title-color);
   font-weight: var(--font-medium);
 }
@@ -186,9 +188,9 @@ img {
     width: 100%;
     background-color: var(--body-color);
     padding: 32px 24px 64px;
-    box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
     border-radius: 24px 24px 0 0;
-    transition: .3s;
+    transition: 0.3s;
   }
 }
 
@@ -232,12 +234,9 @@ img {
   bottom: 0;
 }
 
-
 /* Active link */
 
-
 /* Change background header */
-
 
 /*==================== HOME ====================*/
 .home__container {
@@ -245,7 +244,7 @@ img {
 }
 
 .home__content {
-  grid-template-columns: .5fr 3fr;
+  grid-template-columns: 0.5fr 3fr;
   padding-top: 56px;
   align-items: center;
 }
@@ -299,7 +298,7 @@ img {
 
 .home__scroll-button {
   color: var(--first-color);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .home__scroll-button:hover {
@@ -338,7 +337,7 @@ img {
 .button__icon {
   font-size: 20px;
   margin-left: var(--mb-0-5);
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .button--flex {
@@ -375,7 +374,8 @@ img {
   font-size: var(--small-font-size);
 }
 
-.about__info-title, .about__info-name {
+.about__info-title,
+.about__info-name {
   display: block;
   text-align: center;
 }
@@ -397,7 +397,8 @@ img {
   cursor: pointer;
 }
 
-.skills__icon, .skills__arrow {
+.skills__icon,
+.skills__arrow {
   font-size: 32px;
   color: var(--first-color);
 }
@@ -417,7 +418,7 @@ img {
 
 .skills__arrow {
   margin-left: auto;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .skills__list {
@@ -436,7 +437,8 @@ img {
   font-weight: var(--font-medium);
 }
 
-.skills__bar, .skills__percentage {
+.skills__bar,
+.skills__percentage {
   height: 5px;
   border-radius: 4px;
 }
@@ -497,39 +499,27 @@ img {
 
 /*==================== SERVICES ====================*/
 
-
 /* Active Modal */
-
 
 /*==================== PORTFOLIO ====================*/
 
-
 /*==================== PROJECT IN MIND ====================*/
-
 
 /*==================== TESTIMONIAL ====================*/
 
-
 /*==================== CONTACT ME ====================*/
-
 
 /*==================== FOOTER ====================*/
 
-
 /*========== SCROLL UP ==========*/
-
 
 /* Show scroll */
 
-
 /*========== SCROLL BAR ==========*/
-
 
 /*==================== MEDIA QUERIES ====================*/
 /* For small devices */
 
-
 /* For medium devices */
-
 
 /* For large devices */
