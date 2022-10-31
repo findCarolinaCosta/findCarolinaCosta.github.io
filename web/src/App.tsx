@@ -1,4 +1,5 @@
 import { About } from "./components/About";
+import { ContactMe } from "./components/ContactMe";
 import { Header } from "./components/Header";
 import { Home } from "./components/Home";
 import { Portfolios } from "./components/Portfolio";
@@ -17,6 +18,7 @@ function App() {
         <Qualification />
         <Services />
         <Portfolios />
+        <ContactMe />
       </main>
     </>
   );
