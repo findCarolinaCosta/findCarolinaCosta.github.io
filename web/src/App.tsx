@@ -1,5 +1,6 @@
 import { About } from "./components/About";
 import { ContactMe } from "./components/ContactMe";
+import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Home } from "./components/Home";
 import { Portfolios } from "./components/Portfolio";
@@ -20,6 +21,7 @@ function App() {
         <Portfolios />
         <ContactMe />
       </main>
+      <Footer />
     </>
   );
 }
