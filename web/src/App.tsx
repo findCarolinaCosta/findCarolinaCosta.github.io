@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import { Home } from "./components/Home";
 import { Portfolios } from "./components/Portfolio";
 import { Qualification } from "./components/Qualification";
+import { ScrollTop } from "./components/Scroll/Top";
 import { Services } from "./components/Services";
 import { Skills } from "./components/Skills";
 
@@ -22,6 +23,7 @@ function App() {
         <ContactMe />
       </main>
       <Footer />
+      <ScrollTop />
     </>
   );
 }
