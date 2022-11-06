@@ -15,12 +15,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
+    "react-scrollspy": "^3.4.3",
     "redux": "^4.2.0",
     "swiper": "^8.4.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/react-scrollspy": "^3.3.5",
     "@vitejs/plugin-react": "^2.1.0",
     "sass": "^1.55.0",
     "typescript": "^4.6.4",
