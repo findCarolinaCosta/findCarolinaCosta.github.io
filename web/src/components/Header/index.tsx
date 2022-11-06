@@ -1,7 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleTheme, Theme } from "../../redux/reducers/theme";
 
 export function Header() {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
+  const dispatch = useDispatch();
+  const theme = useSelector(
+    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+  );
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme") as Theme;
+
+    if (theme) {
+      dispatch(handleTheme(theme));
+    }
+  }, []);
 
   return (
     <header className="header" id="header">
@@ -81,7 +95,17 @@ export function Header() {
         </div>
         <div className="nav__btns">
           {/* <!-- Theme change button --> */}
-          <i className="uil uil-moon change-theme" id="theme-button"></i>
+          <i
+            className={`uil ${theme.icon} change-theme`}
+            id="theme-button"
+            onClick={() =>
+              dispatch(
+                handleTheme(
+                  theme.theme == Theme.dark ? Theme.default : Theme.dark
+                )
+              )
+            }
+          ></i>
 
           <div
             className="nav__toggle"
