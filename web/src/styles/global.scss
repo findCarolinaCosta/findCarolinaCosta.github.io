@@ -988,6 +988,14 @@ img {
     column-gap: 2rem;
   }
 
+  .home__content,
+  .about__container,
+  .contact__container,
+  .skills__container,
+  .footer__container {
+    padding: 0 1.5rem;
+  }
+
   .home__blob {
     width: 270px;
   }
@@ -999,7 +1007,8 @@ img {
   .home__scroll-button {
     margin-left: 3rem;
   }
-  b .about__container {
+
+  .about__container {
     column-gap: 5rem;
   }
 
@@ -1082,6 +1091,14 @@ img {
     transform: translateX(-6rem);
   }
 
+  .home__content,
+  .about__container,
+  .contact__container,
+  .skills__container,
+  .footer__container {
+    padding: 0;
+  }
+
   .services__container {
     grid-template-columns: repeat(3, 238px);
   }
@@ -1108,5 +1125,13 @@ img {
 
   .swiper > .swiper-pagination {
     position: relative;
+  }
+
+  .contact__form {
+    width: 460px;
+  }
+
+  .contact__inputs {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
