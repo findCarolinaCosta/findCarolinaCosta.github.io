@@ -54,7 +54,7 @@ function PortfolioContent(props: PortfolioContentProps) {
     <>
       {/* <!-- Just to have as a cover on linkedin --> */}
       <img
-        src="src/assets/images/projects/project-startwars.gif"
+        src="https://github.com/findCarolinaCosta/findCarolinaCosta.github.io/blob/main/web/src/assets/images/projects/project-startwars.gif?raw=true"
         alt=""
         style={{ display: "none" }}
       />
