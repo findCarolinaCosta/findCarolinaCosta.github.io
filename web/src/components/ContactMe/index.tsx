@@ -1,0 +1,31 @@
+export function ContactMe() {
+  return (
+    <section className="contact section" id="contact">
+      <h2 className="section__title">Contact Me</h2>
+      <span className="section__subtitle">Get in touch</span>
+      <div className="contact__container container grid">
+        <div className="teste">
+          <div className="contact__information">
+            <i className="uil uil-envelope contact__icon"></i>
+            <div>
+              <h3 className="contact__title">Email</h3>
+              <span className="contact__subtitle">
+                carolinadacosta1997@gmail.com
+              </span>
+            </div>
+          </div>
+
+          <div className="contact__information">
+            <i className="uil uil-map-marker contact__icon"></i>
+            <div>
+              <h3 className="contact__title">Location</h3>
+              <span className="contact__subtitle">
+                Taboão da Serra, SP - Brazil
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
