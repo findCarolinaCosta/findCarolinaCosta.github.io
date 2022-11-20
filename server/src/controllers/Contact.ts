@@ -3,6 +3,7 @@ import { Contact as ContactModel } from "./../models/Contact";
 import { Client } from "@notionhq/client";
 import { Response, Request } from "express";
 import { IContactController } from "./IController";
+import { success } from "../utils/apiResponse";
 
 export class Contact implements IContactController {
   private _model: IContactModel;
@@ -21,7 +22,7 @@ export class Contact implements IContactController {
 
       await this._model.create(body);
 
-      return res.status(201).send();
+      return res.status(201).json(success());
     } catch (error) {
       console.error(error);
     }

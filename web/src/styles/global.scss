@@ -288,10 +288,22 @@ img {
   padding: 16px;
   border-radius: 8px;
   font-weight: var(--font-medium);
+
+  &:hover {
+    background-color: var(--first-color-alt);
+  }
+
+  &:active {
+    background-color: var(--first-color-active);
+  }
 }
 
-.button:hover {
-  background-color: var(--first-color-alt);
+.button--disabled {
+  background-color: var(--disable-color);
+
+  &:hover {
+    background-color: var(--disable-color);
+  }
 }
 
 .button__icon {
@@ -1132,5 +1144,9 @@ img {
 
   .contact__inputs {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .Toastify__toast-container--top-right {
+    top: var(--mt-4);
   }
 }

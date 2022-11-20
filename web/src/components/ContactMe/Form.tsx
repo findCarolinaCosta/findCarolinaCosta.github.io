@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface IData {
   Name: string;
@@ -10,6 +11,7 @@ interface IData {
 
 export function Form() {
   const [data, setData] = useState<IData>();
+  const [loading, setLoading] = useState(false);
 
   const handleDataChange = ({
     target,
@@ -22,10 +24,42 @@ export function Form() {
     } as any);
   };
 
-  const handleSendMessage = async () => {
-    if (data) {
+  const handleSendMessage = () => {
+    if (data?.Name && data.Email && data.Project && data.Message && !loading) {
       data.Message = data.Message.replace(/(\r\n|\n|\r)/gm, "-");
-      await axios.post(`${import.meta.env.VITE_SERVER_URL_API}/contact`, data);
+      const toastTime = 3000;
+      setLoading(true);
+
+      const response: any = axios.post(
+        `${import.meta.env.VITE_SERVER_URL_API}/contact`,
+        data
+      );
+
+      toast.promise(response, {
+        pending: {
+          render: () => "Please wait...",
+          theme: "dark",
+          autoClose: toastTime,
+        },
+        success: {
+          render: () => {
+            setLoading(false);
+            return "Message sent";
+          },
+          theme: "dark",
+          autoClose: toastTime,
+          closeOnClick: true,
+        },
+        error: {
+          render: () => {
+            setLoading(false);
+            return "Unable to send message at this time";
+          },
+          theme: "dark",
+          autoClose: toastTime,
+          closeOnClick: true,
+        },
+      });
     }
   };
 
@@ -90,7 +124,14 @@ export function Form() {
       </div>
 
       <div>
-        <a className="button button--flex" onClick={handleSendMessage}>
+        <a
+          className={
+            data?.Name && data.Email && data.Project && data.Message && !loading
+              ? "button button--flex"
+              : " button button--disabled button--flex"
+          }
+          onClick={handleSendMessage}
+        >
           Send Message
           <i className="uil uil-message button__icon"></i>
         </a>

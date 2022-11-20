@@ -22,6 +22,10 @@
   --container-color: #fff;
   --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+  --toastify-color-progress-light: var(--first-color-second);
+  --toastify-text-color-light: var(--text-color);
+  --disable-color: var(--text-color);
+  --first-color-active: hsl(var(--hue-color), 30%, 55%);
 
   /*========== Font and typography ==========*/
   --body-font: "Poppins", sans-serif;
@@ -49,6 +53,7 @@
   --mb-2: 32px;
   --mb-2-5: 40px;
   --mb-3: 48px;
+  --mt-4: 4rem;
 
   /*========== z index ==========*/
   --z-tooltip: 10;
@@ -83,4 +88,7 @@ body.dark-theme {
   --container-color: hsl(var(--hue-color), 29%, 16%);
   --scroll-bar-color: hsl(var(--hue-color), 12%, 48%);
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
+  --toastify-color-progress-dark: var(--first-color);
+  --disable-color: hsl(var(--hue-color), 8%, 60%);
+  --first-color-active: var(--input-color);
 }
