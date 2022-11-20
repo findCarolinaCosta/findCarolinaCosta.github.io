@@ -4,21 +4,24 @@ const projects: IProject[] = [
   {
     title: "Modern website",
     description: "Website animated interactions.",
-    projectImg: "src/assets/images/projects/project-startwar2.gif",
+    projectImg:
+      "https://github.com/findCarolinaCosta/findCarolinaCosta.github.io/blob/main/web/src/assets/images/projects/project-startwar2.gif?raw=true",
     demo: "https://findcarolinacosta.github.io/project-starwars-planets-search/",
     code: "https://github.com/findCarolinaCosta/project-startwars-planets-search",
   },
   {
     title: "React application",
     description: "Easy-to-handle structure",
-    projectImg: "src/assets/images/projects/trybewallet.png",
+    projectImg:
+      "https://github.com/findCarolinaCosta/findCarolinaCosta.github.io/blob/main/web/src/assets/images/projects/trybewallet.png?raw=true",
     demo: "https://findcarolinacosta.github.io/project-trybewallet/",
     code: "https://github.com/findCarolinaCosta/project-trybewallet",
   },
   {
     title: "Login /Logout",
     description: "Login /Logout system with what I learned in frontend",
-    projectImg: "src/assets/images/projects/social-contact.png",
+    projectImg:
+      "https://github.com/findCarolinaCosta/findCarolinaCosta.github.io/blob/main/web/src/assets/images/projects/social-contact.png?raw=true",
     demo: "https://findcarolinacosta.github.io/project-social-contact/",
     code: "https://github.com/findCarolinaCosta/project-social-contact",
   },
