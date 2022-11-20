@@ -11,11 +11,12 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation, Mousewheel, Keyboard } from "swiper";
 
 export interface IProject {
-  projectImg: string;
-  title: string;
-  description: string;
-  demo: string;
-  code: string;
+  ID: string;
+  Title: string;
+  Description: string;
+  Image: string;
+  Demo: string;
+  Code: string;
 }
 
 interface PortfolioContainerProps {
@@ -49,28 +50,24 @@ function PortfolioContainerSwiper({ children }: PortfolioContainerSwiperProps) {
 interface PortfolioContentProps extends IProject {}
 
 function PortfolioContent(props: PortfolioContentProps) {
-  const altProjectImg = props.projectImg.split("/projects/")[1].split(".")[0];
+  const altProjectImg = props.Image.split("/projects/")[1].split(".")[0];
   return (
     <>
       {/* <!-- Just to have as a cover on linkedin --> */}
       <img
-        src="https://github.com/findCarolinaCosta/findCarolinaCosta.github.io/blob/main/web/src/assets/images/projects/project-startwars.gif?raw=true"
+        src={import.meta.env.VITE_PORTFOLIO_COVER}
         alt=""
         style={{ display: "none" }}
       />
 
-      <img
-        src={props.projectImg}
-        alt={altProjectImg}
-        className="portfolio__img"
-      />
+      <img src={props.Image} alt={altProjectImg} className="portfolio__img" />
       <div className="portfolio__data">
-        <h3 className="portfolio__title">{props.title}</h3>
-        <p className="portfolio__description">{props.description}</p>
+        <h3 className="portfolio__title">{props.Title}</h3>
+        <p className="portfolio__description">{props.Description}</p>
 
         <div className="portfolio__content-buttons">
           <a
-            href={props.demo}
+            href={props.Demo}
             className="button button--flex button--small portfolio__button"
             target="_blank"
           >
@@ -78,7 +75,7 @@ function PortfolioContent(props: PortfolioContentProps) {
             <i className="uil uil-arrow-right button__icon button__icon"></i>
           </a>
           <a
-            href={props.code}
+            href={props.Code}
             className="button button--flex button--small portfolio__button"
             target="_blank"
           >
@@ -113,34 +110,15 @@ interface PortfolioDefaultProps {
 }
 
 function PortfolioDefault({ projectList }: PortfolioDefaultProps) {
-  //   return (
-  //     <>
-  //       <Portfolio.Root>
-  //         {projectList.map((project) => (
-  //           <Portfolio.Content
-  //             key={project.title}
-  //             projectImg={project.projectImg}
-  //             description={project.description}
-  //             title={project.title}
-  //             demo={project.demo}
-  //             code={project.code}
-  //           />
-  //         ))}
-  //         {/* <Portfolio.Arrows />
-  //         <Portfolio.Pagination /> */}
-  //       </Portfolio.Root>
-  //     </>
-  //   );
-
   return (
     <Swiper
       spaceBetween={0}
       centeredSlides={true}
-      //   autoplay={{
-      //     delay: 2500,
-      //     disableOnInteraction: false,
-      //   }}
-      loop={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      loop={projectList.length > 1}
       keyboard={{
         enabled: true,
       }}
@@ -152,23 +130,35 @@ function PortfolioDefault({ projectList }: PortfolioDefaultProps) {
         nextEl: ".uil-angle-right-b",
         prevEl: ".uil-angle-left-b",
       }}
-      modules={[Pagination, Navigation, Keyboard]}
+      modules={
+        projectList.length > 1
+          ? [Pagination, Navigation, Keyboard, Autoplay]
+          : []
+      }
       className="mySwiper portfolio__container container swiper"
     >
       {projectList.map((project) => (
-        <SwiperSlide className="portfolio__content grid swiper-slide">
+        <SwiperSlide
+          key={project.ID}
+          className="portfolio__content grid swiper-slide"
+        >
           <Portfolio.Content
-            key={project.title}
-            projectImg={project.projectImg}
-            description={project.description}
-            title={project.title}
-            demo={project.demo}
-            code={project.code}
+            ID={project.ID}
+            key={project.ID}
+            Image={project.Image}
+            Description={project.Description}
+            Title={project.Title}
+            Demo={project.Demo}
+            Code={project.Code}
           />
         </SwiperSlide>
       ))}
-      <Portfolio.Arrows />
-      <Portfolio.Pagination />
+      {projectList.length > 1 && (
+        <>
+          <Portfolio.Arrows />
+          <Portfolio.Pagination />
+        </>
+      )}
     </Swiper>
   );
 }
