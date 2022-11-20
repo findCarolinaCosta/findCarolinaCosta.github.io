@@ -11,8 +11,10 @@ export class Contact implements IContactController {
   private _databaseId: string;
 
   constructor(model: IContactModel | null = null) {
-    this._notion = new Client({ auth: process.env.NOTION_API_KEY });
-    this._databaseId = process.env.NOTION_DATABASE_ID || "";
+    this._notion = new Client({
+      auth: process.env.NOTION_PORTFOLIO_EMAILS_KEY,
+    });
+    this._databaseId = process.env.NOTION_PORTFOLIO_EMAILS_DATABASE_ID || "";
     this._model = model || new ContactModel(this._notion, this._databaseId);
   }
 

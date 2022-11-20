@@ -15,3 +15,17 @@ export interface IContactModel {
   delete: (id: string) => Promise<void>;
   //   update: () => Promise<void>;
 }
+
+export interface IProject {
+  ID: string;
+  databaseId?: string;
+  Title: string;
+  Description: string;
+  Image: string;
+  Demo: string;
+  Code: string;
+}
+
+export interface IPortfolioModel {
+  readMany: () => Promise<IProject[] | undefined>;
+}
