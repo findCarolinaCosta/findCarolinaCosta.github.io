@@ -82,11 +82,19 @@ function serializeSkillList(data: ISkillItem): {
 }
 
 export function serializeSkill(data: ISkillResponse[]): ISkillReturn[] {
-  return data.map(({ properties }) => ({
-    title: properties.title.title[0].text.content,
-    subtitle: properties.subtitle.rich_text[0].text.content,
-    unicons: properties.unicons.rich_text[0].text.content,
-    section: properties.section.select.name,
-    skillsList: serializeSkillList(properties.skillsList.relation[0]),
-  }));
+  return data
+    .map(({ properties }) => ({
+      title: properties.title.title[0].text.content,
+      subtitle: properties.subtitle.rich_text[0].text.content,
+      unicons: properties.unicons.rich_text[0].text.content,
+      section: properties.section.select.name,
+      skillsList: serializeSkillList(properties.skillsList.relation[0]).sort(
+        (a, b) => b.percentage - a.percentage
+      ),
+    }))
+    .sort(
+      (a, b) =>
+        Number(b.subtitle.replace(/\D/gim, "")) -
+        Number(a.subtitle.replace(/\D/gim, ""))
+    );
 }
