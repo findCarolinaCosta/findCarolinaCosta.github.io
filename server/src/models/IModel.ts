@@ -29,3 +29,21 @@ export interface IProject {
 export interface IPortfolioModel {
   readMany: () => Promise<IProject[] | undefined>;
 }
+
+export enum Section {
+  "FRONTEND" = "frontend",
+  "BACKEND" = "backend",
+}
+
+export interface ISkill {
+  ID?: string;
+  title: string;
+  subtitle: string;
+  unicons: string;
+  section: Section;
+  skillsList: { ID?: string; name: string; percentage: number }[];
+}
+
+export interface ISkillModel {
+  readMany: () => Promise<ISkill[] | undefined | any>;
+}
