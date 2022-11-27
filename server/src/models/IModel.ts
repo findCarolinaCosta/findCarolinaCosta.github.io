@@ -70,3 +70,12 @@ export interface IQualifications {
 export interface IQualificationModel {
   readMany: () => Promise<IQualifications[] | undefined>;
 }
+
+export interface IService {
+  title: string;
+  serviceList: string[];
+}
+
+export interface IServiceModel {
+  readMany: () => Promise<IService[] | undefined>;
+}

@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { IProject, IQualifications, ISkill } from "../models/IModel";
+import { IProject, IQualifications, ISkill, IService } from "../models/IModel";
 
 export interface IContactController {
   create: (req: Request, res: Response) => Promise<Response<void> | void>;
@@ -21,4 +21,11 @@ export interface IQualificationController {
     req: Request,
     res: Response
   ) => Promise<Response<IQualifications[]> | void>;
+}
+
+export interface IServiceController {
+  readMany: (
+    req: Request,
+    res: Response
+  ) => Promise<Response<IService[]> | void>;
 }
