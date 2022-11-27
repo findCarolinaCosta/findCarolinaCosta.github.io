@@ -47,3 +47,26 @@ export interface ISkill {
 export interface ISkillModel {
   readMany: () => Promise<ISkill[] | undefined | any>;
 }
+
+export enum Tab {
+  "EDUCATION" = "Education",
+  "WORK" = "Work",
+}
+
+export interface IQualification {
+  title: string;
+  subtitle: string;
+  startYear: string;
+  finalYear: string;
+}
+
+export interface IQualifications {
+  ID?: string;
+  tab: Tab;
+  unicon: string;
+  data: IQualification[];
+}
+
+export interface IQualificationModel {
+  readMany: () => Promise<IQualifications[] | undefined>;
+}
