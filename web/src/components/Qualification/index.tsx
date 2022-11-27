@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   IQualificationContent,
   Qualifications,
@@ -45,11 +46,24 @@ const qualifications: IQualifications[] = [
 const tabs = qualifications.map(({ tab, unicon }) => ({ tab, unicon }));
 
 export function Qualification() {
-  const [qualificationList, setQualificationList] =
-    useState<IQualifications[]>(qualifications);
+  const [qualificationList, setQualificationList] = useState<IQualifications[]>(
+    []
+  );
   const [tabSelected, setTabSelected] = useState<Tab>(Tab.WORK);
 
   const handleTabClick = (tab: Tab) => setTabSelected(tab);
+
+  useEffect(() => {
+    if (qualificationList.length == 0) {
+      (
+        axios.get(
+          `${import.meta.env.VITE_SERVER_URL_API}/qualifications`
+        ) as unknown as Promise<{
+          data: { ok: boolean; payload: IQualifications[] };
+        }>
+      ).then((response) => setQualificationList(response.data.payload));
+    }
+  }, []);
 
   return (
     <section className="qualification section" id="qualification">
