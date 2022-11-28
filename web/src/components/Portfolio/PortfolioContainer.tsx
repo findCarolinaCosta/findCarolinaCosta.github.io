@@ -50,7 +50,6 @@ function PortfolioContainerSwiper({ children }: PortfolioContainerSwiperProps) {
 interface PortfolioContentProps extends IProject {}
 
 function PortfolioContent(props: PortfolioContentProps) {
-  const altProjectImg = props.Image.split("/projects/")[1].split(".")[0];
   return (
     <>
       {/* <!-- Just to have as a cover on linkedin --> */}
@@ -60,7 +59,7 @@ function PortfolioContent(props: PortfolioContentProps) {
         style={{ display: "none" }}
       />
 
-      <img src={props.Image} alt={altProjectImg} className="portfolio__img" />
+      <img src={props.Image} alt={props.Title} className="portfolio__img" />
       <div className="portfolio__data">
         <h3 className="portfolio__title">{props.Title}</h3>
         <p className="portfolio__description">{props.Description}</p>
