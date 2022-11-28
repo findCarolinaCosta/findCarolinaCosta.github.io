@@ -7,4 +7,9 @@ const gateway = new Gateway();
 
 export const ContactRoutes = Router();
 
-ContactRoutes.post("/contact", gateway.execute, contactController.create);
+ContactRoutes.post(
+  "/contact",
+  gateway.execute,
+  gateway.messageBody,
+  contactController.create
+);

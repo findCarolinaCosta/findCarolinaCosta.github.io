@@ -11,6 +11,8 @@ import { ScrollTop } from "./components/Scroll/Top";
 import { Services } from "./components/Services";
 import { Skills } from "./components/Skills";
 import { Theme } from "./redux/reducers/theme";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const className = "dark-theme" as any;
@@ -39,6 +41,7 @@ function App() {
   return (
     <>
       <Header />
+      <ToastContainer />
       <main>
         <Home />
         <About />

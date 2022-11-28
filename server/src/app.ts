@@ -4,13 +4,11 @@ import routes from "./routes";
 
 class App {
   public app: express.Express;
-  private _allowedOrigins: string[];
 
   constructor() {
     this.app = express();
     this.config();
     this.middlewares();
-    this._allowedOrigins = process.env.ORIGINS?.split(",") || [];
   }
 
   private config(): void {
@@ -34,12 +32,13 @@ class App {
     let msg =
       "The CORS policy for this site does not " +
       "allow access from the specified Origin.";
+    const allowedOrigins = process.env.ORIGINS?.split(",") || [];
 
     if (!origin && process.env.DEVELOPMENT) return callback(null, true);
 
     if (!origin || !process.env.DEVELOPMENT) return callback(msg, true);
 
-    if (this._allowedOrigins.indexOf(origin) === -1) {
+    if (allowedOrigins.indexOf(origin) === -1) {
       return callback(new Error(msg), false);
     }
 
