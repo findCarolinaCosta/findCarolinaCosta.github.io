@@ -1,5 +1,5 @@
-import { IContactModel, IEmail } from "./../models/IModel";
-import { Contact as ContactModel } from "./../models/Contact";
+import { IContactModel, IEmail } from "../models/IModel";
+import { Contact as ContactModel } from "../models/Contact";
 import { Client } from "@notionhq/client";
 import { Response, Request } from "express";
 import { IContactController } from "./IController";

@@ -1,10 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "./src/server.ts",
+  "main": "./api/index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev ."
+    "dev": "ts-node-dev .",
+    "start": "vercel dev",
+    "deploy": "vercel deploy --prod",
+    "build": "npx tsc"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.2",
