@@ -1,10 +1,12 @@
+import { Form } from "./Form";
+
 export function ContactMe() {
   return (
     <section className="contact section" id="contact">
       <h2 className="section__title">Contact Me</h2>
       <span className="section__subtitle">Get in touch</span>
       <div className="contact__container container grid">
-        <div className="teste">
+        <div>
           <div className="contact__information">
             <i className="uil uil-envelope contact__icon"></i>
             <div>
@@ -25,6 +27,7 @@ export function ContactMe() {
             </div>
           </div>
         </div>
+        <Form />
       </div>
     </section>
   );
