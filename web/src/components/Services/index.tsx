@@ -1,21 +1,28 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Service } from "./ServiceContainer";
 
-enum Title {
-  "Frontend" = "Frontend Developer",
+interface IService {
+  title: string;
+  serviceList: string[];
 }
-
-const FrontendServiceList: string[] = [
-  "I develop the user interface.",
-  "Web page development.",
-  "Production and maintenance of websites and web application user interfaces.",
-  "Implementing Responsive Design.",
-  "I test the site for usability and fixing any bugs.",
-  "Bringing a concept to life with HTML, CSS, and JavaScript for essential interactions.",
-];
 
 export function Services() {
   const [cardClicked, setCardClicked] = useState("");
+  const [services, setServices] = useState<IService[]>([]);
+
+  useEffect(() => {
+    if (services.length == 0) {
+      (
+        axios.get(
+          `${import.meta.env.VITE_SERVER_URL_API}/services`
+        ) as unknown as Promise<{
+          data: { ok: boolean; payload: IService[] };
+        }>
+      ).then((response) => setServices(response.data.payload));
+    }
+  }, []);
+
   return (
     <section className="services section" id="services">
       <h2 className="section__title">Services</h2>
@@ -24,9 +31,7 @@ export function Services() {
         <Service.Default
           handleClick={(title) => setCardClicked(title)}
           cardClicked={cardClicked}
-          services={[
-            { title: Title.Frontend, serviceList: FrontendServiceList },
-          ]}
+          services={services}
         />
       </Service.Root>
     </section>
