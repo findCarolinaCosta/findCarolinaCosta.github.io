@@ -1,6 +1,14 @@
+import { useSelector } from "react-redux";
+import { IRequestState } from "../../redux/reducers/request";
+import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
+
 export function Footer() {
+  const isAlreadyRequestsDone = useSelector(
+    ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
+  );
+
   return (
-    <footer className="footer">
+    <footer className={`footer ${!isAlreadyRequestsDone && "display__none"}`}>
       <div className="footer__bg">
         <div className="footer__container container grid">
           <div>

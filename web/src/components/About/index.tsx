@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { IRequestState } from "../../redux/reducers/request";
+import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
+import { AboutSkeleton } from "./AboutSkeleton";
+
 export function About() {
+  const [isLoading, setIsLoading] = useState(true);
+  const isAlreadyRequestsDone = useSelector(
+    ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
+  );
+
+  useEffect(() => {
+    if (isAlreadyRequestsDone) {
+      setIsLoading(!isAlreadyRequestsDone);
+    }
+  }, [isAlreadyRequestsDone]);
+
+  if (isLoading) return <AboutSkeleton />;
+
   return (
     <section className="about section" id="about">
       <h2 className="section__title">About Me</h2>

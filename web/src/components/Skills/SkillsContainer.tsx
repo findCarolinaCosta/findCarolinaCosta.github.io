@@ -31,7 +31,9 @@ function SkillsContainerContent(props: ISkillsContainerContentProps) {
   return (
     <div
       className={`skills__content ${
-        props.section === props.sectionOpen ? isOpen.TRUE : isOpen.FALSE
+        props.section === props.sectionOpen?.toUpperCase()
+          ? isOpen.TRUE
+          : isOpen.FALSE
       }`}
     >
       {props.children}

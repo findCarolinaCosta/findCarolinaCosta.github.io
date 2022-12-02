@@ -1,46 +1,53 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import { Section, SkillsContainer, ISkillsListProps } from "./SkillsContainer";
 
-interface skillsList extends ISkillsListProps {
+export interface skillsList extends ISkillsListProps {
   title: string;
   subtitle: string;
   unicons: string;
   section: Section;
 }
 
-const skillsList: skillsList[] = [
-  {
-    title: "Frontend developer",
-    subtitle: "More than 10 months",
-    unicons: "uil-brackets-curly",
-    skillsList: [
-      { name: "HTML", percentage: 98 },
-      { name: "CSS", percentage: 80 },
-      { name: "JavaScript", percentage: 89 },
-      { name: "React", percentage: 87 },
-    ],
-    section: Section.FRONTEND,
-  },
-  {
-    title: "Backend developer",
-    subtitle: "More than 6 months",
-    unicons: "uil-server-network",
-    skillsList: [
-      { name: "SQL", percentage: 60 },
-      { name: "Node JS", percentage: 80 },
-      { name: "TypeScript", percentage: 89 },
-    ],
-    section: Section.BACKEND,
-  },
-];
-
 export function Skills() {
   const [sectionOpen, setSectionOpen] = useState<Section | null>(
     Section.FRONTEND
   );
+  const [skillsList, setSkillsList] = useState<skillsList[]>([]);
+  const dispatch = useDispatch();
+  const isAlreadyRequestsDone = useSelector(
+    ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
+  );
+
+  useEffect(() => {
+    if (skillsList.length == 0) {
+      (
+        axios.get(
+          `${import.meta.env.VITE_SERVER_URL_API}/skills`
+        ) as unknown as Promise<{
+          data: { ok: boolean; payload: skillsList[] };
+        }>
+      ).then((response) => setSkillsList(response.data.payload));
+    }
+  }, []);
+
+  useEffect(() => {
+    dispatch(
+      setRequest({
+        type: "skills",
+        data: skillsList,
+      })
+    );
+  }, [skillsList]);
 
   return (
-    <section className="skills section" id="skills">
+    <section
+      className={`skills section ${!isAlreadyRequestsDone && "display__none"}`}
+      id="skills"
+    >
       <section className="skills section" id="skills">
         <h2 className="section__title">Skills</h2>
         <span className="section__subtitle">My technical level</span>

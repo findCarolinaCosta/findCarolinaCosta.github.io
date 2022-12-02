@@ -11,13 +11,20 @@ import { ScrollTop } from "./components/Scroll/Top";
 import { Services } from "./components/Services";
 import { Skills } from "./components/Skills";
 import { Theme } from "./redux/reducers/theme";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import { IRequestState } from "./redux/reducers/request";
+import { alreadyRequestsDone } from "./utils/alreadyRequestsDone";
 
 function App() {
   const className = "dark-theme" as any;
   const theme = useSelector(
     ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+  );
+  const isAlreadyRequestsDone = useSelector(
+    ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
   );
 
   const addBodyClass = (className: any) =>
@@ -38,8 +45,20 @@ function App() {
     }
   });
 
+  useEffect(() => {
+    if (!isAlreadyRequestsDone) {
+      ("overFlow-hidden" as any) instanceof Array
+        ? className.map(addBodyClass)
+        : addBodyClass("overFlow-hidden");
+    } else {
+      ("overFlow-hidden" as any) instanceof Array
+        ? className.map(removeBodyClass)
+        : removeBodyClass("overFlow-hidden");
+    }
+  }, [isAlreadyRequestsDone]);
+
   return (
-    <>
+    <div>
       <Header />
       <ToastContainer />
       <main>
@@ -53,7 +72,7 @@ function App() {
       </main>
       <Footer />
       <ScrollTop />
-    </>
+    </div>
   );
 }
 

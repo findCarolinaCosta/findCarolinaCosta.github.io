@@ -17,6 +17,10 @@
   color: var(--first-color);
 }
 
+.overFlow-hidden {
+  overflow: hidden;
+}
+
 /*==================== BASE ====================*/
 * {
   box-sizing: border-box;
@@ -77,7 +81,7 @@ img {
   text-align: center;
 }
 
-.display-img__none {
+.display__none {
   display: none;
 }
 
@@ -845,6 +849,7 @@ img {
   background-color: var(--scroll-bar-color);
   border-radius: 0.5rem;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: var(--scroll-thumb-color);
   border-radius: 0.5rem;
@@ -1019,6 +1024,7 @@ img {
   .home__scroll-button {
     margin-left: 3rem;
   }
+
   b .about__container {
     column-gap: 5rem;
   }
@@ -1088,6 +1094,7 @@ img {
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
+
   .header,
   .main,
   .footer__container {
@@ -1134,7 +1141,7 @@ img {
     right: -0.1rem !important;
   }
 
-  .swiper > .swiper-pagination {
+  .swiper>.swiper-pagination {
     position: relative;
   }
 
