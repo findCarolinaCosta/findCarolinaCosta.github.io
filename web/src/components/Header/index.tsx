@@ -6,7 +6,7 @@ import { handleActiveSection, setSections } from "../../redux/reducers/section";
 import { HeaderSkeleton } from "./HeaderSkeleton";
 import { IRequestState } from "../../redux/reducers/request";
 
-const sections: string[] = [
+export const sections: string[] = [
   "home",
   "about",
   "skills",

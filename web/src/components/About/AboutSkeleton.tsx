@@ -1,6 +1,11 @@
 import Skeleton from "react-loading-skeleton";
+import { useSelector } from "react-redux";
+import { Theme } from "../../redux/reducers/theme";
 
 export function AboutSkeleton() {
+  const theme = useSelector(
+    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+  );
   return (
     <section
       className="about section"
@@ -15,8 +20,8 @@ export function AboutSkeleton() {
       <Skeleton
         height={55}
         width={200}
-        baseColor="#211d35"
-        highlightColor="#3e3663"
+        baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+        highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
         className="section__title"
         style={{
           marginBottom: "1rem",
@@ -25,8 +30,8 @@ export function AboutSkeleton() {
       <Skeleton
         height={21}
         width={108.75}
-        baseColor="#211d35"
-        highlightColor="#3e3663"
+        baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+        highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
         className="section__subtitle"
         style={{
           maxHeight: "90",
@@ -38,8 +43,8 @@ export function AboutSkeleton() {
           <Skeleton
             height={75}
             width={768}
-            baseColor="#211d35"
-            highlightColor="#3e3663"
+            baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+            highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
             className="about__description"
           />
           <div
@@ -54,14 +59,14 @@ export function AboutSkeleton() {
               <Skeleton
                 height={35}
                 width={79.03}
-                baseColor="#211d35"
-                highlightColor="#3e3663"
+                baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+                highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
               />
               <Skeleton
                 height={42}
                 width={79.03}
-                baseColor="#211d35"
-                highlightColor="#3e3663"
+                baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+                highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
               />
             </div>
           </div>
