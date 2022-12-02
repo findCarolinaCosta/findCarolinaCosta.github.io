@@ -1,9 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import { IProject, Portfolio } from "./PortfolioContainer";
 
 export function Portfolios() {
   const [projects, setProjects] = useState<IProject[]>([]);
+  const dispatch = useDispatch();
+  const isAlreadyRequestsDone = useSelector(
+    ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
+  );
 
   useEffect(() => {
     if (projects.length == 0) {
@@ -15,8 +22,23 @@ export function Portfolios() {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(
+      setRequest({
+        type: "projects",
+        data: projects,
+      })
+    );
+  }),
+    [projects];
+
   return (
-    <section className="portfolio section" id="portfolio">
+    <section
+      className={`portfolio section ${
+        !isAlreadyRequestsDone && "display__none"
+      }`}
+      id="portfolio"
+    >
       <h2 className="section__title">Portfolio</h2>
       <span className="section__subtitle">Most recent project</span>
       {projects.length > 0 && <Portfolio.Default projectList={projects} />}

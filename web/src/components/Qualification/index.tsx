@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import {
   IQualificationContent,
   Qualifications,
@@ -10,46 +13,22 @@ export enum Tab {
   "WORK" = "Work",
 }
 
-interface IQualifications {
+export interface IQualifications {
   tab: Tab;
   unicon: string;
   data: IQualificationContent[];
 }
-
-const qualifications: IQualifications[] = [
-  {
-    tab: Tab.EDUCATION,
-    unicon: "uil-graduation-cap",
-    data: [
-      {
-        title: "Web developer",
-        subtitle: "Trybe",
-        startYear: "2021",
-        finalYear: "2022",
-      },
-    ],
-  },
-  {
-    tab: Tab.WORK,
-    unicon: "uil-graduation-cap",
-    data: [
-      {
-        title: "Product Development Engineer - Junior",
-        subtitle: "Cashforce",
-        startYear: "2022",
-        finalYear: "current",
-      },
-    ],
-  },
-];
-
-const tabs = qualifications.map(({ tab, unicon }) => ({ tab, unicon }));
 
 export function Qualification() {
   const [qualificationList, setQualificationList] = useState<IQualifications[]>(
     []
   );
   const [tabSelected, setTabSelected] = useState<Tab>(Tab.WORK);
+  const tabs = qualificationList.map(({ tab, unicon }) => ({ tab, unicon }));
+  const dispatch = useDispatch();
+  const isAlreadyRequestsDone = useSelector(
+    ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
+  );
 
   const handleTabClick = (tab: Tab) => setTabSelected(tab);
 
@@ -65,8 +44,23 @@ export function Qualification() {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(
+      setRequest({
+        type: "qualifications",
+        data: qualificationList,
+      })
+    );
+  }),
+    [qualificationList];
+
   return (
-    <section className="qualification section" id="qualification">
+    <section
+      className={`qualification section ${
+        !isAlreadyRequestsDone && "display__none"
+      }`}
+      id="qualification"
+    >
       <h2 className="section__title">Qualification</h2>
       <span className="section__subtitle">My personal journey</span>
 

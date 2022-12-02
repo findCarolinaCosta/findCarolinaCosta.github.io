@@ -1,6 +1,30 @@
 import { HomeImg } from "./HomeImg";
+import { HomeSkeleton } from "./HomeSkeleton";
+import { useSelector } from "react-redux";
+import { IRequestState } from "../../redux/reducers/request";
+import { useEffect, useState } from "react";
 
 export function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  const request = useSelector(
+    ({ request }: { request: IRequestState }) => request
+  );
+
+  useEffect(() => {
+    if (request) {
+      setIsLoading(
+        !(
+          request.projects.length > 0 &&
+          request.qualificationList.length > 0 &&
+          request.services.length > 0 &&
+          request.skillsList.length > 0
+        )
+      );
+    }
+  }, [request]);
+
+  if (isLoading) return <HomeSkeleton />;
+
   return (
     <section className="home section" id="home">
       <div className="home__conteiner container grid">
