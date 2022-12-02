@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleTheme, Theme } from "../../redux/reducers/theme";
 import Scrollspy from "react-scrollspy";
 import { handleActiveSection, setSections } from "../../redux/reducers/section";
+import { HeaderSkeleton } from "./HeaderSkeleton";
+import { IRequestState } from "../../redux/reducers/request";
 
 const sections: string[] = [
   "home",
@@ -24,6 +26,10 @@ export function Header() {
     ({ section }: { section: { activeSection: string } }) =>
       section.activeSection
   );
+  const [isLoading, setIsLoading] = useState(true);
+  const request = useSelector(
+    ({ request }: { request: IRequestState }) => request
+  );
 
   useEffect(() => {
     const theme = localStorage.getItem("theme") as Theme;
@@ -36,6 +42,21 @@ export function Header() {
   useEffect(() => {
     dispatch(setSections(sections));
   }, [sections]);
+
+  useEffect(() => {
+    if (request) {
+      setIsLoading(
+        !(
+          request.projects.length > 0 &&
+          request.qualificationList.length > 0 &&
+          request.services.length > 0 &&
+          request.skillsList.length > 0
+        )
+      );
+    }
+  }, [request]);
+
+  if (isLoading) return <HeaderSkeleton />;
 
   return (
     <header className="header" id="header">
