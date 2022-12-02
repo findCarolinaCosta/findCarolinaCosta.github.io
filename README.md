@@ -16,7 +16,12 @@ I made this portfolio with great care, it is responsive to the main breakpoints 
 ## Future implementations 
 - Portuguese translation
 - Button to download CV
-- Contact Form
+- Contact Form ✔
+- Skeleton mobile
+- Skeleton light mode
+- Notification light mode
+- Integração com API ✔
+- Update content info
 
 ## Status report
 :last_quarter_moon: In progress
