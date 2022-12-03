@@ -39,11 +39,15 @@ export function About() {
               </span>
             </div>
           </div>
-          {/* <!-- <div className="about__buttons">
-              <a download="" href="" className="button button--flex"> 
-                  Download CV<i className="uil uil-download-alt button__icon"></i> 
-              </a>
-          </div> --> */}
+          <div className="about__buttons">
+            <a
+              download=""
+              href={import.meta.env.VITE_RESUME_FULLSTACK}
+              className="button button--flex"
+            >
+              Download CV<i className="uil uil-download-alt button__icon"></i>
+            </a>
+          </div>
         </div>
       </div>
     </section>
