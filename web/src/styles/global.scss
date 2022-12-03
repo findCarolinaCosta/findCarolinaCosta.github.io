@@ -1019,6 +1019,7 @@ img {
 
   .home__scroll {
     display: block;
+    padding-left: 24px;
   }
 
   .home__scroll-button {
@@ -1113,7 +1114,8 @@ img {
   .about__container,
   .contact__container,
   .skills__container,
-  .footer__container {
+  .footer__container,
+  .home__scroll {
     padding: 0;
   }
 

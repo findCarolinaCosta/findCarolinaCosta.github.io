@@ -2,6 +2,7 @@ import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { sections } from ".";
 import { Theme } from "../../redux/reducers/theme";
+import { getScreenSize } from "../../utils/getScreen";
 
 export function HeaderSkeleton() {
   const theme = useSelector(
@@ -30,8 +31,18 @@ export function HeaderSkeleton() {
             {sections.map(() => (
               <li>
                 <Skeleton
-                  height={21}
-                  width={60}
+                  height={getScreenSize({
+                    small: { size: 350, default: 0 },
+                    medium: { size: 568, default: 0 },
+                    medium2: { size: 768, default: 21 },
+                    large: { size: 1024, default: 21 },
+                  })}
+                  width={getScreenSize({
+                    small: { size: 350, default: 0 },
+                    medium: { size: 568, default: 0 },
+                    medium2: { size: 768, default: 54 },
+                    large: { size: 1024, default: 60 },
+                  })}
                   baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
                   highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
                 />
