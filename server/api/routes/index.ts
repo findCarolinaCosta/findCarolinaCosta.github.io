@@ -3,6 +3,7 @@ import { PortfolioRoutes } from "./Portfolio";
 import { SkillRoutes } from "./Skill";
 import { qualificationRoutes } from "./Qualification";
 import { serviceRoutes } from "./Service";
+import { mainInfoRoutes } from "./MainInfo";
 
 export default [
   ContactRoutes,
@@ -10,4 +11,5 @@ export default [
   SkillRoutes,
   qualificationRoutes,
   serviceRoutes,
+  mainInfoRoutes,
 ];

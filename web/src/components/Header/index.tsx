@@ -6,7 +6,7 @@ import { handleActiveSection, setSections } from "../../redux/reducers/section";
 import { HeaderSkeleton } from "./HeaderSkeleton";
 import { IRequestState } from "../../redux/reducers/request";
 
-const sections: string[] = [
+export const sections: string[] = [
   "home",
   "about",
   "skills",
@@ -56,10 +56,10 @@ export function Header() {
     }
   }, [request]);
 
-  if (isLoading) return <HeaderSkeleton />;
+  if (isLoading && window.screen.width >= 768) return <HeaderSkeleton />;
 
   return (
-    <header className="header" id="header">
+    <header className={`header ${isLoading && "display__none"}`} id="header">
       <nav className="nav container">
         <a href="#" className="nav__logo">
           Carolina

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { Theme } from "../../redux/reducers/theme";
 
 interface IData {
   Name: string;
@@ -12,6 +14,9 @@ interface IData {
 export function Form() {
   const [data, setData] = useState<IData>();
   const [loading, setLoading] = useState(false);
+  const theme = useSelector(
+    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+  );
 
   const handleDataChange = ({
     target,
@@ -38,7 +43,7 @@ export function Form() {
       toast.promise(response, {
         pending: {
           render: () => "Please wait...",
-          theme: "dark",
+          theme: theme.theme === Theme.dark ? "dark" : "light",
           autoClose: toastTime,
         },
         success: {
@@ -46,7 +51,7 @@ export function Form() {
             setLoading(false);
             return "Message sent";
           },
-          theme: "dark",
+          theme: theme.theme === Theme.dark ? "dark" : "light",
           autoClose: toastTime,
           closeOnClick: true,
         },
@@ -55,7 +60,7 @@ export function Form() {
             setLoading(false);
             return "Unable to send message at this time";
           },
-          theme: "dark",
+          theme: theme.theme === Theme.dark ? "dark" : "light",
           autoClose: toastTime,
           closeOnClick: true,
         },

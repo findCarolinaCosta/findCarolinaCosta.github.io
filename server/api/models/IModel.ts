@@ -79,3 +79,15 @@ export interface IService {
 export interface IServiceModel {
   readMany: () => Promise<IService[] | undefined>;
 }
+
+export interface IMainInfo {
+  role: string;
+  homeDescription: string;
+  aboutDescription: string;
+  projects: number;
+  homeImg: string;
+}
+
+export interface IMainInfoModel {
+  read: () => Promise<IMainInfo[] | undefined>;
+}

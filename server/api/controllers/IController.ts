@@ -1,5 +1,11 @@
 import { Response, Request } from "express";
-import { IProject, IQualifications, ISkill, IService } from "../models/IModel";
+import {
+  IProject,
+  IQualifications,
+  ISkill,
+  IService,
+  IMainInfo,
+} from "../models/IModel";
 
 export interface IContactController {
   create: (req: Request, res: Response) => Promise<Response<void> | void>;
@@ -28,4 +34,8 @@ export interface IServiceController {
     req: Request,
     res: Response
   ) => Promise<Response<IService[]> | void>;
+}
+
+export interface IMainInfoController {
+  read: (req: Request, res: Response) => Promise<Response<IMainInfo[]> | void>;
 }

@@ -1,62 +1,136 @@
-import { useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { IRequestState } from "../../redux/reducers/request";
-import { HomeImg } from "./HomeImg";
+import { Theme } from "../../redux/reducers/theme";
+import { getScreenSize } from "../../utils/getScreen";
 
 export function HomeSkeleton() {
+  const theme = useSelector(
+    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+  );
+
   return (
     <section className="home section" id="home">
       <div className="home__conteiner container grid">
         <div className="home__content grid">
           <section className="home__social">
             <Skeleton
-              height={25}
-              width={25}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              height={getScreenSize({
+                small: { size: 350, default: 20 },
+                medium: { size: 568, default: 25 },
+                medium2: { size: 768, default: 25 },
+                large: { size: 1024, default: 25 },
+              })}
+              width={getScreenSize({
+                small: { size: 350, default: 20 },
+                medium: { size: 568, default: 25 },
+                medium2: { size: 768, default: 25 },
+                large: { size: 1024, default: 25 },
+              })}
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
               circle={true}
             />
             <Skeleton
-              height={25}
-              width={25}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              height={getScreenSize({
+                small: { size: 350, default: 20 },
+                medium: { size: 568, default: 25 },
+                medium2: { size: 768, default: 25 },
+                large: { size: 1024, default: 25 },
+              })}
+              width={getScreenSize({
+                small: { size: 350, default: 20 },
+                medium: { size: 568, default: 25 },
+                medium2: { size: 768, default: 25 },
+                large: { size: 1024, default: 25 },
+              })}
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
               circle={true}
             />
           </section>
           <section className="home__img">
             <Skeleton
-              height={303.99}
-              width={303.99}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              height={getScreenSize({
+                small: { size: 350, default: 171 },
+                medium: { size: 568, default: 190 },
+                medium2: { size: 768, default: 256.49 },
+                large: { size: 1024, default: 303.99 },
+              })}
+              width={getScreenSize({
+                small: { size: 350, default: 171 },
+                medium: { size: 568, default: 190 },
+                medium2: { size: 768, default: 256.49 },
+                large: { size: 1024, default: 303.99 },
+              })}
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
             />
           </section>
           <section className="home__data">
             <Skeleton
-              height={144}
-              width={355}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              height={getScreenSize({
+                small: { size: 350, default: 48 },
+                medium: { size: 568, default: 48 },
+                medium2: { size: 768, default: 48 },
+                large: { size: 1024, default: 144 },
+              })}
+              width={getScreenSize({
+                small: { size: 350, default: 308 },
+                medium: { size: 568, default: 260 },
+                medium2: { size: 768, default: 318 },
+                large: { size: 1024, default: 355 },
+              })}
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
             />
             <Skeleton
-              height={30}
-              width={355}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              height={getScreenSize({
+                small: { size: 350, default: 27 },
+                medium: { size: 568, default: 27 },
+                medium2: { size: 768, default: 27 },
+                large: { size: 1024, default: 30 },
+              })}
+              width={getScreenSize({
+                small: { size: 350, default: 308 },
+                medium: { size: 568, default: 180 },
+                medium2: { size: 768, default: 318 },
+                large: { size: 1024, default: 355 },
+              })}
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
             />
             <Skeleton
-              height={75}
-              width={355}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              height={getScreenSize({
+                small: { size: 350, default: 69 },
+                medium: { size: 568, default: 70 },
+                medium2: { size: 768, default: 69 },
+                large: { size: 1024, default: 75 },
+              })}
+              width={getScreenSize({
+                small: { size: 350, default: 318 },
+                medium: { size: 568, default: 342 },
+                medium2: { size: 768, default: 318 },
+                large: { size: 1024, default: 355 },
+              })}
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
             />
             <Skeleton
-              height={62}
-              width={153.47}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              height={getScreenSize({
+                small: { size: 350, default: 62 },
+                medium: { size: 568, default: 62 },
+                medium2: { size: 768, default: 62 },
+                large: { size: 1024, default: 62 },
+              })}
+              width={getScreenSize({
+                small: { size: 350, default: 147.63 },
+                medium: { size: 568, default: 147.63 },
+                medium2: { size: 768, default: 147.63 },
+                large: { size: 1024, default: 153.47 },
+              })}
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
             />
           </section>
         </div>
@@ -67,10 +141,20 @@ export function HomeSkeleton() {
           }}
         >
           <Skeleton
-            height={48}
-            width={137.28}
-            baseColor="#211d35"
-            highlightColor="#3e3663"
+            height={getScreenSize({
+              small: { size: 350, default: 0 },
+              medium: { size: 568, default: 0 },
+              medium2: { size: 768, default: 48 },
+              large: { size: 1024, default: 48 },
+            })}
+            width={getScreenSize({
+              small: { size: 350, default: 0 },
+              medium: { size: 568, default: 0 },
+              medium2: { size: 768, default: 131.47 },
+              large: { size: 1024, default: 137.28 },
+            })}
+            baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+            highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
             className="home__scroll-button"
           />
         </section>

@@ -1,14 +1,22 @@
 import Skeleton from "react-loading-skeleton";
+import { useSelector } from "react-redux";
+import { sections } from ".";
+import { Theme } from "../../redux/reducers/theme";
+import { getScreenSize } from "../../utils/getScreen";
 
 export function HeaderSkeleton() {
+  const theme = useSelector(
+    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+  );
+
   return (
     <header className="header" id="header">
       <nav className="nav container">
         <Skeleton
           height={25}
           width={69.25}
-          baseColor="#211d35"
-          highlightColor="#3e3663"
+          baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+          highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
         />
 
         <div
@@ -20,13 +28,23 @@ export function HeaderSkeleton() {
           }}
         >
           <ul className="nav__list grid">
-            {[1, 2, 3, 4, 5, 6, 7].map(() => (
+            {sections.map(() => (
               <li>
                 <Skeleton
-                  height={21}
-                  width={60}
-                  baseColor="#211d35"
-                  highlightColor="#3e3663"
+                  height={getScreenSize({
+                    small: { size: 350, default: 0 },
+                    medium: { size: 568, default: 0 },
+                    medium2: { size: 768, default: 21 },
+                    large: { size: 1024, default: 21 },
+                  })}
+                  width={getScreenSize({
+                    small: { size: 350, default: 0 },
+                    medium: { size: 568, default: 0 },
+                    medium2: { size: 768, default: 54 },
+                    large: { size: 1024, default: 60 },
+                  })}
+                  baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+                  highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
                 />
               </li>
             ))}
@@ -35,8 +53,8 @@ export function HeaderSkeleton() {
             <Skeleton
               height={20}
               width={20}
-              baseColor="#211d35"
-              highlightColor="#3e3663"
+              baseColor={theme.theme == Theme.dark ? "#211d35" : "#CDCDCC"}
+              highlightColor={theme.theme == Theme.dark ? "#3e3663" : ""}
               circle={true}
             />
             <div className="nav__toggle" id="nav-toggle">
