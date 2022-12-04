@@ -24,7 +24,7 @@ I made this portfolio with great care, it is responsive to the main breakpoints 
 - Skeleton light mode ✔
 - Notification light mode ✔
 - Integração com API ✔
-- Update content info
+- Update content info ✔
 
 ## Tech Infos
 
