@@ -66,7 +66,7 @@ export function AboutSkeleton() {
               small: { size: 350, default: 138 },
               medium: { size: 568, default: 92 },
               medium2: { size: 768, default: 69 },
-              large: { size: 1024, default: 75 },
+              large: { size: 1024, default: 130 },
             })}
             width={getScreenSize({
               small: { size: 350, default: 318 },

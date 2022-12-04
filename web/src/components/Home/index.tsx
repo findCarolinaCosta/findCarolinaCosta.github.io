@@ -3,11 +3,15 @@ import { HomeSkeleton } from "./HomeSkeleton";
 import { useSelector } from "react-redux";
 import { IRequestState } from "../../redux/reducers/request";
 import { useEffect, useState } from "react";
+import { IMainInfo } from "../../services/getMainInfo";
 
 export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const request = useSelector(
     ({ request }: { request: IRequestState }) => request
+  );
+  const mainInfo = useSelector(
+    ({ mainInfo }: { mainInfo: IMainInfo }) => mainInfo
   );
 
   useEffect(() => {
@@ -48,11 +52,8 @@ export function Home() {
           <HomeImg />
           <section className="home__data">
             <h1 className="home__title">Hi, I'm Carolina</h1>
-            <h3 className="home__subtitle">Frontend developer</h3>
-            <p className="home__description">
-              I'm currently studying web development at Trybe, with completion
-              expected in July 2022.
-            </p>
+            <h3 className="home__subtitle">{mainInfo.role}</h3>
+            <p className="home__description">{mainInfo.homeDescription}</p>
             <a href="#contact" className="button button--flex">
               Contact Me <i className="uil uil-message button__icon"></i>
             </a>

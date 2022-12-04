@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { About } from "./components/About";
 import { ContactMe } from "./components/ContactMe";
 import { Footer } from "./components/Footer";
@@ -17,6 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { IRequestState } from "./redux/reducers/request";
 import { alreadyRequestsDone } from "./utils/alreadyRequestsDone";
+import { getMainInfo } from "./services/getMainInfo";
+import { setMainInfo } from "./redux/reducers/mainInfo";
 
 function App() {
   const className = "dark-theme" as any;
@@ -26,6 +28,7 @@ function App() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
   );
+  const dispatch = useDispatch();
 
   const addBodyClass = (className: any) =>
     document.body.classList.add(className);
@@ -56,6 +59,12 @@ function App() {
         : removeBodyClass("overFlow-hidden");
     }
   }, [isAlreadyRequestsDone]);
+
+  useEffect(() => {
+    getMainInfo().then(({ data: { payload } }) =>
+      dispatch(setMainInfo({ data: payload[0] }))
+    );
+  }, []);
 
   return (
     <div>

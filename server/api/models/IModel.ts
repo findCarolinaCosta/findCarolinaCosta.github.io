@@ -85,6 +85,7 @@ export interface IMainInfo {
   homeDescription: string;
   aboutDescription: string;
   projects: number;
+  homeImg: string;
 }
 
 export interface IMainInfoModel {

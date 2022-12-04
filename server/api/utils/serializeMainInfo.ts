@@ -25,6 +25,9 @@ export interface IMainInfoResponse {
       };
     }[];
   };
+  homeImg: {
+    url: string;
+  };
 }
 
 export function serializeMainInfo(data: IMainInfoResponse): IMainInfo {
@@ -33,5 +36,6 @@ export function serializeMainInfo(data: IMainInfoResponse): IMainInfo {
     homeDescription: data.homeDescription.rich_text[0].text.content,
     aboutDescription: data.aboutDescription.rich_text[0].text.content,
     projects: data.projects.number,
+    homeImg: data.homeImg.url,
   };
 }
