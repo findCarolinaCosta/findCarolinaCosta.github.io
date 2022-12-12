@@ -12,7 +12,7 @@ export class Portfolio implements IPortfolioController {
 
   constructor(model: IPortfolioModel | null = null) {
     this._notion = new Client({
-      auth: process.env.NOTION_PORTFOLIO_PROJECTS_KEY,
+      auth: process.env.NOTION_PORTFOLIO_KEY,
     });
     this._databaseId = process.env.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID || "";
     this._model = model || new PortfolioModel(this._notion, this._databaseId);

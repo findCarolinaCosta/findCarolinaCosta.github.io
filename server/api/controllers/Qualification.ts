@@ -12,7 +12,7 @@ export class Qualification implements IQualificationController {
 
   constructor(model: IQualificationModel | null = null) {
     this._notion = new Client({
-      auth: process.env.NOTION_QUALIFICATION_KEY,
+      auth: process.env.NOTION_PORTFOLIO_KEY,
     });
     this._databaseId = process.env.NOTION_QUALIFICATION_TAB_DATABASE_ID || "";
     this._model =

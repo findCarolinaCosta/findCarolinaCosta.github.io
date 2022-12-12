@@ -12,7 +12,7 @@ export class MainInfo implements IMainInfoController {
 
   constructor(model: IMainInfoModel | null = null) {
     this._notion = new Client({
-      auth: process.env.NOTION_MAIN_CONTENT_KEY,
+      auth: process.env.NOTION_PORTFOLIO_KEY,
     });
     this._databaseId = process.env.NOTION_MAIN_CONTENT_DATABASE_ID || "";
     this._model = model || new MainInfoModel(this._notion, this._databaseId);

@@ -12,7 +12,7 @@ export class Skill implements ISkillController {
 
   constructor(model: ISkillModel | null = null) {
     this._notion = new Client({
-      auth: process.env.NOTION_SKILL_KEY,
+      auth: process.env.NOTION_PORTFOLIO_KEY,
     });
     this._databaseId = process.env.NOTION_SKILL_DATABASE_ID || "";
     this._model =
