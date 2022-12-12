@@ -13,8 +13,9 @@ import { Skills } from "../components/Skills";
 import { ToastContainer } from "react-toastify";
 import { IRequestState } from "../redux/reducers/request";
 import { alreadyRequestsDone } from "../utils/alreadyRequestsDone";
-import { getMainInfo } from "../services/getMainInfo";
+import { getMainInfo, Language } from "../services/getMainInfo";
 import { setMainInfo } from "../redux/reducers/mainInfo";
+import { useLocation } from "react-router-dom";
 
 function Default() {
   const className = "dark-theme" as any;
@@ -22,6 +23,9 @@ function Default() {
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
   );
   const dispatch = useDispatch();
+  const path = (
+    useLocation().pathname.includes("pt-br") ? "pt-br" : "en-us"
+  ) as Language;
 
   const addBodyClass = (className: any) =>
     document.body.classList.add(className);
@@ -42,7 +46,7 @@ function Default() {
   }, [isAlreadyRequestsDone]);
 
   useEffect(() => {
-    getMainInfo().then(({ data: { payload } }) =>
+    getMainInfo(path).then(({ data: { payload } }) =>
       dispatch(setMainInfo({ data: payload[0] }))
     );
   }, []);

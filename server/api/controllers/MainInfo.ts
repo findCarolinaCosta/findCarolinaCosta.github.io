@@ -1,4 +1,4 @@
-import { IMainInfoModel } from "./../models/IModel";
+import { IMainInfoModel, Language } from "./../models/IModel";
 import { MainInfo as MainInfoModel } from "./../models/MainInfo";
 import { Client } from "@notionhq/client";
 import { Response, Request } from "express";
@@ -18,13 +18,14 @@ export class MainInfo implements IMainInfoController {
     this._model = model || new MainInfoModel(this._notion, this._databaseId);
   }
 
-  public read = async (_req: Request, res: Response) => {
+  public read = async (req: Request, res: Response) => {
     try {
-      const mainInfos = await this._model.read();
+      const language = req.query.language as Language;
+      const mainInfos = await this._model.read(language);
 
       return res.status(200).json(success(mainInfos));
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 }
