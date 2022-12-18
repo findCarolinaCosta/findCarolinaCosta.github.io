@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleTheme, Theme } from "../../redux/reducers/theme";
+import { handleTheme, Theme } from "../../redux/reducers/settings";
 import Scrollspy from "react-scrollspy";
 import { handleActiveSection, setSections } from "../../redux/reducers/section";
 import { HeaderSkeleton } from "./HeaderSkeleton";
@@ -20,8 +20,8 @@ export const sections: string[] = [
 export function Header() {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
   const dispatch = useDispatch();
-  const theme = useSelector(
-    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+const theme = useSelector(
+    ({ settings }: { settings: { theme: Theme; icon: string } }) => settings
   );
   const currentSection = useSelector(
     ({ section }: { section: { activeSection: string } }) =>

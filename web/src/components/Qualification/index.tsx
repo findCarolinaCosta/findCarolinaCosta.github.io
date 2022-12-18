@@ -1,6 +1,7 @@
-import axios from "axios";
+;import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { IRequestState, setRequest } from "../../redux/reducers/request";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import {
@@ -29,6 +30,7 @@ export function Qualification() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
   );
+  const pathPt = useLocation().pathname.includes("pt-br");
 
   const handleTabClick = (tab: Tab) => setTabSelected(tab);
 
@@ -61,8 +63,8 @@ export function Qualification() {
       }`}
       id="qualification"
     >
-      <h2 className="section__title">Qualification</h2>
-      <span className="section__subtitle">My personal journey</span>
+      <h2 className="section__title">{pathPt ? 'Qualificações' : 'Qualification'}</h2>
+      <span className="section__subtitle">{pathPt ? 'Minha jornada pessoal' : 'My personal journey'}</span>
 
       <Qualifications.Root>
         <Qualifications.Tabs<Tab>

@@ -16,6 +16,7 @@ import { alreadyRequestsDone } from "../utils/alreadyRequestsDone";
 import { getMainInfo, Language } from "../services/getMainInfo";
 import { setMainInfo } from "../redux/reducers/mainInfo";
 import { useLocation } from "react-router-dom";
+import { handleLanguage } from "../redux/reducers/settings";
 
 function Default() {
   const className = "dark-theme" as any;
@@ -46,6 +47,7 @@ function Default() {
   }, [isAlreadyRequestsDone]);
 
   useEffect(() => {
+    dispatch(handleLanguage(path))
     getMainInfo(path).then(({ data: { payload } }) =>
       dispatch(setMainInfo({ data: payload[0] }))
     );

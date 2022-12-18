@@ -2,15 +2,15 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { useSelector } from "react-redux";
-import { Theme } from "./redux/reducers/theme";
+import { Theme } from "./redux/reducers/settings";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Default from "./views";
 
 function App() {
   const className = "dark-theme" as any;
-  const theme = useSelector(
-    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+const theme = useSelector(
+    ({ settings }: { settings: { theme: Theme; icon: string } }) => settings
   );
 
   const addBodyClass = (className: any) =>

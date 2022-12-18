@@ -1,10 +1,16 @@
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { IRequestState } from "../../redux/reducers/request";
+import { IMainInfo } from "../../services/getMainInfo";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 
 export function Footer() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
+  );
+  const pathPt = useLocation().pathname.includes("pt-br");
+  const mainInfo = useSelector(
+    ({ mainInfo }: { mainInfo: IMainInfo }) => mainInfo
   );
 
   return (
@@ -13,12 +19,12 @@ export function Footer() {
         <div className="footer__container container grid">
           <div>
             <h1 className="footer__title">Carolina</h1>
-            <span className="footer__subtitle">Full-Stack developer</span>
+            <span className="footer__subtitle">{mainInfo.role}</span>
           </div>
           <ul className="footer__links">
             <li>
               <a href="#services" className="footer__link">
-                Services
+                {pathPt ? 'Serviços' : 'Services'}
               </a>
             </li>
             <li>
@@ -28,12 +34,12 @@ export function Footer() {
             </li>
             <li>
               <a href="#contact" className="footer__link">
-                Contactme
+                {pathPt? 'Contato' : 'Contact'}
               </a>
             </li>
           </ul>
         </div>
-        <p className="footer__copy">&#169; Carolina. All right reserved</p>
+        <p className="footer__copy">&#169; Carolina. {pathPt ? 'Todos os direitos reservados' : 'All right reserved'}</p>
       </div>
     </footer>
   );

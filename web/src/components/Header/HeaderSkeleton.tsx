@@ -1,12 +1,12 @@
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { sections } from ".";
-import { Theme } from "../../redux/reducers/theme";
+import { Theme } from "../../redux/reducers/settings";
 import { getScreenSize } from "../../utils/getScreen";
 
 export function HeaderSkeleton() {
   const theme = useSelector(
-    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+    ({ settings }: { settings: { theme: Theme; icon: string } }) => settings
   );
 
   return (
