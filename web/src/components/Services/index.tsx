@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { Language } from "../../services/getMainInfo";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import { Service } from "./ServiceContainer";
 
@@ -24,7 +25,11 @@ export function Services() {
     if (services.length == 0) {
       (
         axios.get(
-          `${import.meta.env.VITE_SERVER_URL_API}/services`
+          `${import.meta.env.VITE_SERVER_URL_API}/services`, {
+            params: { 
+              language: pathPt ? Language['pt-br'] : Language['en-us'] 
+            },
+          }
         ) as unknown as Promise<{
           data: { ok: boolean; payload: IService[] };
         }>

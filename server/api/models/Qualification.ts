@@ -30,6 +30,8 @@ export class Qualification<T extends typeof notion>
       await Promise.all(
         results.map(async (skill) => {
           if (skill.properties.tab) {
+            console.log(skill.properties.tab.title[0].text.content);
+
             skill.properties.data.relation = [
               (await this._model.databases.query({
                 database_id: this._notionDatabaseDataId,
