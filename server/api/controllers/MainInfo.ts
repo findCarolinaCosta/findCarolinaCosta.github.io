@@ -20,7 +20,7 @@ export class MainInfo implements IMainInfoController {
 
   public read = async (req: Request, res: Response) => {
     try {
-      const language = req.query.language as Language || Language['en-us'];
+      const language = (req.query.language as Language) || Language["en-us"];
       const mainInfos = await this._model.read(language);
 
       return res.status(200).json(success(mainInfos));

@@ -4,8 +4,8 @@ import request from "./request";
 import mainInfo from "./mainInfo";
 
 export default {
-    settings,
-    section,
-    request,
-    mainInfo,
+  settings,
+  section,
+  request,
+  mainInfo,
 };

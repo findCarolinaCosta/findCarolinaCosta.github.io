@@ -1,6 +1,5 @@
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
-import { IRequestState } from "../../redux/reducers/request";
 import { Theme } from "../../redux/reducers/settings";
 import { getScreenSize } from "../../utils/getScreen";
 
