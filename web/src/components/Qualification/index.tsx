@@ -1,7 +1,9 @@
-import axios from "axios";
+;import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { Language } from "../../services/getMainInfo";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import {
   IQualificationContent,
@@ -13,8 +15,13 @@ export enum Tab {
   "WORK" = "Work",
 }
 
+export enum TabPT {
+  "Formação" = "Formação",
+  "Experiência" = "Experiência",
+}
+
 export interface IQualifications {
-  tab: Tab;
+  tab: Tab | TabPT;
   unicon: string;
   data: IQualificationContent[];
 }
@@ -22,21 +29,26 @@ export interface IQualifications {
 export function Qualification() {
   const [qualificationList, setQualificationList] = useState<IQualifications[]>(
     []
-  );
-  const [tabSelected, setTabSelected] = useState<Tab>(Tab.WORK);
+    );
+  const pathPt = useLocation().pathname.includes("pt-br");
+  const [tabSelected, setTabSelected] = useState<Tab | TabPT>(pathPt ? TabPT.Experiência : Tab.WORK);
   const tabs = qualificationList.map(({ tab, unicon }) => ({ tab, unicon }));
   const dispatch = useDispatch();
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
   );
 
-  const handleTabClick = (tab: Tab) => setTabSelected(tab);
+  const handleTabClick = (tab: Tab | TabPT) => setTabSelected(tab);
 
   useEffect(() => {
     if (qualificationList.length == 0) {
       (
         axios.get(
-          `${import.meta.env.VITE_SERVER_URL_API}/qualifications`
+          `${import.meta.env.VITE_SERVER_URL_API}/qualifications`, {
+            params: { 
+              language: pathPt ? Language['pt-br'] : Language['en-us'] 
+            },
+          }
         ) as unknown as Promise<{
           data: { ok: boolean; payload: IQualifications[] };
         }>
@@ -61,11 +73,11 @@ export function Qualification() {
       }`}
       id="qualification"
     >
-      <h2 className="section__title">Qualification</h2>
-      <span className="section__subtitle">My personal journey</span>
+      <h2 className="section__title">{pathPt ? 'Qualificações' : 'Qualification'}</h2>
+      <span className="section__subtitle">{pathPt ? 'Minha jornada pessoal' : 'My personal journey'}</span>
 
       <Qualifications.Root>
-        <Qualifications.Tabs<Tab>
+        <Qualifications.Tabs<Tab | TabPT>
           tabs={tabs}
           tabSelected={tabSelected}
           handleClick={handleTabClick}

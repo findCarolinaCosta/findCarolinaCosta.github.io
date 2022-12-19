@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { Language } from "../../services/getMainInfo";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import { Section, SkillsContainer, ISkillsListProps } from "./SkillsContainer";
 
@@ -21,12 +23,17 @@ export function Skills() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
   );
+  const pathPt = useLocation().pathname.includes("pt-br");
 
   useEffect(() => {
     if (skillsList.length == 0) {
       (
         axios.get(
-          `${import.meta.env.VITE_SERVER_URL_API}/skills`
+          `${import.meta.env.VITE_SERVER_URL_API}/skills`, {
+            params: { 
+              language: pathPt ? Language['pt-br'] : Language['en-us'] 
+            },
+          }
         ) as unknown as Promise<{
           data: { ok: boolean; payload: skillsList[] };
         }>
@@ -49,8 +56,8 @@ export function Skills() {
       id="skills"
     >
       <section className="skills section" id="skills">
-        <h2 className="section__title">Skills</h2>
-        <span className="section__subtitle">My technical level</span>
+        <h2 className="section__title">{pathPt ? 'Habilidades' : 'Skills'}</h2>
+        <span className="section__subtitle">{pathPt ? 'Meu nível técnico' : 'My technical level'}</span>
         <SkillsContainer.Root>
           {skillsList.map((item) => {
             return (

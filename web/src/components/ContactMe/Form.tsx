@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Theme } from "../../redux/reducers/theme";
+import { Theme } from "../../redux/reducers/settings";
 
 interface IData {
   Name: string;
@@ -14,9 +15,10 @@ interface IData {
 export function Form() {
   const [data, setData] = useState<IData>();
   const [loading, setLoading] = useState(false);
-  const theme = useSelector(
-    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+const theme = useSelector(
+    ({ settings }: { settings: { theme: Theme; icon: string } }) => settings
   );
+  const pathPt = useLocation().pathname.includes("pt-br");
 
   const handleDataChange = ({
     target,
@@ -42,14 +44,14 @@ export function Form() {
 
       toast.promise(response, {
         pending: {
-          render: () => "Please wait...",
+          render: () => pathPt ? "Por favor, aguarde..." : "Please wait...",
           theme: theme.theme === Theme.dark ? "dark" : "light",
           autoClose: toastTime,
         },
         success: {
           render: () => {
             setLoading(false);
-            return "Message sent";
+            return pathPt ? "Messagem enviada": "Message sent";
           },
           theme: theme.theme === Theme.dark ? "dark" : "light",
           autoClose: toastTime,
@@ -58,7 +60,7 @@ export function Form() {
         error: {
           render: () => {
             setLoading(false);
-            return "Unable to send message at this time";
+            return pathPt ? "Não é possível enviar mensagem neste momento" : "Unable to send message at this time";
           },
           theme: theme.theme === Theme.dark ? "dark" : "light",
           autoClose: toastTime,
@@ -73,7 +75,7 @@ export function Form() {
       <div className="contact__inputs grid">
         <div className="contact__content">
           <label htmlFor="name" className="contact__label">
-            Name
+            {pathPt ? 'Nome' : 'Name'}
           </label>
           <input
             type="text"
@@ -101,7 +103,7 @@ export function Form() {
 
       <div className="contact__content">
         <label htmlFor="subject" className="contact__label">
-          Subject
+          {pathPt ? 'Assunto' : 'Subject'}
         </label>
         <input
           type="text"
@@ -115,7 +117,7 @@ export function Form() {
 
       <div className="contact__content">
         <label htmlFor="message" className="contact__label">
-          Message
+          {pathPt ? 'Mensagem' : 'Message'}
         </label>
         <textarea
           name="Message"
@@ -137,7 +139,7 @@ export function Form() {
           }
           onClick={handleSendMessage}
         >
-          Send Message
+          {pathPt ? 'Enviar mensagem' : 'Send Message'}
           <i className="uil uil-message button__icon"></i>
         </a>
       </div>

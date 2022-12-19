@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 
 export interface IServiceContainerProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ export interface ICardServiceContent {
 }
 
 function CardServiceContent(props: ICardServiceContent) {
+  const pathPt = useLocation().pathname.includes("pt-br");
   return (
     <>
       <div>
@@ -34,7 +36,7 @@ function CardServiceContent(props: ICardServiceContent) {
         className="button button--flex button--small button--link services__button"
         onClick={props.handleClick}
       >
-        View more
+        {pathPt ? 'Ver mais' : 'View more'}
         <i className="uil uil-arrow-right button__icon"></i>
       </span>
     </>

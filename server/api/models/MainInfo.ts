@@ -2,7 +2,7 @@ import {
   IMainInfoResponse,
   serializeMainInfo,
 } from "./../utils/serializeMainInfo";
-import { IMainInfoModel } from "./IModel";
+import { IMainInfoModel, Language } from "./IModel";
 import { Client } from "@notionhq/client";
 
 const notion = new Client();
@@ -16,10 +16,16 @@ export class MainInfo<T extends typeof notion> implements IMainInfoModel {
     this._notionDatabaseId = databaseId;
   }
 
-  async read() {
+  async read(language: Language) {
     if (this._notionDatabaseId !== "") {
       const { results } = (await this._model.databases.query({
         database_id: this._notionDatabaseId,
+        filter: {
+          property: "language",
+          select: {
+            equals: language,
+          },
+        },
       })) as unknown as { results: { properties: IMainInfoResponse }[] };
 
       const response = results.map(

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleTheme, Theme } from "../../redux/reducers/theme";
+import { handleTheme, Theme } from "../../redux/reducers/settings";
 import Scrollspy from "react-scrollspy";
 import { handleActiveSection, setSections } from "../../redux/reducers/section";
 import { HeaderSkeleton } from "./HeaderSkeleton";
 import { IRequestState } from "../../redux/reducers/request";
+import { useLocation } from "react-router-dom";
 
 export const sections: string[] = [
   "home",
@@ -19,8 +20,8 @@ export const sections: string[] = [
 export function Header() {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
   const dispatch = useDispatch();
-  const theme = useSelector(
-    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+const theme = useSelector(
+    ({ settings }: { settings: { theme: Theme; icon: string } }) => settings
   );
   const currentSection = useSelector(
     ({ section }: { section: { activeSection: string } }) =>
@@ -30,6 +31,8 @@ export function Header() {
   const request = useSelector(
     ({ request }: { request: IRequestState }) => request
   );
+
+  const pathPt = useLocation().pathname.includes("pt-br");
 
   useEffect(() => {
     const theme = localStorage.getItem("theme") as Theme;
@@ -41,7 +44,7 @@ export function Header() {
 
   useEffect(() => {
     dispatch(setSections(sections));
-  }, [sections]);
+  }, []);
 
   useEffect(() => {
     if (request) {
@@ -85,7 +88,8 @@ export function Header() {
                   currentSection == "home" ? "active-link" : ""
                 }`}
               >
-                <i className="uil uil-estate nav__icon"></i> Home
+                <i className="uil uil-estate nav__icon"></i>{" "}
+                {pathPt ? "Início" : "Home"}
               </a>
             </li>
             <li
@@ -98,7 +102,8 @@ export function Header() {
                   currentSection == "about" ? "active-link" : ""
                 }`}
               >
-                <i className="uil uil-user nav__icon"></i> About
+                <i className="uil uil-user nav__icon"></i>{" "}
+                {pathPt ? "Sobre" : "About"}
               </a>
             </li>
             <li
@@ -111,7 +116,8 @@ export function Header() {
                   currentSection == "skills" ? "active-link" : ""
                 }`}
               >
-                <i className="uil uil-file-alt nav__icon"></i> Skills
+                <i className="uil uil-file-alt nav__icon"></i>
+                {pathPt ? "Habilidades" : "Skills"}
               </a>
             </li>
             <li
@@ -125,7 +131,7 @@ export function Header() {
                 }`}
               >
                 <i className="uil uil-graduation-cap nav__icon"></i>
-                Qualification
+                {pathPt ? "Qualificação" : "Qualification"}
               </a>
             </li>
             <li
@@ -138,7 +144,8 @@ export function Header() {
                   currentSection == "services" ? "active-link" : ""
                 }`}
               >
-                <i className="uil uil-briefcase-alt nav__icon"></i> Services
+                <i className="uil uil-briefcase-alt nav__icon"></i>
+                {pathPt ? "Serviços" : "Services"}
               </a>
             </li>
             <li
@@ -164,7 +171,8 @@ export function Header() {
                   currentSection == "contact" ? "active-link" : ""
                 }`}
               >
-                <i className="uil uil-message nav__icon"></i> Contact
+                <i className="uil uil-message nav__icon"></i>
+                {pathPt ? "Contato" : "Contact"}
               </a>
             </li>
           </Scrollspy>

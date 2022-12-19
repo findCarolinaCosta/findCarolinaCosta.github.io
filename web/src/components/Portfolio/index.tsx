@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { Language } from "../../services/getMainInfo";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import { IProject, Portfolio } from "./PortfolioContainer";
 
@@ -11,12 +13,18 @@ export function Portfolios() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request)
   );
+  const pathPt = useLocation().pathname.includes("pt-br");
 
   useEffect(() => {
+    
     if (projects.length == 0) {
       (
         axios.get(
-          `${import.meta.env.VITE_SERVER_URL_API}/projects`
+          `${import.meta.env.VITE_SERVER_URL_API}/projects`, {
+            params: { 
+              language: pathPt ? Language['pt-br'] : Language['en-us'] 
+            },
+          }
         ) as unknown as Promise<{ data: { ok: boolean; payload: IProject[] } }>
       ).then((response) => setProjects(response.data.payload));
     }
@@ -40,7 +48,7 @@ export function Portfolios() {
       id="portfolio"
     >
       <h2 className="section__title">Portfolio</h2>
-      <span className="section__subtitle">Most recent project</span>
+      <span className="section__subtitle">{pathPt ? `Projeto${projects.length > 1 ? 's' : ''} mais recente` : `Most recent project${projects.length > 1 ? 's' : ''}`}</span>
       {projects.length > 0 && <Portfolio.Default projectList={projects} />}
     </section>
   );

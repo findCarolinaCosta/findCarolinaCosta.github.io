@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { IRequestState } from "../../redux/reducers/request";
 import { IMainInfo } from "../../services/getMainInfo";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
@@ -13,6 +14,7 @@ export function About() {
   const mainInfo = useSelector(
     ({ mainInfo }: { mainInfo: IMainInfo }) => mainInfo
   );
+  const pathPt = useLocation().pathname.includes("pt-br");
 
   useEffect(() => {
     if (isAlreadyRequestsDone) {
@@ -24,8 +26,8 @@ export function About() {
 
   return (
     <section className="about section" id="about">
-      <h2 className="section__title">About Me</h2>
-      <span className="section__subtitle">My introduction</span>
+      <h2 className="section__title">{pathPt ? 'Sobre mim' : 'About Me'}</h2>
+      <span className="section__subtitle">{pathPt ? 'Introdução' : 'My introduction'}</span>
       <div className="about__container container grid">
         {/* <!-- <img src="assets/images/secao-about-me.jpg" alt="" className="about__img"> --> */}
         <div className="about__data">
@@ -34,7 +36,7 @@ export function About() {
             <div>
               <span className="about__info-title">{mainInfo.projects}+</span>
               <span className="about__info-name">
-                Completed <br /> project
+                Projeto{mainInfo.projects > 1 ? 's' : '' }  <br /> concluído{mainInfo.projects > 1 ? 's' : ''}
               </span>
             </div>
           </div>
@@ -44,7 +46,7 @@ export function About() {
               href={import.meta.env.VITE_RESUME_FULLSTACK}
               className="button button--flex"
             >
-              Download CV<i className="uil uil-download-alt button__icon"></i>
+              {pathPt ? 'Baixar currículo': 'Download CV'}<i className="uil uil-download-alt button__icon"></i>
             </a>
           </div>
         </div>

@@ -88,6 +88,11 @@ export interface IMainInfo {
   homeImg: string;
 }
 
+export enum Language {
+  "pt-br" = "pt-br",
+  "en-us" = "en-us",
+}
+
 export interface IMainInfoModel {
-  read: () => Promise<IMainInfo[] | undefined>;
+  read: (language: Language) => Promise<IMainInfo[] | undefined>;
 }

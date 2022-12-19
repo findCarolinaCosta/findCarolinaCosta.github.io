@@ -1,11 +1,11 @@
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
-import { Theme } from "../../redux/reducers/theme";
+import { Theme } from "../../redux/reducers/settings";
 import { getScreenSize } from "../../utils/getScreen";
 
 export function AboutSkeleton() {
-  const theme = useSelector(
-    ({ theme }: { theme: { theme: Theme; icon: string } }) => theme
+const theme = useSelector(
+    ({ settings }: { settings: { theme: Theme; icon: string } }) => settings
   );
   return (
     <section
