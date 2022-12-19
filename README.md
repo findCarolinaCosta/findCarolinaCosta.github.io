@@ -17,7 +17,7 @@ I made this portfolio with great care, it is responsive to the main breakpoints 
 - Integration with API for content of the main sections to be dynamic
 
 ## Future implementations 
-- Portuguese translation
+- Portuguese translation ✔
 - Button to download CV ✔
 - Contact Form ✔
 - Skeleton mobile ✔
