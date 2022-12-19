@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IRequestState, setRequest } from "../../redux/reducers/request";
+import { Language } from "../../services/getMainInfo";
 import { alreadyRequestsDone } from "../../utils/alreadyRequestsDone";
 import { IProject, Portfolio } from "./PortfolioContainer";
 
@@ -15,10 +16,15 @@ export function Portfolios() {
   const pathPt = useLocation().pathname.includes("pt-br");
 
   useEffect(() => {
+    
     if (projects.length == 0) {
       (
         axios.get(
-          `${import.meta.env.VITE_SERVER_URL_API}/projects`
+          `${import.meta.env.VITE_SERVER_URL_API}/projects`, {
+            params: { 
+              language: pathPt ? Language['pt-br'] : Language['en-us'] 
+            },
+          }
         ) as unknown as Promise<{ data: { ok: boolean; payload: IProject[] } }>
       ).then((response) => setProjects(response.data.payload));
     }
