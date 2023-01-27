@@ -5,7 +5,7 @@
   "repository": "git@github.com:findCarolinaCosta/findCarolinaCosta.github.io.git",
   "author": "findcarolinacosta <carolinadacosta1997@gmail.com>",
   "type": "module",
-  "homepage": "https://findcarolinacosta.github.io/",
+  "homepage": "https://findcarolinacosta.github.io",
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
