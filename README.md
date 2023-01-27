@@ -2,7 +2,7 @@
 
 ## _My personal portfolio_
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://findcarolinacosta.github.io/)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://findcarolinacosta.vercel.app/)
 
 I made this portfolio with great care, it is responsive to the main breakpoints and has a dark mode version.
 
@@ -25,6 +25,18 @@ I made this portfolio with great care, it is responsive to the main breakpoints 
 - Notification light mode ✔
 - Integração com API ✔
 - Update content info ✔
+- CI/CD
+- Tests
+- docs-api
+- validation token
+- management page
+- error handling
+- health check - web and server
+- cache: redis
+- security:
+  - helmet
+  - cors ✔
+  - morgan
 
 ## Tech Infos
 
