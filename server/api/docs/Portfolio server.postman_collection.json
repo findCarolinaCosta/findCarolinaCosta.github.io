@@ -1,0 +1,251 @@
+{
+  "info": {
+    "name": "Portfolio server",
+    "_postman_id": "ef45a53c-d67b-4d6d-b967-101b540086f1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Misc",
+      "description": "",
+      "item": [
+        {
+          "id": "3816c573-48d7-4cf9-b5a1-d2e1841d7f62",
+          "name": "Projects",
+          "request": {
+            "url": {
+              "host": "{{Server 1}}",
+              "path": ["projects"]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"ok\": \"boolean\",\r\n  \"payload\": [\r\n    {\r\n      \"ID\": \"string\",\r\n      \"Title\": \"string\",\r\n      \"Description\": \"string\",\r\n      \"Image\": \"string\",\r\n      \"Demo\": \"string\",\r\n      \"Code\": \"string\"\r\n    }\r\n  ]\r\n}",
+              "code": 200,
+              "name": "Response_200",
+              "id": "a8746321-0ad9-470a-a26f-3777f9f23af4"
+            }
+          ]
+        },
+        {
+          "id": "3c0c7f80-128d-48d5-9879-32588b3e945d",
+          "name": "Skills",
+          "request": {
+            "url": {
+              "host": "{{Server 1}}",
+              "path": ["skills"]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"ok\": true,\r\n  \"payload\": [\r\n    {\r\n      \"role\": \"Full-Stack developer\",\r\n      \"homeDescription\": \"I'm a full stack developer, currently working as a Product Development Engineer at Cashforce.\",\r\n      \"aboutDescription\": \"Graduated in web development at Trybe in 2022, it was in this world where I found myself and which I intend to improve growing, at Trybe I gained experience working in a team, thus strengthening and adapting my ability for proactive organization. I learned and improved many problem solving techniques. I'm currently part of Cashforce's technology team as a Product Development Engineer.\",\r\n      \"projects\": 19,\r\n      \"homeImg\": \"https://user-images.githubusercontent.com/60375231/205467322-fd6ce3e8-96c3-45c6-a4f2-a69b09950261.png\"\r\n    }\r\n  ]\r\n}",
+              "code": 200,
+              "name": "Response_200",
+              "id": "d791635d-c52e-4195-88b8-7ee182ea2bab"
+            }
+          ]
+        },
+        {
+          "id": "26f8db26-4f53-4c9a-afe3-3474f0ff4596",
+          "name": "Qualification",
+          "request": {
+            "url": {
+              "host": "{{Server 1}}",
+              "path": ["qualifications"]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"ok\": true,\r\n  \"payload\": [\r\n    {\r\n      \"ID\": \"6f878642-6a94-4c3e-b85d-330736702216\",\r\n      \"tab\": \"Work\",\r\n      \"unicon\": \" uil-briefcase-alt\",\r\n      \"data\": [\r\n        {\r\n          \"title\": \"Product Development Engineer - Junior\",\r\n          \"subtitle\": \"Cashforce\",\r\n          \"startYear\": \"2022\",\r\n          \"finalYear\": \"current\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"ID\": \"f2fe457e-0d9e-4ffe-9ff0-6aba607f4efc\",\r\n      \"tab\": \"Education\",\r\n      \"unicon\": \"uil-graduation-cap\",\r\n      \"data\": [\r\n        {\r\n          \"title\": \"Web developer\",\r\n          \"subtitle\": \"Trybe\",\r\n          \"startYear\": \"2021\",\r\n          \"finalYear\": \"2022\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+              "code": 200,
+              "name": "Response_200",
+              "id": "96227283-ddc8-489d-b2e3-7e8bf8aafe21"
+            }
+          ]
+        },
+        {
+          "id": "7851229f-6967-4d4c-a02e-89dce353081e",
+          "name": "Services",
+          "request": {
+            "url": {
+              "host": "{{Server 1}}",
+              "path": ["services"]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"ok\": true,\r\n  \"payload\": [\r\n    {\r\n      \"title\": \"Frontend Developer\",\r\n      \"serviceList\": [\r\n        \"Bringing a concept to life with HTML, CSS, and JavaScript for essential interactions.\",\r\n        \"Implementing Responsive Design.\",\r\n        \"I test the site for usability and fixing any bugs.\",\r\n        \"Production and maintenance of websites and web application user interfaces.\",\r\n        \"I develop the user interface.\",\r\n        \"Web page development.\"\r\n      ]\r\n    }\r\n  ]\r\n}",
+              "code": 200,
+              "name": "Response_200",
+              "id": "d2a19b33-3e83-43dd-962e-dabef08dc1e3"
+            }
+          ]
+        },
+        {
+          "id": "de1b1e88-6c20-4563-90b1-88106c38fc96",
+          "name": "Post email",
+          "request": {
+            "url": {
+              "host": "{{Server 1}}",
+              "path": ["contact"]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"Name\": \"Carol\",\r\n  \"Project\": \"Project teste\",\r\n  \"Message\": \"Hello world\",\r\n  \"Email\": \"carolina@teste.com\"\r\n}",
+              "disabled": false
+            },
+            "description": "Contact form endpoint"
+          },
+          "response": [
+            {
+              "header": [],
+              "code": 201,
+              "name": "Response_200",
+              "id": "3b1968e9-8639-41a7-87aa-026b3f7d7d34"
+            }
+          ]
+        },
+        {
+          "id": "5fcb1eee-c6e6-4ecb-8c09-366ba8bd015d",
+          "name": "Texts",
+          "request": {
+            "url": {
+              "host": "{{Server 1}}",
+              "path": ["texts"]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            }
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"ok\": true,\r\n  \"payload\": [\r\n    {\r\n      \"role\": \"Full-Stack developer\",\r\n      \"homeDescription\": \"I'm a full stack developer, currently working as a Product Development Engineer at Cashforce.\",\r\n      \"aboutDescription\": \"Graduated in web development at Trybe in 2022, it was in this world where I found myself and which I intend to improve growing, at Trybe I gained experience working in a team, thus strengthening and adapting my ability for proactive organization. I learned and improved many problem solving techniques. I'm currently part of Cashforce's technology team as a Product Development Engineer.\",\r\n      \"projects\": 19,\r\n      \"homeImg\": \"https://user-images.githubusercontent.com/60375231/205467322-fd6ce3e8-96c3-45c6-a4f2-a69b09950261.png\"\r\n    }\r\n  ]\r\n}",
+              "code": 200,
+              "name": "Response_200",
+              "id": "89bc79ee-d69b-4193-8a9b-5e366ed1ee56"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "Server 11",
+      "value": "http://localhost:3002"
+    },
+    {
+      "key": "Server 1",
+      "value": "http://localhost:3002/"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  }
+}

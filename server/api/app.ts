@@ -23,6 +23,7 @@ class App {
 
   private middlewares(): void {
     // routes
+    this.app.get("/", (_, res) => res.redirect(process.env.DOC_URL || ""));
     for (const route of routes) {
       this.app.use(route);
     }
