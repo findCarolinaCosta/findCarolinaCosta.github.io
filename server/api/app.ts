@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import routes from "./routes";
 import morgan from "morgan";
-import errorHandler from "./middlewares/errorHandler";
+import errorHandler, { ErrorGenerate } from "./middlewares/errorHandler";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 class App {
   public app: express.Express;
@@ -27,7 +28,9 @@ class App {
 
   private middlewares(): void {
     // routes
-    this.app.get("/", (_, res) => res.redirect(process.env.DOC_URL || ""));
+    this.app.get("/", (_, res) =>
+      res.redirect(process.env.ORIGINS?.split(",")[0] || "")
+    );
     for (const route of routes) {
       this.app.use(route);
     }
@@ -35,19 +38,22 @@ class App {
   }
 
   private origin(origin: string | undefined, callback: any) {
-    let message =
-      "The CORS policy for this site does not " +
-      "allow access from the specified Origin.";
     const allowedOrigins = process.env.ORIGINS?.split(",") || [];
 
-    if (!origin && !!process.env.DEVELOPMENT) return callback(null, true);
+    if (!origin && !!process.env.NODE_ENV) return callback(null, true);
 
     if (origin && !allowedOrigins.includes(origin)) {
-      return callback(new Error(message), false);
+      return callback(
+        new ErrorGenerate(StatusCodes.UNAUTHORIZED, ReasonPhrases.UNAUTHORIZED),
+        false
+      );
     }
 
-    if (!origin && !process.env.DEVELOPMENT) {
-      return callback(new Error(message), false);
+    if (!origin && !process.env.NODE_ENV) {
+      return callback(
+        new ErrorGenerate(StatusCodes.UNAUTHORIZED, ReasonPhrases.UNAUTHORIZED),
+        false
+      );
     }
 
     return callback(null, true);
