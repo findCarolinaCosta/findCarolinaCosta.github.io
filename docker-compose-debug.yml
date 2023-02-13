@@ -31,9 +31,10 @@ services:
         restart: unless-stopped
         ports:
             - "3002:3002"
+            - "9229:9229"
         volumes:
             - ./server:/home/app
-        command: yarn dev
+        command: yarn debug
         env_file:
             - ./web/.env
         logging:

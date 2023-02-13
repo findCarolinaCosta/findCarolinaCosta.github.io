@@ -1,0 +1,39 @@
+{
+  "child": {
+    "child1": {
+      "directory": "",
+      "height": 1024,
+      "overrideCommand": "docker logs -f web-portfolio",
+      "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+      "readOnly": false,
+      "synchronizedInput": true,
+      "title": "${id}: ${title}",
+      "type": "Terminal",
+      "uuid": "9078bcad-e67e-4c81-b097-076f1ccd6c08",
+      "width": 960
+    },
+    "child2": {
+      "directory": "",
+      "height": 1024,
+      "overrideCommand": "docker logs -f server-portfolio",
+      "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+      "readOnly": false,
+      "synchronizedInput": true,
+      "title": "${id}: ${title}",
+      "type": "Terminal",
+      "uuid": "a9ae6d73-cfc9-4aad-baa7-bf68f5d68a60",
+      "width": 959
+    },
+    "orientation": 0,
+    "position": 50,
+    "ratio": 0.5,
+    "type": "Paned"
+  },
+  "height": 1024,
+  "name": "${title}",
+  "synchronizedInput": false,
+  "type": "Session",
+  "uuid": "44b8aa80-782e-4d40-8a53-515c135949b7",
+  "version": "1.0",
+  "width": 1920
+}
