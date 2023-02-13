@@ -4,6 +4,7 @@ import { SkillRoutes } from "./Skill";
 import { qualificationRoutes } from "./Qualification";
 import { serviceRoutes } from "./Service";
 import { mainInfoRoutes } from "./MainInfo";
+import { HealthRoutes } from "./Health";
 
 export default [
   ContactRoutes,
@@ -12,4 +13,5 @@ export default [
   qualificationRoutes,
   serviceRoutes,
   mainInfoRoutes,
+  HealthRoutes,
 ];
