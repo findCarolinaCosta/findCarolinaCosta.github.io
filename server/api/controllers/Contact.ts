@@ -1,7 +1,7 @@
 import { IContactModel, IEmail } from "../models/IModel";
 import { Contact as ContactModel } from "../models/Contact";
 import { Client } from "@notionhq/client";
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { IContactController } from "./IController";
 import { success } from "../utils/apiResponse";
 
@@ -18,15 +18,15 @@ export class Contact implements IContactController {
     this._model = model || new ContactModel(this._notion, this._databaseId);
   }
 
-  public create = async (req: Request, res: Response) => {
+  public create = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const body = req.body as unknown as IEmail;
 
       await this._model.create(body);
 
       return res.status(201).json(success());
-    } catch (error) {
-      console.error(error);
+    } catch (error: unknown) {
+      next(error);
     }
   };
 }

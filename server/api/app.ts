@@ -1,9 +1,12 @@
 import express from "express";
 import cors from "cors";
 import routes from "./routes";
+import morgan from "morgan";
+import errorHandler from "./middlewares/errorHandler";
 
 class App {
   public app: express.Express;
+  public errorHandler = errorHandler;
 
   constructor() {
     this.app = express();
@@ -19,6 +22,7 @@ class App {
         })
       )
       .use(express.json());
+    this.morganConfig();
   }
 
   private middlewares(): void {
@@ -27,6 +31,7 @@ class App {
     for (const route of routes) {
       this.app.use(route);
     }
+    this.app.use(this.errorHandler.execute);
   }
 
   private origin(origin: string | undefined, callback: any) {
@@ -51,6 +56,16 @@ class App {
   public start(PORT: string | number): void {
     this.app.listen(PORT, () =>
       console.log(`Server is running on port: ${PORT}`)
+    );
+  }
+
+  private morganConfig() {
+    this.app.use(
+      morgan("tiny", {
+        skip: function (_req, res) {
+          return res.statusCode < 400;
+        },
+      })
     );
   }
 }
