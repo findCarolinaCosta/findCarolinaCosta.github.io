@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 
 export interface IMainInfo {
   role: string;
