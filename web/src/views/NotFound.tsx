@@ -18,7 +18,7 @@ export function NotFound() {
   }, []);
 
   return (
-    <div>
+    <div className="container-not-found h-screen w-screen">
       <a href="/">
         <header className="top-header"></header>
 
