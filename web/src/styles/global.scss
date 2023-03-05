@@ -11,13 +11,13 @@
 
 .change-theme {
   font-size: 1.25rem;
-  color: var(--title-color);
-  margin-right: var(--mb-1);
+  color: $title-color;
+  margin-right: $mb-1;
   cursor: pointer;
 }
 
 .change-theme:hover {
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .overFlow-hidden {
@@ -36,19 +36,19 @@ html {
 }
 
 body {
-  margin: 0 0 var(--header-height) 0;
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  background-color: var(--body-color);
-  color: var(--text-color);
+  margin: 0 0 $header-height 0;
+  font-family: $body-font;
+  font-size: $normal-font-size;
+  background-color: $body-color;
+  color: $text-color;
 }
 
 h1,
 h2,
 h3,
 h4 {
-  color: var(--font-semi-bold);
-  font-weight: var(--font-semi-bold);
+  color: $font-semi-bold;
+  font-weight: $font-semi-bold;
 }
 
 ul {
@@ -64,19 +64,23 @@ img {
   height: auto;
 }
 
+.text-first-color-second {
+  color: $first-color-second;
+}
+
 /*==================== REUSABLE CSS CLASSES ====================*/
 .section {
   padding: 32px 0 64px;
 }
 
 .section__title {
-  font-size: var(--h1-font-size);
+  font-size: $h1-font-size;
 }
 
 .section__subtitle {
   display: block;
-  font-size: var(--small-font-size);
-  margin-bottom: var(--mb-3);
+  font-size: $small-font-size;
+  margin-bottom: $mb-3;
 }
 
 .section__title,
@@ -91,8 +95,8 @@ img {
 /*==================== LAYOUT ====================*/
 .container {
   max-width: 768px;
-  margin-left: var(--mb-1-5);
-  margin-right: var(--mb-1-5);
+  margin-left: $mb-1-5;
+  margin-right: $mb-1-5;
 }
 
 .grid {
@@ -105,14 +109,14 @@ img {
   position: fixed;
   bottom: 0;
   left: 0px;
-  z-index: var(--z-fixed);
-  background-color: var(--body-color);
+  z-index: $z-fixed;
+  background-color: $body-color;
 }
 
 /*==================== NAV ====================*/
 .nav {
   max-width: 968px;
-  height: var(--header-height);
+  height: $header-height;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,12 +124,12 @@ img {
 
 .nav__logo,
 .nav__toggle {
-  color: var(--title-color);
-  font-weight: var(--font-medium);
+  color: $title-color;
+  font-weight: $font-medium;
 }
 
 .nav__logo:hover {
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .nav__toggle {
@@ -134,7 +138,7 @@ img {
 }
 
 .nav__toggle:hover {
-  color: var(--first-color);
+  color: $first-color;
 }
 
 @media screen and (max-width: 767px) {
@@ -143,9 +147,9 @@ img {
     bottom: -100%;
     left: 0;
     width: 100%;
-    background-color: var(--body-color);
+    background-color: $body-color;
     padding: 32px 24px 40px;
-    box-shadow: 0 -1px 4px var(--shadow-menu-color);
+    box-shadow: 0 -1px 4px $shadow-menu-color;
     border-radius: 24px 24px 0 0;
     transition: 0.3s;
   }
@@ -160,13 +164,13 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: var(--small-font-size);
-  color: var(--title-color);
-  font-weight: var(--font-medium);
+  font-size: $small-font-size;
+  color: $title-color;
+  font-weight: $font-medium;
 }
 
 .nav__link:hover {
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .nav__icon {
@@ -183,11 +187,11 @@ img {
   bottom: 50px;
   font-size: 24px;
   cursor: pointer;
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .nav__close:hover {
-  color: var(--first-color-alt);
+  color: $first-color-alt;
 }
 
 /* show menu */
@@ -197,7 +201,7 @@ img {
 
 /* Active link */
 .active-link {
-  color: var(--first-color);
+  color: $first-color;
 }
 
 /* Change background header */
@@ -224,16 +228,16 @@ img {
 
 .home__social-icon {
   font-size: 20px;
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .home__social-icon:hover {
-  color: var(--first-color-alt);
+  color: $first-color-alt;
 }
 
 .home__blob {
   width: 200px;
-  fill: var(--first-color);
+  fill: $first-color;
 }
 
 .home__blob-img {
@@ -245,18 +249,18 @@ img {
 }
 
 .home__title {
-  font-size: var(--big-font-size);
+  font-size: $big-font-size;
 }
 
 .home__subtitle {
-  font-size: var(--h3-font-size);
-  color: var(--text-color);
-  font-weight: var(--font-medium);
-  margin-bottom: var(--mb-0-75);
+  font-size: $h3-font-size;
+  color: $text-color;
+  font-weight: $font-medium;
+  margin-bottom: $mb-0-75;
 }
 
 .home__description {
-  margin-bottom: var(--mb-2);
+  margin-bottom: $mb-2;
 }
 
 .home__scroll {
@@ -264,7 +268,7 @@ img {
 }
 
 .home__scroll-button {
-  color: var(--first-color);
+  color: $first-color;
   transition: 0.3s;
 }
 
@@ -277,10 +281,10 @@ img {
 }
 
 .home__scroll-name {
-  font-size: var(--small-font-size);
-  color: var(--title-color);
-  font-weight: var(--font-medium);
-  margin-right: var(--mb-0-25);
+  font-size: $small-font-size;
+  color: $title-color;
+  font-weight: $font-medium;
+  margin-right: $mb-0-25;
 }
 
 .home__scroll-arrow {
@@ -290,32 +294,32 @@ img {
 /*==================== BUTTONS ====================*/
 .button {
   display: inline-block;
-  background-color: var(--first-color);
+  background-color: $first-color;
   color: #fff;
   padding: 16px;
   border-radius: 8px;
-  font-weight: var(--font-medium);
+  font-weight: $font-medium;
 
   &:hover {
-    background-color: var(--first-color-alt);
+    background-color: $first-color-alt;
   }
 
   &:active {
-    background-color: var(--first-color-active);
+    background-color: $first-color-active;
   }
 }
 
 .button--disabled {
-  background-color: var(--disable-color);
+  background-color: $disable-color;
 
   &:hover {
-    background-color: var(--disable-color);
+    background-color: $disable-color;
   }
 }
 
 .button__icon {
   font-size: 20px;
-  margin-left: var(--mb-0-5);
+  margin-left: $mb-0-5;
   transition: 0.3s;
 }
 
@@ -331,12 +335,12 @@ img {
 .button--link {
   padding: 0;
   background-color: transparent;
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .button--link:hover {
   background-color: transparent;
-  color: var(--first-color-alt);
+  color: $first-color-alt;
 }
 
 /*==================== ABOUT ====================*/
@@ -349,23 +353,23 @@ img {
 
 .about__description {
   text-align: start;
-  margin-bottom: var(--mb-2-5);
+  margin-bottom: $mb-2-5;
 }
 
 .about__info {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: var(--mb-2-5);
+  margin-bottom: $mb-2-5;
 }
 
 .about__info-title {
-  font-size: var(--h2-font-size);
-  font-weight: var(--font-semi-bold);
-  color: var(--title-color);
+  font-size: $h2-font-size;
+  font-weight: $font-semi-bold;
+  color: $title-color;
 }
 
 .about__info-name {
-  font-size: var(--small-font-size);
+  font-size: $small-font-size;
 }
 
 .about__info-title,
@@ -387,27 +391,27 @@ img {
 .skills__header {
   display: flex;
   align-items: center;
-  margin-bottom: var(--mb-2-5);
+  margin-bottom: $mb-2-5;
   cursor: pointer;
 }
 
 .skills__icon,
 .skills__arrow {
   font-size: 32px;
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .skills__icon {
-  margin-right: var(--mb-0-75);
+  margin-right: $mb-0-75;
 }
 
 .skills__titles {
-  font-size: var(--h3-font-size);
+  font-size: $h3-font-size;
 }
 
 .skills__subtitle {
-  font-size: var(--small-font-size);
-  color: var(--text-color-light);
+  font-size: $small-font-size;
+  color: $text-color-light;
 }
 
 .skills__arrow {
@@ -423,12 +427,12 @@ img {
 .skills__titles {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--mb-0-5);
+  margin-bottom: $mb-0-5;
 }
 
 .skills__name {
-  font-size: var(--normal-font-size);
-  font-weight: var(--font-medium);
+  font-size: $normal-font-size;
+  font-weight: $font-medium;
 }
 
 .skills__bar,
@@ -438,12 +442,12 @@ img {
 }
 
 .skills__bar {
-  background-color: var(--first-color-lighter);
+  background-color: $first-color-lighter;
 }
 
 .skills__percentage {
   display: block;
-  background-color: var(--first-color);
+  background-color: $first-color;
 }
 
 .skills__html {
@@ -481,7 +485,7 @@ img {
 
 .skills__open .skills__list {
   height: max-content;
-  margin-bottom: var(--mb-2-5);
+  margin-bottom: $mb-2-5;
 }
 
 .skills__open .skills__arrow {
@@ -492,23 +496,23 @@ img {
 .qualification__tabs {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: var(--mb-2);
+  margin-bottom: $mb-2;
 }
 
 .qualification__button {
-  font-size: var(--h3-font-size);
-  font-weight: var(--font-medium);
+  font-size: $h3-font-size;
+  font-weight: $font-medium;
   cursor: pointer;
 }
 
 .qualification__button__selected,
 .qualification__button:hover {
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .qualification__icon {
   font-size: 28.8px;
-  margin-left: var(--mb-0-25);
+  margin-left: $mb-0-25;
 }
 
 .qualification__data {
@@ -518,26 +522,26 @@ img {
 }
 
 .qualification__title {
-  font-size: var(--normal-font-size);
-  font-weight: var(--font-medium);
+  font-size: $normal-font-size;
+  font-weight: $font-medium;
 }
 
 .qualification__subtitle {
   display: inline-block;
-  font-size: var(--small-font-size);
-  margin-bottom: var(--mb-1);
+  font-size: $small-font-size;
+  margin-bottom: $mb-1;
 }
 
 .qualification__calendar {
-  font-size: var(--smaller-font-size);
-  color: var(--text-color-light);
+  font-size: $smaller-font-size;
+  color: $text-color-light;
 }
 
 .qualification__rounder {
   display: inline-block;
   width: 13px;
   height: 13px;
-  background-color: var(--first-color);
+  background-color: $first-color;
   border-radius: 50%;
 }
 
@@ -545,14 +549,14 @@ img {
   display: block;
   width: 1px;
   height: 100%;
-  background-color: var(--first-color);
+  background-color: $first-color;
   transform: translate(6px, -7px);
 }
 
 .qualification__dot-dot-dot {
   display: flex;
   justify-content: center;
-  color: var(--first-color);
+  color: $first-color;
   margin: auto;
 }
 
@@ -572,7 +576,7 @@ img {
 
 .services__content {
   position: relative;
-  background-color: var(--container-color);
+  background-color: $container-color;
   padding: 3.5rem 0.5rem 1.25rem 1.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
@@ -586,20 +590,20 @@ img {
 .services__icon {
   display: block;
   font-size: 1.5rem;
-  color: var(--first-color);
-  margin-bottom: var(--mb-1);
+  color: $first-color;
+  margin-bottom: $mb-1;
 }
 
 .services__title {
-  font-size: var(--h3-font-size);
-  margin-bottom: var(--mb-1);
-  font-weight: var(--font-medium);
+  font-size: $h3-font-size;
+  margin-bottom: $mb-1;
+  font-weight: $font-medium;
   word-break: normal;
 }
 
 .services__button {
   cursor: pointer;
-  font-size: var(--small-font-size);
+  font-size: $small-font-size;
 }
 
 .services__button:hover .button__icon {
@@ -617,7 +621,7 @@ img {
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
-  z-index: var(--z-modal);
+  z-index: $z-modal;
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
@@ -625,7 +629,7 @@ img {
 
 .services__modal-content {
   position: relative;
-  background-color: var(--container-color);
+  background-color: $container-color;
   padding: 1.5rem;
   border-radius: 0.5rem;
 }
@@ -639,9 +643,9 @@ img {
 }
 
 .services__modal-title {
-  font-size: var(--h3-font-size);
-  font-weight: var(--font-medium);
-  margin-bottom: var(--mb-1-5);
+  font-size: $h3-font-size;
+  font-weight: $font-medium;
+  margin-bottom: $mb-1-5;
 }
 
 .services__modal-close {
@@ -649,13 +653,13 @@ img {
   top: 1rem;
   right: 1rem;
   font-size: 1.5rem;
-  color: var(--first-color);
+  color: $first-color;
   cursor: pointer;
 }
 
 .services__modal-icon {
-  color: var(--first-color);
-  margin-right: var(--mb-0-25);
+  color: $first-color;
+  margin-right: $mb-0-25;
 }
 
 /* Active Modal */
@@ -680,12 +684,12 @@ img {
 }
 
 .portfolio__title {
-  font-size: var(--h3-font-size);
-  margin-bottom: var(--mb-0-5);
+  font-size: $h3-font-size;
+  margin-bottom: $mb-0-5;
 }
 
 .portfolio__description {
-  margin-bottom: var(--mb-0-75);
+  margin-bottom: $mb-0-75;
 }
 
 .portfolio__content-buttons {
@@ -704,7 +708,7 @@ img {
 
 .swiper-portfolio-icon {
   font-size: 2rem;
-  color: var(--first-color);
+  color: $first-color;
 }
 
 .swiper-button-prev {
@@ -716,7 +720,7 @@ img {
 }
 
 .swiper-pagination-bullet-active {
-  background-color: var(--first-color) !important;
+  background-color: $first-color !important;
 }
 
 .swiper-button-prev,
@@ -732,42 +736,42 @@ img {
 
 .contact__information {
   display: flex;
-  margin-bottom: var(--mb-2);
+  margin-bottom: $mb-2;
 }
 
 .contact__icon {
   font-size: 2rem;
-  color: var(--first-color);
-  margin-right: var(--mb-0-75);
+  color: $first-color;
+  margin-right: $mb-0-75;
 }
 
 .contact__title {
-  font-size: var(--h3-font-size);
-  font-weight: var(--font-medium);
+  font-size: $h3-font-size;
+  font-weight: $font-medium;
 }
 
 .contact__subtitle {
-  font-size: var(--small-font-size);
-  color: var(--text-color-light);
+  font-size: $small-font-size;
+  color: $text-color-light;
 }
 
 .contact__content {
-  background-color: var(--input-color);
+  background-color: $input-color;
   border-radius: 0.5rem;
   padding: 0.75rem 1rem 0.25rem;
 }
 
 .contact__label {
-  font-size: var(--smaller-font-size);
-  color: var(--title-color);
+  font-size: $smaller-font-size;
+  color: $title-color;
 }
 
 .contact__input {
   width: 100%;
-  background-color: var(--input-color);
-  color: var(--text-color);
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
+  background-color: $input-color;
+  color: $text-color;
+  font-family: $body-font;
+  font-size: $normal-font-size;
   border: none;
   outline: none;
   padding: 0.25rem 0.5rem 0.5rem 0;
@@ -783,17 +787,17 @@ img {
 }
 
 .footer__bg {
-  background-color: var(--first-color-second);
+  background-color: $first-color-second;
   padding: 2rem 0 3rem;
 }
 
 .footer__title {
-  font-size: var(--h1-font-size);
-  margin-bottom: var(--mb-0-25);
+  font-size: $h1-font-size;
+  margin-bottom: $mb-0-25;
 }
 
 .footer__subtitle {
-  font-size: var(--small-font-size);
+  font-size: $small-font-size;
 }
 
 .footer__links {
@@ -803,14 +807,14 @@ img {
 }
 
 .footer__link:hover {
-  color: var(--first-color-lighter);
+  color: $first-color-lighter;
 }
 
 .footer__copy {
-  font-size: var(--smaller-font-size);
+  font-size: $smaller-font-size;
   text-align: center;
-  color: var(--text-color-light);
-  margin-bottom: var(--mb-3);
+  color: $text-color-light;
+  margin-bottom: $mb-3;
 }
 
 .footer__title,
@@ -824,16 +828,16 @@ img {
   position: fixed;
   right: 1rem;
   bottom: -20%;
-  background-color: var(--first-color);
+  background-color: $first-color;
   opacity: 0.8;
   padding: 0 0.3rem;
   border-radius: 0.4rem;
-  z-index: var(--z-tooltip);
+  z-index: $z-tooltip;
   transition: 0.4s;
 }
 
 .scrollup:hover {
-  background-color: var(--first-color-alt);
+  background-color: $first-color-alt;
 }
 
 .scrollup__icon {
@@ -849,25 +853,25 @@ img {
 /*========== SCROLL BAR ==========*/
 ::-webkit-scrollbar {
   width: 0.6rem;
-  background-color: var(--scroll-bar-color);
+  background-color: $scroll-bar-color;
   border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--scroll-thumb-color);
+  background-color: $scroll-thumb-color;
   border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--text-color-light);
+  background-color: $text-color-light;
 }
 
 /*==================== MEDIA QUERIES ====================*/
 /* For small devices */
 @media screen and (max-width: 350px) {
   .container {
-    margin-left: var(--mb-1);
-    margin-right: var(--mb-1);
+    margin-left: $mb-1;
+    margin-right: $mb-1;
   }
 
   .nav__menu {
@@ -887,7 +891,7 @@ img {
   }
 
   .skills__titles {
-    font-size: var(--normal-font-size);
+    font-size: $normal-font-size;
   }
 
   .qualification__data {
@@ -976,7 +980,7 @@ img {
   }
 
   .nav {
-    height: calc(var(--header-height) + 1.5rem);
+    height: #{header-height + 1.5rem};
     column-gap: 1rem;
   }
 
@@ -1046,7 +1050,7 @@ img {
   }
 
   .qualification__button {
-    margin: 0 var(--mb-1);
+    margin: 0 $mb-1;
   }
 
   .qualification__sections {
@@ -1159,6 +1163,6 @@ img {
   }
 
   .Toastify__toast-container--top-right {
-    top: var(--mt-4);
+    top: $mt-4;
   }
 }
