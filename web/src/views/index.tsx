@@ -11,14 +11,12 @@ import { ScrollTop } from "../components/Scroll/Top";
 import { Services } from "../components/Services";
 import { Skills } from "../components/Skills";
 import { ToastContainer } from "react-toastify";
-import { IRequestState } from "../redux/reducers/request";
-import { alreadyRequestsDone } from "../utils/alreadyRequestsDone";
 import { getMainInfo, Language } from "../services/getMainInfo";
 import { setMainInfo } from "../redux/reducers/mainInfo";
 import { useLocation } from "react-router-dom";
 import { handleLanguage, Theme } from "../redux/reducers/settings";
 
-function Default() {
+export function Default() {
   const className = "dark-theme" as any;
   const dispatch = useDispatch();
   const path = (
@@ -71,5 +69,3 @@ function Default() {
     </div>
   );
 }
-
-export default Default;
