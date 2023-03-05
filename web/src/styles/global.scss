@@ -1,4 +1,7 @@
 @import "./variables/var.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /*========== Button Dark/Light ==========*/
 .nav__btns {
