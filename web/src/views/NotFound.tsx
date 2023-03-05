@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { StarBackgroundAnimation } from "../components/contents/StarBackgroundAnimation";
+
 
 import "../styles/errorView.scss";
 
@@ -20,12 +22,7 @@ export function NotFound() {
       <a href="/">
         <header className="top-header"></header>
 
-        <div>
-          <div className="starsec"></div>
-          <div className="starthird"></div>
-          <div className="starfourth"></div>
-          <div className="starfifth"></div>
-        </div>
+        <StarBackgroundAnimation />
 
         <div className="lamp__wrap">
           <div className="lamp">
