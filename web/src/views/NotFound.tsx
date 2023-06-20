@@ -45,7 +45,7 @@ export function NotFound() {
               </p>
             </div>
             <div className="error__nav e-nav">
-              <a href="" target="_blanck" className="e-nav__link"></a>
+              <a href="/" className="e-nav__link"></a>
             </div>
           </div>
         </section>
