@@ -1,93 +1,94 @@
 /*==================== GOOGLE FONTS ====================*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
-$header-height: 48px;
+:root {
+  --header-height: 48px;
 
-/*========== Colors ==========*/
-/* Change favorite color */
-/*Purple 250 - Green 142 - Blue 230 - Pink 340*/
-$hue-color: 250;
-$shadow-menu-color: rgba(0, 0, 0, 0.15);
+  /*========== Colors ==========*/
+  /* Change favorite color */
+  --hue-color: 250; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
+  --shadow-menu-color: rgba(0, 0, 0, 0.15);
 
-/* HSL color mode */
-$first-color: hsl($hue-color, 69%, 61%);
-$first-color-second: hsl($hue-color, 69%, 61%);
-$first-color-alt: hsl($hue-color, 57%, 53%);
-$first-color-lighter: hsl($hue-color, 92%, 85%);
-$title-color: hsl($hue-color, 8%, 15%);
-$text-color: hsl($hue-color, 8%, 45%);
-$text-color-light: hsl($hue-color, 8%, 65%);
-$input-color: hsl($hue-color, 70%, 96%);
-$body-color: hsl($hue-color, 60%, 99%);
-$container-color: #fff;
-$scroll-bar-color: hsl($hue-color, 12%, 90%);
-$scroll-thumb-color: hsl($hue-color, 12%, 80%);
-$toastify-color-progress-light: $first-color-second;
-$toastify-text-color-light: $text-color;
-$disable-color: $text-color;
-$first-color-active: hsl($hue-color, 30%, 55%);
+  /* HSL color mode */
+  --first-color: hsl(var(--hue-color), 69%, 61%);
+  --first-color-second: hsl(var(--hue-color), 69%, 61%);
+  --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+  --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+  --title-color: hsl(var(--hue-color), 8%, 15%);
+  --text-color: hsl(var(--hue-color), 8%, 45%);
+  --text-color-light: hsl(var(--hue-color), 8%, 65%);
+  --input-color: hsl(var(--hue-color), 70%, 96%);
+  --body-color: hsl(var(--hue-color), 60%, 99%);
+  --container-color: #fff;
+  --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
+  --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+  --toastify-color-progress-light: var(--first-color-second);
+  --toastify-text-color-light: var(--text-color);
+  --disable-color: var(--text-color);
+  --first-color-active: hsl(var(--hue-color), 30%, 55%);
 
-/*========== Font and typography ==========*/
-$body-font: "Poppins", sans-serif;
+  /*========== Font and typography ==========*/
+  --body-font: "Poppins", sans-serif;
 
-/* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
-$big-font-size: 32px;
-$h1-font-size: 24px;
-$h2-font-size: 20px;
-$h3-font-size: 18px;
-$normal-font-size: 15.008px;
-$small-font-size: 13.008px;
-$smaller-font-size: 11.84px;
+  /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+  --big-font-size: 32px;
+  --h1-font-size: 24px;
+  --h2-font-size: 20px;
+  --h3-font-size: 18px;
+  --normal-font-size: 15.008px;
+  --small-font-size: 13.008px;
+  --smaller-font-size: 11.84px;
 
-/*========== Font weight ==========*/
-$font-medium: 500;
-$font-semi-bold: 600;
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
 
-/*========== Margenes Bottom ==========*/
-/* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
-$mb-0-25: 4px;
-$mb-0-5: 8px;
-$mb-0-75: 12px;
-$mb-1: 16px;
-$mb-1-5: 24px;
-$mb-2: 32px;
-$mb-2-5: 40px;
-$mb-3: 48px;
-$mt-4: 4rem;
+  /*========== Margenes Bottom ==========*/
+  /* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
+  --mb-0-25: 4px;
+  --mb-0-5: 8px;
+  --mb-0-75: 12px;
+  --mb-1: 16px;
+  --mb-1-5: 24px;
+  --mb-2: 32px;
+  --mb-2-5: 40px;
+  --mb-3: 48px;
+  --mt-4: 4rem;
 
-/*========== z index ==========*/
-$z-tooltip: 10;
-$z-fixed: 100;
-$z-modal: 1000;
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
 
 /* Font size for large devices */
 @media screen and (min-width: 968px) {
   :root {
-    $big-font-size: 48px;
-    $h1-font-size: 36px;
-    $h2-font-size: 24px;
-    $h3-font-size: 20px;
-    $normal-font-size: 16px;
-    $small-font-size: 14px;
-    $smaller-font-size: 13.0008px;
+    --big-font-size: 48px;
+    --h1-font-size: 36px;
+    --h2-font-size: 24px;
+    --h3-font-size: 20px;
+    --normal-font-size: 16px;
+    --small-font-size: 14px;
+    --smaller-font-size: 13.0008px;
   }
 }
 
 /*========== Variables Dark theme ==========*/
 body.dark-theme {
   /* Change favorite color */
-  $shadow-menu-color: rgba(255, 255, 255, 0.15);
+  --shadow-menu-color: rgba(255, 255, 255, 0.15);
 
   /* HSL color mode */
-  $first-color-second: hsl($hue-color, 30%, 8%);
-  $title-color: hsl($hue-color, 8%, 95%);
-  $text-color: hsl($hue-color, 8%, 85%);
-  $input-color: hsl($hue-color, 29%, 16%);
-  $body-color: hsl($hue-color, 0%, 0%);
-  $container-color: hsl($hue-color, 29%, 16%);
-  $scroll-bar-color: hsl($hue-color, 12%, 48%);
-  $scroll-thumb-color: hsl($hue-color, 12%, 36%);
-  $toastify-color-progress-dark: $first-color;
-  $disable-color: hsl($hue-color, 8%, 60%);
-  $first-color-active: $input-color;
+  --first-color-second: hsl(var(--hue-color), 30%, 8%);
+  --title-color: hsl(var(--hue-color), 8%, 95%);
+  --text-color: hsl(var(--hue-color), 8%, 85%);
+  --input-color: hsl(var(--hue-color), 29%, 16%);
+  --body-color: hsl(var(--hue-color), 0%, 0%);
+  --container-color: hsl(var(--hue-color), 29%, 16%);
+  --scroll-bar-color: hsl(var(--hue-color), 12%, 48%);
+  --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
+  --toastify-color-progress-dark: var(--first-color);
+  --disable-color: hsl(var(--hue-color), 8%, 60%);
+  --first-color-active: var(--input-color);
 }

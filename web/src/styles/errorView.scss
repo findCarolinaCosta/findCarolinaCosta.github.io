@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import "./variables/var.scss";
 
 /***********************************
 		/* 1. BODY */
@@ -13,7 +12,7 @@
     overflow: hidden;
     padding: 0;
     margin: 0;
-    background: $body-color;
+    background: var(--body-color);
     font-size: 14px;
     line-height: 1;
 
@@ -305,7 +304,7 @@
         vertical-align: top;
         margin: 0 15px;
         border: 2.5px solid #585555;
-        color: $first-color;
+        color: var(--first-color);
         text-decoration: none;
         font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
@@ -409,7 +408,7 @@
     .cover {
         width: 200px;
         height: 80px;
-        background: hsl($hue-color, 37%, 23%);
+        background: hsl(var(--hue-color), 37%, 23%);
         border-top-left-radius: 50%;
         border-top-right-radius: 50%;
         position: relative;
@@ -441,14 +440,14 @@
         bottom: -20px;
         margin: 0px auto;
         -webkit-box-shadow: 0 0 15px 7px rgba(255, 255, 0, 0.9), 0 0 40px 25px rgba(255, 255, 0, 0.5), -75px 0 30px 15px rgba(255, 255, 0, 0.2);
-        box-shadow: 0 0 25px 7px hsl($hue-color, 100%, 50%), 0 0 64px 47px hsl($hue-color, 100%, 50%), 0px 0 30px 15px hsl($hue-color, 100%, 50%);
+        box-shadow: 0 0 25px 7px hsl(var(--hue-color), 100%, 50%), 0 0 64px 47px hsl(var(--hue-color), 100%, 50%), 0px 0 30px 15px hsl(var(--hue-color), 100%, 50%);
     }
 
 
     .light {
         width: 200px;
         height: 0px;
-        border-bottom: 1000px solid hsl($hue-color, 100%, 72%);
+        border-bottom: 1000px solid hsl(var(--hue-color), 100%, 72%);
         filter: blur(200px);
         border-left: 50px solid transparent;
         border-right: 50px solid transparent;
