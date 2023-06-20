@@ -1,8 +1,21 @@
 import { ErrorHeader } from "../components/Header/ErroHeader";
 import { Link } from "react-router-dom";
 import { StarBackgroundAnimation } from "../components/contents/StarBackgroundAnimation";
+import { useEffect } from "react";
 
 export function Forbidden() {
+  const className = "dark-theme" as any;
+
+  const addBodyClass = (className: any) =>
+    document.body.classList.add(className);
+
+  const removeBodyClass = (className: any) =>
+    document.body.classList.remove(className);
+
+  useEffect(() => {
+    addBodyClass(className)
+  }, []);
+
   return (
     <div className="h-screen w-screen">
       <ErrorHeader />
