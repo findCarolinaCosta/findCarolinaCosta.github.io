@@ -1,9 +1,11 @@
 import { IPortfolioModel, Language } from "./../models/IModel";
 import { Portfolio as PortfolioModel } from "./../models/Portfolio";
 import { Client } from "@notionhq/client";
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { IPortfolioController } from "./IController";
 import { success } from "../utils/apiResponse";
+import { ErrorGenerate } from "../middlewares/errorHandler";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 export class Portfolio implements IPortfolioController {
   private _model: IPortfolioModel;
@@ -28,20 +30,29 @@ export class Portfolio implements IPortfolioController {
       );
   }
 
-  public readMany = async (req: Request, res: Response) => {
+  public readMany = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const language = (req.query.language as Language) || Language["en-us"];
       if (language == Language["pt-br"]) {
         const projects = await this._modelPT.readMany();
 
-        return res.status(200).json(success(projects));
+        if (!projects)
+          throw new ErrorGenerate(
+            StatusCodes.NOT_FOUND,
+            ReasonPhrases.NOT_FOUND
+          );
+
+        return res.status(StatusCodes.OK).json(success(projects));
       }
 
       const projects = await this._model.readMany();
 
-      return res.status(200).json(success(projects));
-    } catch (error) {
-      console.error(error);
+      if (!projects)
+        throw new ErrorGenerate(StatusCodes.NOT_FOUND, ReasonPhrases.NOT_FOUND);
+
+      return res.status(StatusCodes.OK).json(success(projects));
+    } catch (error: unknown) {
+      next(error);
     }
   };
 }

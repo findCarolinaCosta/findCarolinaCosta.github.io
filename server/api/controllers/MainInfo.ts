@@ -1,9 +1,11 @@
 import { IMainInfoModel, Language } from "./../models/IModel";
 import { MainInfo as MainInfoModel } from "./../models/MainInfo";
 import { Client } from "@notionhq/client";
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { IMainInfoController } from "./IController";
 import { success } from "../utils/apiResponse";
+import { ErrorGenerate } from "../middlewares/errorHandler";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 export class MainInfo implements IMainInfoController {
   private _model: IMainInfoModel;
@@ -18,14 +20,17 @@ export class MainInfo implements IMainInfoController {
     this._model = model || new MainInfoModel(this._notion, this._databaseId);
   }
 
-  public read = async (req: Request, res: Response) => {
+  public read = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const language = (req.query.language as Language) || Language["en-us"];
       const mainInfos = await this._model.read(language);
 
-      return res.status(200).json(success(mainInfos));
-    } catch (error) {
-      // console.error(error);
+      if (!mainInfos)
+        throw new ErrorGenerate(StatusCodes.NOT_FOUND, ReasonPhrases.NOT_FOUND);
+
+      return res.status(StatusCodes.OK).json(success(mainInfos));
+    } catch (error: unknown) {
+      next(error);
     }
   };
 }

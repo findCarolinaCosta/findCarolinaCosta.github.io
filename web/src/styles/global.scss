@@ -1,4 +1,7 @@
 @import "./variables/var.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /*========== Button Dark/Light ==========*/
 .nav__btns {
@@ -87,6 +90,7 @@ img {
 
 /*==================== LAYOUT ====================*/
 .container {
+  width: auto;
   max-width: 768px;
   margin-left: var(--mb-1-5);
   margin-right: var(--mb-1-5);

@@ -1,9 +1,11 @@
 import { ISkillModel, Language } from "../models/IModel";
 import { Skill as SkillModel } from "../models/Skill";
 import { Client } from "@notionhq/client";
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { ISkillController } from "./IController";
 import { success } from "../utils/apiResponse";
+import { ErrorGenerate } from "../middlewares/errorHandler";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 export class Skill implements ISkillController {
   private _model: ISkillModel;
@@ -30,21 +32,30 @@ export class Skill implements ISkillController {
       );
   }
 
-  public readMany = async (req: Request, res: Response) => {
+  public readMany = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const language = (req.query.language as Language) || Language["en-us"];
 
       if (language == Language["pt-br"]) {
         const skills = await this._modelPT.readMany();
 
-        return res.status(200).json(success(skills));
+        if (!skills)
+          throw new ErrorGenerate(
+            StatusCodes.NOT_FOUND,
+            ReasonPhrases.NOT_FOUND
+          );
+
+        return res.status(StatusCodes.OK).json(success(skills));
       }
 
       const skills = await this._model.readMany();
 
-      return res.status(200).json(success(skills));
-    } catch (error) {
-      console.error(error);
+      if (!skills)
+        throw new ErrorGenerate(StatusCodes.NOT_FOUND, ReasonPhrases.NOT_FOUND);
+
+      return res.status(StatusCodes.OK).json(success(skills));
+    } catch (error: unknown) {
+      next(error);
     }
   };
 }

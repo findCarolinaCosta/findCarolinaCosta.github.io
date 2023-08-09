@@ -1,9 +1,11 @@
 import { IQualificationModel, Language } from "../models/IModel";
 import { Qualification as QualificationModel } from "../models/Qualification";
 import { Client } from "@notionhq/client";
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { IQualificationController } from "./IController";
 import { success } from "../utils/apiResponse";
+import { ErrorGenerate } from "../middlewares/errorHandler";
+import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 export class Qualification implements IQualificationController {
   private _model: IQualificationModel;
@@ -30,19 +32,28 @@ export class Qualification implements IQualificationController {
       );
   }
 
-  public readMany = async (req: Request, res: Response) => {
+  public readMany = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const language = (req.query.language as Language) || Language["en-us"];
       if (language == Language["pt-br"]) {
-        const skills = await this._modelPT.readMany();
+        const qualifications = await this._modelPT.readMany();
 
-        return res.status(200).json(success(skills));
+        if (!qualifications)
+          throw new ErrorGenerate(
+            StatusCodes.NOT_FOUND,
+            ReasonPhrases.NOT_FOUND
+          );
+
+        return res.status(StatusCodes.OK).json(success(qualifications));
       }
       const qualifications = await this._model.readMany();
 
-      return res.status(200).json(success(qualifications));
-    } catch (error) {
-      console.error(error);
+      if (!qualifications)
+        throw new ErrorGenerate(StatusCodes.NOT_FOUND, ReasonPhrases.NOT_FOUND);
+
+      return res.status(StatusCodes.OK).json(success(qualifications));
+    } catch (error: unknown) {
+      next(error);
     }
   };
 }
