@@ -4,6 +4,7 @@ import routes from "./routes";
 import morgan from "morgan";
 import errorHandler, { ErrorGenerate } from "./middlewares/errorHandler";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { redis } from "./services/redis";
 
 class App {
   public app: express.Express;
@@ -80,3 +81,9 @@ export { App };
 
 // A execução dos testes de cobertura depende dessa exportação
 export const { app } = new App();
+
+// When server is closed
+process.on("exit", () => {
+  // Close redis connection
+  redis.quit();
+});
