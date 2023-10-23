@@ -16,7 +16,7 @@ I made this portfolio with great care, it is responsive to the main breakpoints 
 - Contact Form
 - Integration with API for content of the main sections to be dynamic
 
-## Future implementations 
+## Future implementations
 - Portuguese translation ✔
 - Button to download CV ✔
 - Contact Form ✔
@@ -32,7 +32,7 @@ I made this portfolio with great care, it is responsive to the main breakpoints 
 - management page
 - error handling
 - health check - web and server
-- cache: redis
+- cache: redis ✔
 - security:
   - helmet
   - cors ✔

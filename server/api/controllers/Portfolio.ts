@@ -6,46 +6,20 @@ import { IPortfolioController } from "./IController";
 import { success } from "../utils/apiResponse";
 import { ErrorGenerate } from "../middlewares/errorHandler";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { IPortfolioService } from "../services/IService";
+import { Portfolio as PortfolioService } from "../services/Portfolio";
 
 export class Portfolio implements IPortfolioController {
-  private _model: IPortfolioModel;
-  private _notion: Client;
-  private _modelPT: IPortfolioModel;
+  private _service: IPortfolioService;
 
-  constructor(model: IPortfolioModel | null = null) {
-    this._notion = new Client({
-      auth: process.env.NOTION_PORTFOLIO_KEY,
-    });
-    this._model =
-      model ||
-      new PortfolioModel(
-        this._notion,
-        process.env.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID || ""
-      );
-    this._modelPT =
-      model ||
-      new PortfolioModel(
-        this._notion,
-        process.env.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID_PT_BR || ""
-      );
+  constructor(service: IPortfolioService | null = null) {
+    this._service = service || new PortfolioService();
   }
 
   public readMany = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const language = (req.query.language as Language) || Language["en-us"];
-      if (language == Language["pt-br"]) {
-        const projects = await this._modelPT.readMany();
-
-        if (!projects)
-          throw new ErrorGenerate(
-            StatusCodes.NOT_FOUND,
-            ReasonPhrases.NOT_FOUND
-          );
-
-        return res.status(StatusCodes.OK).json(success(projects));
-      }
-
-      const projects = await this._model.readMany();
+      const projects = await this._service.readMany(language);
 
       if (!projects)
         throw new ErrorGenerate(StatusCodes.NOT_FOUND, ReasonPhrases.NOT_FOUND);

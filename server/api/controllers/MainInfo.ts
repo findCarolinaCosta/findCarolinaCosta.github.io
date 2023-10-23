@@ -1,35 +1,30 @@
-import { IMainInfoModel, Language } from "./../models/IModel";
-import { MainInfo as MainInfoModel } from "./../models/MainInfo";
-import { Client } from "@notionhq/client";
+import { IMainInfoService, Language } from "./../models/IModel";
 import { Response, Request, NextFunction } from "express";
 import { IMainInfoController } from "./IController";
 import { success } from "../utils/apiResponse";
 import { ErrorGenerate } from "../middlewares/errorHandler";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { MainInfo as MainInfoService } from "../services/MainInfo";
+import { redis } from "../services/redis";
 
 export class MainInfo implements IMainInfoController {
-  private _model: IMainInfoModel;
-  private _notion: Client;
-  private _databaseId: string;
+  private _service: IMainInfoService;
 
-  constructor(model: IMainInfoModel | null = null) {
-    this._notion = new Client({
-      auth: process.env.NOTION_PORTFOLIO_KEY,
-    });
-    this._databaseId = process.env.NOTION_MAIN_CONTENT_DATABASE_ID || "";
-    this._model = model || new MainInfoModel(this._notion, this._databaseId);
+  constructor(service: IMainInfoService | null = null) {
+    this._service = service || new MainInfoService();
   }
 
   public read = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const language = (req.query.language as Language) || Language["en-us"];
-      const mainInfos = await this._model.read(language);
+      const mainInfos = await this._service.read(language);
 
       if (!mainInfos)
         throw new ErrorGenerate(StatusCodes.NOT_FOUND, ReasonPhrases.NOT_FOUND);
 
       return res.status(StatusCodes.OK).json(success(mainInfos));
     } catch (error: unknown) {
+      console.log(error);
       next(error);
     }
   };
