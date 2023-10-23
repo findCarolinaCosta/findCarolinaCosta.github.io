@@ -1,11 +1,11 @@
-import { IMainInfoService, Language } from "./../models/IModel";
+import { Language } from "./../models/IModel";
 import { Response, Request, NextFunction } from "express";
 import { IMainInfoController } from "./IController";
 import { success } from "../utils/apiResponse";
 import { ErrorGenerate } from "../middlewares/errorHandler";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { MainInfo as MainInfoService } from "../services/MainInfo";
-import { redis } from "../services/redis";
+import { IMainInfoService } from "../services/IService";
 
 export class MainInfo implements IMainInfoController {
   private _service: IMainInfoService;
