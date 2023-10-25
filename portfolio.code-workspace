@@ -4,12 +4,8 @@
       "path": "server"
     },
     {
-      "path": "web",
-      "name": "web-1"
-    },
-    {
       "path": "apps/web",
-      "name": "web-2"
+      "name": "web"
     },
     {
       "path": "."

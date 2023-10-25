@@ -2,16 +2,16 @@ version: "3.14"
 
 services:
     web:
-        build: ./web
+        build: ./apps/web
         container_name: web-portfolio
         restart: unless-stopped
         ports:
-            - "5173:5173"
+            - "3000:3000"
         volumes:
-            - ./web:/home/app
+            - ./apps/web:/home/app
         command: yarn dev
         env_file:
-            - ./web/.env
+            - ./apps/web/.env.local
         logging:
             options:
                 max-size: "10m"
@@ -22,7 +22,7 @@ services:
         networks:
             - portfolio
         healthcheck:
-            test: [ "CMD", "lsof", "-t", "-i:5173" ]
+            test: [ "CMD", "lsof", "-t", "-i:3000" ]
             timeout: 10s
             retries: 5
     server:
