@@ -3,26 +3,26 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
-import { About } from '../components/About';
-import { ContactMe } from '../components/ContactMe';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { Home } from '../components/Home';
-import { Portfolios } from '../components/Portfolio';
-import { Qualification } from '../components/Qualification';
-import { ScrollTop } from '../components/Scroll/Top';
-import { Services } from '../components/Services';
-import { Skills } from '../components/Skills';
-import { setMainInfo } from '../redux/reducers/mainInfo';
-import { handleLanguage, Theme } from '../redux/reducers/settings';
-import { getMainInfo, Language } from '../services/getMainInfo';
+import { About } from '../../components/About';
+import { ContactMe } from '../../components/ContactMe';
+import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header';
+import { Home } from '../../components/Home';
+import { Portfolios } from '../../components/Portfolio';
+import { Qualification } from '../../components/Qualification';
+import { ScrollTop } from '../../components/Scroll/Top';
+import { Services } from '../../components/Services';
+import { Skills } from '../../components/Skills';
+import { setMainInfo } from '../../redux/reducers/mainInfo';
+import { handleLanguage, Theme } from '../../redux/reducers/settings';
+import { getMainInfo, Language } from '../../services/getMainInfo';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Default() {
   const className = 'dark-theme' as any;
   const dispatch = useDispatch();
-  const path = Language['en-us'];
+  const path = Language['pt-br'];
   const theme = useSelector(
     ({ settings }: { settings: { theme: Theme; icon: string } }) => settings,
   );

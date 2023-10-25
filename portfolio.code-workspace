@@ -1,14 +1,19 @@
 {
   "folders": [
-	{
-		"path": "server"
-	},
-	{
-		"path": "web"
-	},
-	{
-		"path": "."
-	}
-],
+    {
+      "path": "server"
+    },
+    {
+      "path": "web",
+      "name": "web-1"
+    },
+    {
+      "path": "apps/web",
+      "name": "web-2"
+    },
+    {
+      "path": "."
+    }
+  ],
   "settings": {}
 }

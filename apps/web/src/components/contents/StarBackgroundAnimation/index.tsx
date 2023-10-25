@@ -1,5 +1,3 @@
-// import './styles.scss';
-
 export function StarBackgroundAnimation() {
   return (
     <div className="container-bg">

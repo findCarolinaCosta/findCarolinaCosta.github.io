@@ -52,7 +52,7 @@ export function About() {
           <div className="about__buttons">
             <a
               download=""
-              href={process.env.NEXT_PUBLIC_RESUME_FULLSTACK}
+              href={mainInfo.resume || process.env.NEXT_PUBLIC_RESUME_URL}
               className="button button--flex"
             >
               {pathPt ? 'Baixar currículo' : 'Download CV'}

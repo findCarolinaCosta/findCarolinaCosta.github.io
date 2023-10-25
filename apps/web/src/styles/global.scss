@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./errorView.scss";
+@import "./starBackgroundAnimation.scss";
+
 /*========== Button Dark/Light ==========*/
 .nav__btns {
   display: flex;
@@ -178,7 +181,7 @@ img {
 .nav__close {
   position: static;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-right: 8px;
   margin-top: 20px;
   right: 20px;

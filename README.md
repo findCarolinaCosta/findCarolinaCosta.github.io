@@ -37,6 +37,7 @@ I made this portfolio with great care, it is responsive to the main breakpoints 
   - helmet
   - cors ✔
   - morgan
+- Next.ts in the frontend ✔
 
 ## Tech Infos
 

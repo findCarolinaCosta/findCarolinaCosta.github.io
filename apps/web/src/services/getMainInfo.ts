@@ -8,6 +8,7 @@ export interface IMainInfo {
   aboutDescription: string;
   projects: number;
   homeImg: string;
+  resume: string;
 }
 
 export enum Language {

@@ -4,8 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         {/* <!--==================== UNICONS ====================--> */}
         <link
           rel="stylesheet"
@@ -17,18 +15,15 @@ export default function Document() {
           name="description"
           content="Carolina's portfolio, get to know me better. Frontend developer"
         />
-        <meta property="og:title" content="Frontend developer" />
+        <meta property="og:title" content="Backend developer specialist" />
         <meta
           property="og:url"
-          content="https://findcarolinacosta.vercel.app/"
+          content="https://findcarolinacosta.vercel.app"
         />
         <meta
           property="og:description"
-          content="Carolina's portfolio, get to know me better. Frontend developer"
+          content="Carolina's portfolio, get to know me better. Backend developer specialist"
         />
-
-        {/* eslint-disable-next-line @next/next/no-title-in-document-head */}
-        <title>Carolina</title>
       </Head>
       <body>
         <Main />
