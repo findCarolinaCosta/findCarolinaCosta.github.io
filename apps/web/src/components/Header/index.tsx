@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +7,7 @@ import Scrollspy from 'react-scrollspy';
 import { IRequestState } from '../../redux/reducers/request';
 import { handleActiveSection, setSections } from '../../redux/reducers/section';
 import { handleTheme, Theme } from '../../redux/reducers/settings';
+import { Language } from '../contents/Language';
 import { HeaderSkeleton } from './HeaderSkeleton';
 export const sections: string[] = [
   'home',
@@ -181,11 +183,14 @@ export function Header() {
               </a>
             </li>
           </Scrollspy>
-          <i
-            className="uil uil-times nav__close nav__icon"
-            id="nav-close"
-            onClick={() => setShowResponsiveMenu(false)}
-          ></i>
+          <div className="flex justify-between">
+            <Language className="md:hidden" />
+            <i
+              className="uil uil-times nav__close nav__icon"
+              id="nav-close"
+              onClick={() => setShowResponsiveMenu(false)}
+            ></i>
+          </div>
         </div>
         <div className="nav__btns">
           {/* <!-- Theme change button --> */}
@@ -209,6 +214,7 @@ export function Header() {
             <i className="uil uil-apps nav__icon"></i>
           </div>
         </div>
+        <Language className="hidden md:block" />
       </nav>
     </header>
   );
