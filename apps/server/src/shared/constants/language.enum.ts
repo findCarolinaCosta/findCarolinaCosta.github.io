@@ -4,6 +4,6 @@ export enum Language {
 }
 
 export enum Language {
-  ENGLISH = 'pt-br',
-  PORTUGUESE = 'en-us',
+  ENGLISH = 'en-us',
+  PORTUGUESE = 'pt-br',
 }
