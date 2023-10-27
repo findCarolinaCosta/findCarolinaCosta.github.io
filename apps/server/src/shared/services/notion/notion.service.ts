@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Client } from '@notionhq/client';
 import { Language } from 'src/shared/constants/language.enum';
-import { NotionReadParams, NotionReadResult } from './notion.type';
+import {
+  NotionCreateParams,
+  NotionReadParams,
+  NotionReadResult,
+} from './notion.type';
 
 @Injectable()
 export class NotionService {
@@ -28,5 +32,14 @@ export class NotionService {
     return (await this._notion.databases.query({
       database_id: databaseId,
     })) as unknown as NotionReadResult<T>;
+  }
+
+  public async create({ databaseId, data }: NotionCreateParams): Promise<void> {
+    this._notion.pages.create({
+      parent: {
+        database_id: databaseId,
+      },
+      properties: data,
+    });
   }
 }
