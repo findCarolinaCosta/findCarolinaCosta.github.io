@@ -2,7 +2,7 @@ import { Language } from 'src/shared/constants/language.enum';
 import { CreatePageParameters } from '@notionhq/client/build/src/api-endpoints';
 
 export type NotionReadParams = {
-  language: Language | null;
+  language?: Language | null;
   databaseId: string;
 };
 
