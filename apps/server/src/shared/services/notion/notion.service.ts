@@ -6,6 +6,7 @@ import {
   NotionReadParams,
   NotionReadResult,
 } from './notion.type';
+import { NotionDatabase } from 'src/shared/constants/notion.database';
 
 @Injectable()
 export class NotionService {
@@ -41,5 +42,26 @@ export class NotionService {
       },
       properties: data,
     });
+  }
+
+  public async healthCheck(): Promise<{
+    status: boolean;
+    error?: any;
+  }> {
+    try {
+      await this.read({
+        language: null,
+        databaseId: NotionDatabase.NOTION_MAIN_CONTENT_DATABASE_ID,
+      });
+
+      return {
+        status: true,
+      };
+    } catch (error) {
+      return {
+        status: false,
+        error,
+      };
+    }
   }
 }

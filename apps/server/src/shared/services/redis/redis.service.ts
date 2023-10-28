@@ -20,4 +20,21 @@ export class RedisService {
   public async quit(): Promise<void> {
     await this.redis.quit();
   }
+
+  public async healthCheck(): Promise<{
+    status: boolean;
+    error?: any;
+  }> {
+    try {
+      await this.redis.ping();
+      return {
+        status: true,
+      };
+    } catch (error: any) {
+      return {
+        status: false,
+        error,
+      };
+    }
+  }
 }
