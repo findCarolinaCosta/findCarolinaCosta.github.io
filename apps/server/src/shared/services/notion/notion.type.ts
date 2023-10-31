@@ -1,9 +1,17 @@
 import { Language } from 'src/shared/constants/language.enum';
-import { CreatePageParameters } from '@notionhq/client/build/src/api-endpoints';
+import {
+  CreatePageParameters,
+  QueryDatabaseParameters,
+} from '@notionhq/client/build/src/api-endpoints';
+
+const notionFilters: QueryDatabaseParameters['filter'] = {
+  and: [],
+};
 
 export type NotionReadParams = {
   language?: Language | null;
   databaseId: string;
+  filter?: (typeof notionFilters.and)[0];
 };
 
 export type NotionReadProperties<T> = {

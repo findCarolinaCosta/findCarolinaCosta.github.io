@@ -7,6 +7,7 @@ import {
   NotionReadResult,
 } from './notion.type';
 import { NotionDatabase } from 'src/shared/constants/notion.database';
+import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 
 @Injectable()
 export class NotionService {
@@ -15,23 +16,28 @@ export class NotionService {
   public async read<T>({
     language,
     databaseId,
+    filter,
   }: NotionReadParams): Promise<NotionReadResult<T>> {
     if (!databaseId) throw new Error('Database ID is required');
 
+    const notionFilters: QueryDatabaseParameters['filter'] = {
+      and: [],
+    };
+
     if (Language[language]) {
-      return (await this._notion.databases.query({
-        database_id: databaseId,
-        filter: {
-          property: 'language',
-          select: {
-            equals: language,
-          },
+      notionFilters.and.push({
+        property: 'language',
+        select: {
+          equals: language,
         },
-      })) as unknown as NotionReadResult<T>;
+      });
     }
+
+    if (filter) notionFilters.and.push(filter);
 
     return (await this._notion.databases.query({
       database_id: databaseId,
+      filter: notionFilters,
     })) as unknown as NotionReadResult<T>;
   }
 

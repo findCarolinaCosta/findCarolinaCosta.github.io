@@ -4,6 +4,7 @@ import { RedisModule } from '../services/redis/redis.module';
 import { ContactModule } from 'src/modules/contact/contact.module';
 import { HealthModule } from 'src/modules/health/health.module';
 import { PortfolioModule } from 'src/modules/portfolio/portfolio.module';
+import { QualificationModule } from 'src/modules/qualification/qualification.module';
 
 export const AppImports = [
   NotionModule,
@@ -12,4 +13,5 @@ export const AppImports = [
   ContactModule,
   HealthModule,
   PortfolioModule,
+  QualificationModule,
 ];
