@@ -6,7 +6,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ContactService } from './contact.service';
-import { ContactDTO } from 'src/dto/contact.dto';
+import { ContactDTO } from '@/dto/contact.dto';
 
 @Injectable()
 @Controller('contact')

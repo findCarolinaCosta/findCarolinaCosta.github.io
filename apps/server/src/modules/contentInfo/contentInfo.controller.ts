@@ -1,6 +1,6 @@
 import { Controller, Get, Injectable, Req } from '@nestjs/common';
 import { ContentInfoService } from './contentInfo.service';
-import { Language } from 'src/shared/constants/language.enum';
+import { Language } from '@/shared/constants/language.enum';
 import { IContentInfo } from './contentInfo.type';
 import { Request } from 'express';
 

@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
-import { SolutionDto } from 'src/dto/solution.dto';
-import { Language } from 'src/shared/constants/language.enum';
-import { NotionDatabase } from 'src/shared/constants/notion.database';
-import { NotionService } from 'src/shared/services/notion/notion.service';
-import { NotionReadProperties } from 'src/shared/services/notion/notion.type';
-import { RedisService } from 'src/shared/services/redis/redis.service';
+import { SolutionDto } from '@/dto/solution.dto';
+import { Language } from '@/shared/constants/language.enum';
+import { NotionDatabase } from '@/shared/constants/notion.database';
+import { NotionService } from '@/shared/services/notion/notion.service';
+import { NotionReadProperties } from '@/shared/services/notion/notion.type';
+import { RedisService } from '@/shared/services/redis/redis.service';
 import { SolutionListDto } from './solution.type';
 
 @Injectable()

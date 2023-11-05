@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { NotionService } from 'src/shared/services/notion/notion.service';
+import { NotionService } from '@/shared/services/notion/notion.service';
 import { PropertiesCreateContact } from './contact.type';
-import { NotionDatabase } from 'src/shared/constants/notion.database';
+import { NotionDatabase } from '@/shared/constants/notion.database';
 import { v4 as uuidv4 } from 'uuid';
-import { PropertiesCreateContactDto } from 'src/dto/propertiesCreateContact.dto';
+import { PropertiesCreateContactDto } from '@/dto/propertiesCreateContact.dto';
 import { plainToInstance } from 'class-transformer';
-import { ContactDTO } from 'src/dto/contact.dto';
+import { ContactDTO } from '@/dto/contact.dto';
 
 @Injectable()
 export class ContactService {

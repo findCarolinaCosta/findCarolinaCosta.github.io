@@ -7,8 +7,8 @@ import {
   HealthIndicatorResult,
 } from '@nestjs/terminus';
 import axios from 'axios';
-import { NotionService } from 'src/shared/services/notion/notion.service';
-import { RedisService } from 'src/shared/services/redis/redis.service';
+import { NotionService } from '@/shared/services/notion/notion.service';
+import { RedisService } from '@/shared/services/redis/redis.service';
 
 @Injectable()
 export class HealthService {

@@ -1,8 +1,8 @@
 import { Request } from 'express';
 import { QualificationService } from './qualification.service';
 import { Controller, Get, Injectable, Req } from '@nestjs/common';
-import { QualificationDto } from 'src/dto/qualification.dto';
-import { Language } from 'src/shared/constants/language.enum';
+import { QualificationDto } from '@/dto/qualification.dto';
+import { Language } from '@/shared/constants/language.enum';
 
 @Injectable()
 @Controller('qualifications')

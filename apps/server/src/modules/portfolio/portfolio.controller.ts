@@ -1,8 +1,8 @@
 import { PortfolioService } from './portfolio.service';
 import { Controller, Get, Injectable, Req } from '@nestjs/common';
-import { Language } from 'src/shared/constants/language.enum';
+import { Language } from '@/shared/constants/language.enum';
 import { Request } from 'express';
-import { ProjectDto } from 'src/dto/portfolio.dto';
+import { ProjectDto } from '@/dto/portfolio.dto';
 
 @Injectable()
 @Controller('projects')

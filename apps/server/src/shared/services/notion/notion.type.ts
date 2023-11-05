@@ -1,4 +1,4 @@
-import { Language } from 'src/shared/constants/language.enum';
+import { Language } from '@/shared/constants/language.enum';
 import {
   CreatePageParameters,
   QueryDatabaseParameters,
