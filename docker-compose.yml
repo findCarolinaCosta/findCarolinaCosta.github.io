@@ -9,7 +9,7 @@ services:
             - "3000:3000"
         volumes:
             - ./apps/web:/home/app
-        command: yarn dev
+        command: pnpm dev
         env_file:
             - ./apps/web/.env.local
         logging:
@@ -35,7 +35,7 @@ services:
             - ./server:/home/app
         command: yarn dev
         env_file:
-            - ./web/.env
+            - ./server/.env
         logging:
             options:
                 max-size: "10m"
