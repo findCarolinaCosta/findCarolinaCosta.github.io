@@ -9,7 +9,7 @@ export function ContactMe() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request),
   );
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
 
   return (
     <section

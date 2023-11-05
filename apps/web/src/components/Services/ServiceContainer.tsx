@@ -24,7 +24,7 @@ export interface ICardServiceContent {
 }
 
 function CardServiceContent(props: ICardServiceContent) {
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
   return (
     <>
       <div>
@@ -44,14 +44,14 @@ function CardServiceContent(props: ICardServiceContent) {
 
 export interface IModalServiceContent {
   title: string;
-  serviceList: string[];
+  solutionsList: string[];
   cardClicked: string;
   handleClick: (title: string) => void;
 }
 
 function ModalServiceContent({
   title,
-  serviceList,
+  solutionsList,
   cardClicked,
   handleClick,
 }: IModalServiceContent) {
@@ -64,7 +64,7 @@ function ModalServiceContent({
           onClick={() => handleClick('')}
         ></i>
         <ul className="services__modal-services grid">
-          {serviceList.map((service) => (
+          {solutionsList.map((service) => (
             <li className="services__modal-service" key={service}>
               <i className="uil uil-check-circle services__modal-icon"></i>
               <p>{service}</p>
@@ -79,7 +79,7 @@ function ModalServiceContent({
 export interface IServiceDefaultProps {
   services: {
     title: string;
-    serviceList: string[];
+    solutionsList: string[];
   }[];
   handleClick: (title: string) => void;
   cardClicked: string;
@@ -97,7 +97,7 @@ function ServiceDefault(props: IServiceDefaultProps) {
           <Service.ServiceModal
             handleClick={(title) => props.handleClick(title)}
             title={service.title}
-            serviceList={service.serviceList}
+            solutionsList={service.solutionsList}
             cardClicked={props.cardClicked}
           />
         </Service.Content>

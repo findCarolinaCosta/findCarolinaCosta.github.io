@@ -14,7 +14,7 @@ export function Portfolios() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request),
   );
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
 
   useEffect(() => {
     if (projects.length == 0) {

@@ -10,7 +10,7 @@ import { Service } from './ServiceContainer';
 
 export interface IService {
   title: string;
-  serviceList: string[];
+  solutionsList: string[];
 }
 
 export function Services() {
@@ -20,7 +20,7 @@ export function Services() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request),
   );
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
 
   useEffect(() => {
     if (services.length == 0) {

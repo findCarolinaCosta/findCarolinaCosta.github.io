@@ -31,7 +31,7 @@ export function Qualification() {
   const [qualificationList, setQualificationList] = useState<IQualifications[]>(
     [],
   );
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
   const [tabSelected, setTabSelected] = useState<Tab | TabPT>(
     pathPt ? TabPT.Experiência : Tab.WORK,
   );

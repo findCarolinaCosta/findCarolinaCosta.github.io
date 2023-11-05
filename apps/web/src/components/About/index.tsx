@@ -15,7 +15,7 @@ export function About() {
   const mainInfo = useSelector(
     ({ mainInfo }: { mainInfo: IMainInfo }) => mainInfo,
   );
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
 
   useEffect(() => {
     if (isAlreadyRequestsDone) {

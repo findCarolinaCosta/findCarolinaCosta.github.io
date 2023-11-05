@@ -24,7 +24,7 @@ export function Skills() {
   const isAlreadyRequestsDone = useSelector(
     ({ request }: { request: IRequestState }) => alreadyRequestsDone(request),
   );
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
 
   useEffect(() => {
     if (skillsList.length == 0) {
@@ -38,7 +38,7 @@ export function Skills() {
         }>
       ).then((response) => setSkillsList(response.data.payload));
     }
-  }, [pathPt, skillsList.length]);
+  }, [pathPt, skillsList]);
 
   useEffect(() => {
     dispatch(

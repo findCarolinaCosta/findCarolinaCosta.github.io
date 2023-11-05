@@ -24,6 +24,7 @@ export default function Document() {
           property="og:description"
           content="Carolina's portfolio, get to know me better. Backend developer specialist"
         />
+        <link rel="icon" href="/static/favicon.ico" />
       </Head>
       <body>
         <Main />

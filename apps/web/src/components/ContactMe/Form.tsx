@@ -19,7 +19,7 @@ export function Form() {
   const theme = useSelector(
     ({ settings }: { settings: { theme: Theme; icon: string } }) => settings,
   );
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
 
   const handleDataChange = ({
     target,

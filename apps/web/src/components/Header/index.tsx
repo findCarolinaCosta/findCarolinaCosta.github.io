@@ -35,7 +35,7 @@ export function Header() {
   );
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
-  const pathPt = usePathname().includes('pt-br');
+  const pathPt = usePathname()?.includes('pt-br');
 
   useEffect(() => {
     const theme = localStorage.getItem('theme') as Theme;
