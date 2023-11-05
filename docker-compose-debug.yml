@@ -26,17 +26,17 @@ services:
             timeout: 10s
             retries: 5
     server:
-        build: ./server
+        build: ./apps/server
         container_name: server-portfolio
         restart: unless-stopped
         ports:
             - "3002:3002"
             - "9229:9229"
         volumes:
-            - ./server:/home/app
-        command: yarn debug
+            - ./apps/server:/home/app
+        command: pnpm start:debug
         env_file:
-            - ./web/.env
+            - ./apps/server/.env.local
         logging:
             options:
                 max-size: "10m"
