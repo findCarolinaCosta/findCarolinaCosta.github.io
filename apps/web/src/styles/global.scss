@@ -159,6 +159,7 @@ img {
 .nav__list {
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  column-gap: 2rem;
 }
 
 .nav__link {
@@ -992,7 +993,7 @@ img {
 
   .nav__list {
     display: flex;
-    column-gap: 2rem;
+    column-gap: 1.5rem;
   }
 
   .nav__menu {
