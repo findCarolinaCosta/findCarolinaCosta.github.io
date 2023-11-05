@@ -17,7 +17,7 @@ export enum Language {
 }
 
 export async function getMainInfo(language: Language) {
-  return (await axiosInstance.get(`/texts`, {
+  return (await axiosInstance.get(`/contentInfo`, {
     params: { language },
   })) as unknown as Promise<{ data: { ok: boolean; payload: IMainInfo[] } }>;
 }

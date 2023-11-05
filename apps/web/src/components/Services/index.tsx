@@ -25,7 +25,7 @@ export function Services() {
   useEffect(() => {
     if (services.length == 0) {
       (
-        axiosInstance.get(`/services`, {
+        axiosInstance.get(`/solutions`, {
           params: {
             language: pathPt ? Language['pt-br'] : Language['en-us'],
           },
