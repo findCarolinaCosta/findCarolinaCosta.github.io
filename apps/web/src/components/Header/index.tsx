@@ -82,7 +82,9 @@ export function Header() {
           <Scrollspy
             items={sections}
             currentClassName="active-link"
-            onUpdate={(el) => dispatch(handleActiveSection(el.id))}
+            onUpdate={(el) =>
+              dispatch(handleActiveSection(el?.id || currentSection))
+            }
             className="nav__list grid"
           >
             <li
