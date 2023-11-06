@@ -1,9 +1,9 @@
-import { SkillDto, SkillListDto } from 'dto/skill.dto';
+import { SkillDto, SkillListDto } from '../../dto/skill.dto';
 import { Language } from './../../shared/constants/language.enum';
-import { NotionDatabase } from 'shared/constants/notion.database';
-import { NotionService } from 'shared/services/notion/notion.service';
-import { RedisService } from 'shared/services/redis/redis.service';
-import { NotionReadProperties } from 'shared/services/notion/notion.type';
+import { NotionDatabase } from '../../shared/constants/notion.database';
+import { NotionService } from '../../shared/services/notion/notion.service';
+import { RedisService } from '../../shared/services/redis/redis.service';
+import { NotionReadProperties } from '../../shared/services/notion/notion.type';
 import { plainToClass } from 'class-transformer';
 import { Injectable } from '@nestjs/common';
 

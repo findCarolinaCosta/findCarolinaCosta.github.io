@@ -4,12 +4,12 @@ import {
   QualificationDataNotionResponseDto,
   QualificationDto,
   QualificationsNotionResponseDto,
-} from 'dto/qualification.dto';
-import { Language } from 'shared/constants/language.enum';
-import { NotionDatabase } from 'shared/constants/notion.database';
-import { NotionService } from 'shared/services/notion/notion.service';
-import { NotionReadProperties } from 'shared/services/notion/notion.type';
-import { RedisService } from 'shared/services/redis/redis.service';
+} from '../../dto/qualification.dto';
+import { Language } from '../../shared/constants/language.enum';
+import { NotionDatabase } from '../../shared/constants/notion.database';
+import { NotionService } from '../../shared/services/notion/notion.service';
+import { NotionReadProperties } from '../../shared/services/notion/notion.type';
+import { RedisService } from '../../shared/services/redis/redis.service';
 
 @Injectable()
 export class QualificationService {

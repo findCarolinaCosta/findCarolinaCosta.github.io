@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Language } from 'shared/constants/language.enum';
-import { NotionDatabase } from 'shared/constants/notion.database';
-import { NotionService } from 'shared/services/notion/notion.service';
-import { RedisService } from 'shared/services/redis/redis.service';
+import { Language } from '../../shared/constants/language.enum';
+import { NotionDatabase } from '../../shared/constants/notion.database';
+import { NotionService } from '../../shared/services/notion/notion.service';
+import { RedisService } from '../../shared/services/redis/redis.service';
 import { IContentInfo, IContentInfoNotionResponse } from './contentInfo.type';
-import { NotionReadProperties } from 'shared/services/notion/notion.type';
+import { NotionReadProperties } from '../../shared/services/notion/notion.type';
 
 @Injectable()
 export class ContentInfoService {
