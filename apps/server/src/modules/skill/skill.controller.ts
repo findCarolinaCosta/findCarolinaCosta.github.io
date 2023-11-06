@@ -1,8 +1,8 @@
-import { Language } from '@/shared/constants/language.enum';
+import { Language } from 'shared/constants/language.enum';
 import { SkillService } from './skill.service';
 import { Controller, Get, Injectable, Req } from '@nestjs/common';
 import { Request } from 'express';
-import { SkillListDto } from '@/dto/skill.dto';
+import { SkillListDto } from 'dto/skill.dto';
 
 @Injectable()
 @Controller('skills')

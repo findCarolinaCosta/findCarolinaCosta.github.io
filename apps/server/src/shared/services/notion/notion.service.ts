@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Client } from '@notionhq/client';
-import { Language } from '@/shared/constants/language.enum';
+import { Language } from 'shared/constants/language.enum';
 import {
   NotionCreateParams,
   NotionReadParams,
   NotionReadResult,
 } from './notion.type';
-import { NotionDatabase } from '@/shared/constants/notion.database';
+import { NotionDatabase } from 'shared/constants/notion.database';
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 
 @Injectable()
