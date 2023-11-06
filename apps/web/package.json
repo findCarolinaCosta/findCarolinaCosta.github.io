@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": "v21.1.0",
+    "node": ">=18",
     "pnpm": "8.10.2",
     "npm": "=> 10.2.0",
     "next": "=> 14.0.1"
