@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Scrollspy from 'react-scrollspy';
 
@@ -9,15 +9,6 @@ import { handleActiveSection, setSections } from '../../redux/reducers/section';
 import { handleTheme, Theme } from '../../redux/reducers/settings';
 import { Language } from '../contents/Language';
 import { HeaderSkeleton } from './HeaderSkeleton';
-export const sections: string[] = [
-  'home',
-  'about',
-  'skills',
-  'qualification',
-  'services',
-  'portfolio',
-  'contact',
-];
 
 export function Header() {
   const [showResponsiveMenu, setShowResponsiveMenu] = useState(false);
@@ -36,6 +27,18 @@ export function Header() {
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
   const pathPt = usePathname()?.includes('pt-br');
+  const sections: string[] = useMemo(
+    () => [
+      'home',
+      'about',
+      'skills',
+      'qualification',
+      'services',
+      'portfolio',
+      'contact',
+    ],
+    [],
+  );
 
   useEffect(() => {
     const theme = localStorage.getItem('theme') as Theme;
@@ -47,7 +50,7 @@ export function Header() {
 
   useEffect(() => {
     dispatch(setSections(sections));
-  }, [dispatch]);
+  }, [dispatch, sections]);
 
   useEffect(() => {
     if (request) {
