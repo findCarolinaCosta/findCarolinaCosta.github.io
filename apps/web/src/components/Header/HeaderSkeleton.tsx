@@ -9,7 +9,17 @@ export function HeaderSkeleton() {
     ({ settings }: { settings: { theme: Theme; icon: string } }) => settings,
   );
   const sections = useSelector(
-    ({ section }: { section: { sections: string[] } }) => section.sections,
+    ({
+      section,
+    }: {
+      section: {
+        sections: {
+          pt: string;
+          en: string;
+          icon: string;
+        }[];
+      };
+    }) => section.sections,
   );
 
   return (
@@ -19,7 +29,7 @@ export function HeaderSkeleton() {
           height={25}
           width={69.25}
           baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-          highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+          highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
         />
 
         <div
@@ -48,7 +58,9 @@ export function HeaderSkeleton() {
                     large: { size: 1024, default: 60 },
                   })}
                   baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-                  highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+                  highlightColor={
+                    theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'
+                  }
                 />
               </li>
             ))}
@@ -58,11 +70,33 @@ export function HeaderSkeleton() {
               height={20}
               width={20}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
               circle={true}
             />
             <div className="nav__toggle" id="nav-toggle">
               <i className="uil uil-apps nav__icon"></i>
+            </div>
+          </div>
+          <div>
+            <div className="flex space-x-2.5 mx-2 mt-5 md:mt-0 md:flex-col md:space-x-0 md:mx-0 lg:space-x-2.5 lg:flex-row lg:mx-0">
+              <Skeleton
+                height={23}
+                width={27}
+                baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
+                highlightColor={
+                  theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'
+                }
+                className="text-lg"
+              />
+              <Skeleton
+                height={23}
+                width={27}
+                baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
+                highlightColor={
+                  theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'
+                }
+                className="text-lg"
+              />
             </div>
           </div>
         </div>

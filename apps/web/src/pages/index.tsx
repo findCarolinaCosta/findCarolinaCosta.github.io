@@ -19,6 +19,7 @@ import { handleLanguage, Theme } from '../redux/reducers/settings';
 import { getMainInfo, Language } from '../services/getMainInfo';
 
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Default() {
   const className = 'dark-theme' as any;

@@ -33,7 +33,7 @@ export function AboutSkeleton() {
           large: { size: 1024, default: 200 },
         })}
         baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-        highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+        highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
         className="section__title"
         style={{
           marginBottom: '1rem',
@@ -76,7 +76,7 @@ export function AboutSkeleton() {
               large: { size: 1024, default: 768 },
             })}
             baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-            highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+            highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
             className="about__description"
           />
           <div
@@ -92,13 +92,17 @@ export function AboutSkeleton() {
                 height={35}
                 width={79.03}
                 baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-                highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+                highlightColor={
+                  theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'
+                }
               />
               <Skeleton
                 height={42}
                 width={79.03}
                 baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-                highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+                highlightColor={
+                  theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'
+                }
               />
             </div>
           </div>
