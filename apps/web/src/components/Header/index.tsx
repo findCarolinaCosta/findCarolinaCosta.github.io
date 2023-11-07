@@ -1,11 +1,9 @@
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Scrollspy from 'react-scrollspy';
 
 import { IRequestState } from '../../redux/reducers/request';
-import { handleActiveSection, setSections } from '../../redux/reducers/section';
+import { setSections } from '../../redux/reducers/section';
 import { handleTheme, Theme } from '../../redux/reducers/settings';
 import { Language } from '../contents/Language';
 import { HeaderSkeleton } from './HeaderSkeleton';
@@ -27,15 +25,15 @@ export function Header() {
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
   const pathPt = usePathname()?.includes('pt-br');
-  const sections: string[] = useMemo(
+  const sections = useMemo(
     () => [
-      'home',
-      'about',
-      'skills',
-      'qualification',
-      'services',
-      'portfolio',
-      'contact',
+      { pt: 'Início', en: 'Home', icon: 'uil-estate' },
+      { pt: 'Sobre', en: 'About', icon: 'uil-user' },
+      { pt: 'Habilidades', en: 'Skills', icon: 'uil-file-alt' },
+      { pt: 'Qualificações', en: 'Qualification', icon: 'uil-graduation-cap' },
+      { pt: 'Serviços', en: 'Services', icon: ' uil-briefcase-alt' },
+      { pt: 'Portfólio', en: 'Portfolio', icon: 'uil-scenery' },
+      { pt: 'Contato', en: 'Contact', icon: 'uil-message' },
     ],
     [],
   );
@@ -49,8 +47,8 @@ export function Header() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(setSections(sections));
-  }, [dispatch, sections]);
+    dispatch(setSections(sections.map((section) => section.en.toLowerCase())));
+  }, [dispatch, pathPt, sections]);
 
   useEffect(() => {
     if (request) {
@@ -82,112 +80,30 @@ export function Header() {
           className={showResponsiveMenu ? 'nav__menu show-menu' : 'nav__menu'}
           id="nav-menu"
         >
-          <Scrollspy
-            items={sections}
-            currentClassName="active-link"
-            onUpdate={(el) =>
-              dispatch(handleActiveSection(el?.id || currentSection))
-            }
-            className="nav__list grid"
-          >
-            <li
-              className="nav__item"
-              onClick={() => setShowResponsiveMenu(false)}
-            >
-              <a
-                href="#home"
-                className={`nav__link ${
-                  currentSection == 'home' ? 'active-link' : ''
-                }`}
-              >
-                <i className="uil uil-estate nav__icon"></i>{' '}
-                {pathPt ? 'Início' : 'Home'}
-              </a>
-            </li>
-            <li
-              className="nav__item"
-              onClick={() => setShowResponsiveMenu(false)}
-            >
-              <a
-                href="#about"
-                className={`nav__link ${
-                  currentSection == 'about' ? 'active-link' : ''
-                }`}
-              >
-                <i className="uil uil-user nav__icon"></i>{' '}
-                {pathPt ? 'Sobre' : 'About'}
-              </a>
-            </li>
-            <li
-              className="nav__item"
-              onClick={() => setShowResponsiveMenu(false)}
-            >
-              <a
-                href="#skills"
-                className={`nav__link ${
-                  currentSection == 'skills' ? 'active-link' : ''
-                }`}
-              >
-                <i className="uil uil-file-alt nav__icon"></i>
-                {pathPt ? 'Habilidades' : 'Skills'}
-              </a>
-            </li>
-            <li
-              className="nav__item"
-              onClick={() => setShowResponsiveMenu(false)}
-            >
-              <a
-                href="#qualification"
-                className={`nav__link ${
-                  currentSection == 'qualification' ? 'active-link' : ''
-                }`}
-              >
-                <i className="uil uil-graduation-cap nav__icon"></i>
-                {pathPt ? 'Qualificação' : 'Qualification'}
-              </a>
-            </li>
-            <li
-              className="nav__item"
-              onClick={() => setShowResponsiveMenu(false)}
-            >
-              <a
-                href="#services"
-                className={`nav__link ${
-                  currentSection == 'services' ? 'active-link' : ''
-                }`}
-              >
-                <i className="uil uil-briefcase-alt nav__icon"></i>
-                {pathPt ? 'Serviços' : 'Services'}
-              </a>
-            </li>
-            <li
-              className="nav__item"
-              onClick={() => setShowResponsiveMenu(false)}
-            >
-              <a
-                href="#portfolio"
-                className={`nav__link ${
-                  currentSection == 'portfolio' ? 'active-link' : ''
-                }`}
-              >
-                <i className="uil uil-scenery nav__icon"></i> Portfolio
-              </a>
-            </li>
-            <li
-              className="nav__item"
-              onClick={() => setShowResponsiveMenu(false)}
-            >
-              <a
-                href="#contact"
-                className={`nav__link ${
-                  currentSection == 'contact' ? 'active-link' : ''
-                }`}
-              >
-                <i className="uil uil-message nav__icon"></i>
-                {pathPt ? 'Contato' : 'Contact'}
-              </a>
-            </li>
-          </Scrollspy>
+          <ul className="nav__list grid">
+            {sections.map((section, i) => {
+              return (
+                <li
+                  key={i}
+                  className="nav__item list-none"
+                  onClick={() => setShowResponsiveMenu(false)}
+                >
+                  <a
+                    href={`#${section.en.toLowerCase()}`}
+                    className={`${
+                      section.en.toLowerCase() == currentSection
+                        ? 'active-link'
+                        : ''
+                    } nav__link`}
+                    data-to-scrollspy-id={section.en.toLowerCase()}
+                  >
+                    <i className={`uil ${section.icon} nav__icon`}></i>
+                    {pathPt ? section.pt : section.en}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
           <div className="flex justify-between">
             <Language className="md:hidden" />
             <i

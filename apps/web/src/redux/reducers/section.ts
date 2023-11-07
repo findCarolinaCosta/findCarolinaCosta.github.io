@@ -15,7 +15,7 @@ const section = createSlice({
     ) {
       switch (action.payload) {
         case action.payload:
-          return { sections: state.sections, activeSection: action.payload };
+          return { ...state, activeSection: action.payload };
 
         default:
           return initialState;

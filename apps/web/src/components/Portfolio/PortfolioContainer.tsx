@@ -55,7 +55,6 @@ function PortfolioContainerSwiper({ children }: PortfolioContainerSwiperProps) {
 interface PortfolioContentProps extends IProject {}
 
 function PortfolioContent(props: PortfolioContentProps) {
-  console.log(process.env.NEXT_PUBLIC_PORTFOLIO_COVER);
   return (
     <>
       {/* <!-- Just to have as a cover on linkedin --> */}
