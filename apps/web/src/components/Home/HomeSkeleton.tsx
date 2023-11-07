@@ -28,7 +28,7 @@ export function HomeSkeleton() {
                 large: { size: 1024, default: 25 },
               })}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
               circle={true}
             />
             <Skeleton
@@ -45,7 +45,7 @@ export function HomeSkeleton() {
                 large: { size: 1024, default: 25 },
               })}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
               circle={true}
             />
           </section>
@@ -64,7 +64,7 @@ export function HomeSkeleton() {
                 large: { size: 1024, default: 303.99 },
               })}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
             />
           </section>
           <section className="home__data">
@@ -82,7 +82,7 @@ export function HomeSkeleton() {
                 large: { size: 1024, default: 355 },
               })}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
             />
             <Skeleton
               height={getScreenSize({
@@ -98,7 +98,7 @@ export function HomeSkeleton() {
                 large: { size: 1024, default: 355 },
               })}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
             />
             <Skeleton
               height={getScreenSize({
@@ -114,7 +114,7 @@ export function HomeSkeleton() {
                 large: { size: 1024, default: 355 },
               })}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
             />
             <Skeleton
               height={getScreenSize({
@@ -130,7 +130,7 @@ export function HomeSkeleton() {
                 large: { size: 1024, default: 153.47 },
               })}
               baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-              highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+              highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
             />
           </section>
         </div>
@@ -154,7 +154,7 @@ export function HomeSkeleton() {
               large: { size: 1024, default: 137.28 },
             })}
             baseColor={theme.theme == Theme.dark ? '#211d35' : '#CDCDCC'}
-            highlightColor={theme.theme == Theme.dark ? '#3e3663' : ''}
+            highlightColor={theme.theme == Theme.dark ? '#3e3663' : '#f5f5f5'}
             className="home__scroll-button"
           />
         </section>

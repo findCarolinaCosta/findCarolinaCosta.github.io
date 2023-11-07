@@ -1,11 +1,11 @@
-import { NotionDatabase } from '@/shared/constants/notion.database';
-import { NotionService } from '@/shared/services/notion/notion.service';
-import { RedisService } from '@/shared/services/redis/redis.service';
+import { NotionDatabase } from '../../shared/constants/notion.database';
+import { NotionService } from '../../shared/services/notion/notion.service';
+import { RedisService } from '../../shared/services/redis/redis.service';
 import { plainToInstance } from 'class-transformer';
-import { ProjectDto, ProjectResponseDto } from '@/dto/portfolio.dto';
+import { ProjectDto, ProjectResponseDto } from '../../dto/portfolio.dto';
 import { Injectable } from '@nestjs/common';
-import { Language } from '@/shared/constants/language.enum';
-import { NotionReadProperties } from '@/shared/services/notion/notion.type';
+import { Language } from '../../shared/constants/language.enum';
+import { NotionReadProperties } from '../../shared/services/notion/notion.type';
 
 @Injectable()
 export class PortfolioService {

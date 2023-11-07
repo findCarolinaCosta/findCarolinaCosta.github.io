@@ -24,14 +24,14 @@ const settings = createSlice({
         type: string;
       },
     ) {
-      localStorage.setItem('theme', action.payload);
+      // localStorage.setItem('theme', action.payload);
       switch (action.payload) {
         case Theme.dark:
-          localStorage.setItem('theme-icon', 'uil-sun');
+          // localStorage.setItem('theme-icon', 'uil-sun');
           return { ...state, theme: Theme.dark, icon: 'uil-sun' };
 
         default:
-          localStorage.setItem('theme-icon', 'uil-moon');
+          // localStorage.setItem('theme-icon', 'uil-moon');
           return initialState;
       }
     },
@@ -43,7 +43,7 @@ const settings = createSlice({
           return { ...state, language: Language['en-us'] };
 
         default:
-          localStorage.setItem('theme-icon', 'uil-moon');
+          // localStorage.setItem('theme-icon', 'uil-moon');
           return initialState;
       }
     },

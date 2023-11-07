@@ -1,7 +1,7 @@
-import { SolutionDto } from '@/dto/solution.dto';
+import { SolutionDto } from '../../dto/solution.dto';
 import { SolutionService } from './solution.service';
 import { Controller, Get, Injectable, Req } from '@nestjs/common';
-import { Language } from '@/shared/constants/language.enum';
+import { Language } from '../../shared/constants/language.enum';
 import { Request } from 'express';
 
 @Injectable()

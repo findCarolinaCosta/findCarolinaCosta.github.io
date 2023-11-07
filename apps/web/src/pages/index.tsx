@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
@@ -11,6 +11,7 @@ import { Home } from '../components/Home';
 import { Portfolios } from '../components/Portfolio';
 import { Qualification } from '../components/Qualification';
 import { ScrollTop } from '../components/Scroll/Top';
+import ScrollSpyContainer from '../components/ScrollSpyContainer';
 import { Services } from '../components/Services';
 import { Skills } from '../components/Skills';
 import { setMainInfo } from '../redux/reducers/mainInfo';
@@ -18,6 +19,7 @@ import { handleLanguage, Theme } from '../redux/reducers/settings';
 import { getMainInfo, Language } from '../services/getMainInfo';
 
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Default() {
   const className = 'dark-theme' as any;
@@ -26,8 +28,6 @@ export default function Default() {
   const theme = useSelector(
     ({ settings }: { settings: { theme: Theme; icon: string } }) => settings,
   );
-  const router = useRouter();
-  const { lang } = router.query;
 
   const addBodyClass = (className: any) =>
     document.body.classList.add(className);
@@ -59,13 +59,15 @@ export default function Default() {
       <Header />
       <ToastContainer />
       <main>
-        <Home />
-        <About />
-        <Skills />
-        <Qualification />
-        <Services />
-        <Portfolios />
-        <ContactMe />
+        <ScrollSpyContainer>
+          <Home />
+          <About />
+          <Skills />
+          <Qualification />
+          <Services />
+          <Portfolios />
+          <ContactMe />
+        </ScrollSpyContainer>
       </main>
       <Footer />
       <ScrollTop />

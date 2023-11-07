@@ -1,6 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { activeSection: 'home', sections: ['home'] };
+const initialState = {
+  activeSection: 'home',
+  sections: [
+    { pt: 'Início', en: 'Home', icon: 'uil-estate' },
+    { pt: 'Sobre', en: 'About', icon: 'uil-user' },
+    { pt: 'Habilidades', en: 'Skills', icon: 'uil-file-alt' },
+    { pt: 'Qualificações', en: 'Qualification', icon: 'uil-graduation-cap' },
+    { pt: 'Serviços', en: 'Services', icon: ' uil-briefcase-alt' },
+    { pt: 'Portfólio', en: 'Portfolio', icon: 'uil-scenery' },
+    { pt: 'Contato', en: 'Contact', icon: 'uil-message' },
+  ],
+};
 
 const section = createSlice({
   name: 'theme',
@@ -15,26 +26,7 @@ const section = createSlice({
     ) {
       switch (action.payload) {
         case action.payload:
-          return { sections: state.sections, activeSection: action.payload };
-
-        default:
-          return initialState;
-      }
-    },
-
-    setSections(
-      state,
-      action: {
-        payload: string[];
-        type: string;
-      },
-    ) {
-      switch (action.payload) {
-        case action.payload:
-          return {
-            activeSection: state.activeSection,
-            sections: action.payload,
-          };
+          return { ...state, activeSection: action.payload };
 
         default:
           return initialState;
@@ -43,5 +35,5 @@ const section = createSlice({
   },
 });
 
-export const { handleActiveSection, setSections } = section.actions;
+export const { handleActiveSection } = section.actions;
 export default section.reducer;
