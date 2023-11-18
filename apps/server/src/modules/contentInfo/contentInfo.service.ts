@@ -29,7 +29,11 @@ export class ContentInfoService {
         })
       ).results.map(this.serializeContentInfo);
 
-      this.redisService.set<IContentInfo[]>(`content_${language}`, contentInfo);
+      if (contentInfo)
+        this.redisService.set<IContentInfo[]>(
+          `content_${language}`,
+          contentInfo,
+        );
     }
 
     return contentInfo;

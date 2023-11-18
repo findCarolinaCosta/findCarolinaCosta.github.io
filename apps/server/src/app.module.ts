@@ -1,20 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppImports } from './shared/constants/app.imports';
-import { ResponseInterceptor } from './interceptors/response.interceptor';
-import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { ErrorHandlerFilter } from './exceptions/error.filter';
+import { AppProviders } from './shared/constants/app.provider';
 
 @Module({
   imports: AppImports,
-  providers: [
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: ResponseInterceptor,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: ErrorHandlerFilter,
-    },
-  ],
+  providers: AppProviders,
 })
 export class AppModule {}
