@@ -1,9 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import { AppProviders } from '../../src/shared/constants/app.provider';
 import { ContactDTO } from '../../src/dto/contact.dto';
 import { ContactModule } from '../../src/modules/contact/contact.module';
 import { ContactService } from '../../src/modules/contact/contact.service';
+import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+import * as request from 'supertest';
 import MockNotionServiceMock from '../mock/MockNotionService.mock';
 
 describe('Contact me endpoint (Integration)', () => {
@@ -14,6 +15,7 @@ describe('Contact me endpoint (Integration)', () => {
   beforeAll(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       imports: [ContactModule],
+      providers: AppProviders,
     })
       .overrideProvider(ContactService)
       .useValue(MockContactService)
@@ -53,9 +55,8 @@ describe('Contact me endpoint (Integration)', () => {
       .expect(400)
       .expect('Content-Type', /json/)
       .expect({
-        message: ['Email must be an email'],
-        error: 'Bad Request',
-        statusCode: 400,
+        ok: false,
+        error: { status: 400, message: 'Bad Request Exception' },
       });
   });
 
@@ -79,8 +80,8 @@ describe('Contact me endpoint (Integration)', () => {
       .expect(500)
       .expect('Content-Type', /json/)
       .expect({
-        message: 'Internal server error',
-        statusCode: 500,
+        ok: false,
+        error: { status: 500, message: 'Internal Server Error' },
       });
   });
 });

@@ -20,7 +20,6 @@ export class ContactController {
     try {
       await this.contactService.createContact(data);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
