@@ -1,6 +1,6 @@
 import { Transform } from 'class-transformer';
 
-enum Section {
+export enum Section {
   'FRONTEND' = 'frontend',
   'BACKEND' = 'backend',
 }
