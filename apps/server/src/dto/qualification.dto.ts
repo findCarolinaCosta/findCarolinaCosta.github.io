@@ -1,11 +1,11 @@
 import { Transform } from 'class-transformer';
 
-enum Tab {
+export enum Tab {
   'EDUCATION' = 'Education',
   'WORK' = 'Work',
 }
 
-interface IQualification {
+export interface IQualification {
   title: string;
   subtitle: string;
   startYear: string;
