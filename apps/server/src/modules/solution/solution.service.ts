@@ -54,9 +54,11 @@ export class SolutionService {
       properties.solutionsList = await this.getSolutionsList(properties.tag);
     }
 
+    const { solutionsList, title } = properties;
+
     return {
-      solutionsList: properties.solutionsList,
-      title: properties.title,
+      solutionsList,
+      title,
     };
   };
 
