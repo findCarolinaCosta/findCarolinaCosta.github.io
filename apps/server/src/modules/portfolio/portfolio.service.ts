@@ -33,7 +33,8 @@ export class PortfolioService {
         })
       ).results.map(this.serializePortfolio);
 
-      this.redisService.set<ProjectDto[]>(`projects_${language}`, portfolios);
+      if (!!portfolios.length)
+        this.redisService.set<ProjectDto[]>(`projects_${language}`, portfolios);
     }
 
     return portfolios;
@@ -42,6 +43,6 @@ export class PortfolioService {
   public serializePortfolio({
     properties,
   }: NotionReadProperties<ProjectDto>): ProjectDto {
-    return plainToInstance(ProjectResponseDto, properties) as ProjectDto;
+    return plainToInstance(ProjectResponseDto, properties);
   }
 }
