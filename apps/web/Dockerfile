@@ -4,12 +4,20 @@ FROM node:21.1.0-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
-RUN corepack enable
-
 WORKDIR /home/app
 
 # Copie os arquivos do aplicativo para o contêiner
 COPY . /home/app
+
+# Crie um shell script para preparar o pnpm
+RUN echo "#!/bin/sh" > prepare_pnpm.sh && \
+    echo "export PNPM_VERSION=\$(node -p \"require('./package.json').engines.pnpm\")" >> prepare_pnpm.sh && \
+    echo "corepack enable" >> prepare_pnpm.sh && \
+    echo "corepack prepare pnpm@\$PNPM_VERSION --activate" >> prepare_pnpm.sh && \
+    chmod +x prepare_pnpm.sh
+
+# Execute o shell script
+RUN ./prepare_pnpm.sh
 
 # Estágio 2: Instalar dependências de produção
 FROM base AS prod-deps

@@ -11,6 +11,6 @@ async function bootstrap() {
 
   app.enableCors(CorsConfig.init());
 
-  await app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+  await app.listen(PORT, () => console.info(`Listening on port ${PORT}`));
 }
 bootstrap();
