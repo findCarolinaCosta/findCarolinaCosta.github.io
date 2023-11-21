@@ -1,10 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import {
   HealthCheckError,
   HealthCheckResult,
   HealthCheckService,
   HealthIndicatorFunction,
-  HealthIndicatorResult,
 } from '@nestjs/terminus';
 import axios from 'axios';
 import { NotionService } from '../../shared/services/notion/notion.service';
@@ -25,21 +24,16 @@ export class HealthService {
       ...(await this.checkClientOrigin()),
     ];
 
-    try {
-      const result = await this.health.check(healthIndicators);
-      delete result.details;
-      delete result.error;
-      return result;
-    } catch (error) {
-      delete error?.response?.details;
-      throw new HttpException(error?.response, HttpStatus.SERVICE_UNAVAILABLE);
-    }
+    const checkHealthResult: HealthCheckResult =
+      await this.health.check(healthIndicators);
+
+    return checkHealthResult;
   }
 
   private async checkNotionHealth(): Promise<HealthIndicatorFunction> {
     const checkConnectionNotion = await this.notionService.healthCheck();
 
-    return (): PromiseLike<HealthIndicatorResult> | HealthIndicatorResult => {
+    return async () => {
       if (!checkConnectionNotion.status)
         throw new HealthCheckError('Notion is down', {
           notion: {
@@ -57,10 +51,10 @@ export class HealthService {
   }
 
   private async checkRedisHealth(): Promise<HealthIndicatorFunction> {
-    return async () => {
-      const checkConnectionRedis = await this.redisService.healthCheck();
+    const checkConnectionRedis = await this.redisService.healthCheck();
 
-      if (!checkConnectionRedis)
+    return async () => {
+      if (!checkConnectionRedis.status)
         throw new HealthCheckError('Redis is down', {
           redis: {
             status: 'down',
@@ -117,7 +111,7 @@ export class HealthService {
             });
           }
 
-          if (originsResults.success.origins.length == 0) {
+          if (originsResults.success.origins.length > 0) {
             return {
               clients: {
                 status: 'up',
