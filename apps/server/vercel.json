@@ -2,10 +2,14 @@
   "name": "find-carolina-costa-api",
   "version": 2,
   "public": true,
+  "installCommand": "pnpm install",
   "builds": [
     {
       "src": "src/main.ts",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "testCommand": "pnpm test"
+      }
     }
   ],
   "routes": [
