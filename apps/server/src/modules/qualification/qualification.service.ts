@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import {
+  IQualification,
   QualificationDataNotionResponseDto,
   QualificationDto,
   QualificationsNotionResponseDto,
@@ -46,7 +47,8 @@ export class QualificationService {
         qualificationsDto.map(this.serializeQualifications),
       );
 
-      this.redisService.set(`qualifications_${language}`, qualifications);
+      if (qualifications)
+        this.redisService.set(`qualifications_${language}`, qualifications);
     }
 
     return qualifications;
@@ -66,7 +68,9 @@ export class QualificationService {
     return properties;
   };
 
-  private async getSerializedQualificationsData(tab: string) {
+  private async getSerializedQualificationsData(
+    tab: string,
+  ): Promise<IQualification[]> {
     const {
       results: qualifications,
     }: { results: NotionReadProperties<QualificationDataNotionResponseDto>[] } =
@@ -81,18 +85,18 @@ export class QualificationService {
       });
 
     return qualifications.map(
-      ({
-        properties,
-      }: {
-        properties: QualificationDataNotionResponseDto & {
-          tag: object;
-          tab: object;
-        };
-      }) => {
-        delete properties.tag;
-        delete properties.tab;
+      ({ properties }: { properties: QualificationDataNotionResponseDto }) => {
+        const { finalYear, startYear, subtitle, title } = plainToClass(
+          QualificationDataNotionResponseDto,
+          properties,
+        );
 
-        return plainToClass(QualificationDataNotionResponseDto, properties);
+        return {
+          finalYear,
+          startYear,
+          subtitle,
+          title,
+        };
       },
     );
   }

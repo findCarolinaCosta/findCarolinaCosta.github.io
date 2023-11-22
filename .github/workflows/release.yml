@@ -1,0 +1,90 @@
+name: Create Release Tags
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js with PNPM
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org/"
+          scope: "@my-scope"
+          always-auth: false
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Configure Git Identity
+        run: |
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USERNAME }}"
+
+      - name: Set up GPG key
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode | gpg --dearmor > key.gpg
+          gpg --batch --yes --no-tty --import key.gpg
+          gpg --list-secret-keys --keyid-format LONG
+
+      - name: Determine Web Version
+        id: web-version
+        run: |
+          cd apps/web
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Determine Server Version
+        id: server-version
+        run: |
+          cd apps/server
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Determine Highest Version
+        id: highest-version
+        run: |
+          # Lógica para determinar a versão mais alta
+          if [[ ${{ steps.server-version.outputs.version }} > ${{ steps.web-version.outputs.version }} ]]; then
+            highest_version=${{ steps.server-version.outputs.version }}
+          else
+            highest_version=${{ steps.web-version.outputs.version }}
+          fi
+
+          echo "highest_version=${highest_version}" >> $GITHUB_OUTPUT
+
+      - name: Check Existing Tags
+        id: check-tag
+        run: |
+          existing_tags=$(git tag -l)
+          tag="v${{ steps.highest-version.outputs.highest_version }}"
+
+          if [[ $existing_tags =~ (^|\s)${tag}($|\s) ]]; then
+            echo "Tag already exists. Skipping..."
+            echo "create_tag_release=false" >> $GITHUB_OUTPUT
+          else
+            echo "create_tag_release=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Tag and Release
+        if: steps.check-tag.outputs.create_tag_release == 'true'
+        run: |
+          tag="v${{ steps.highest-version.outputs.highest_version }}"
+          export GPG_TTY=$(tty)
+          git config --global user.signingkey "${{ secrets.GPG_KEY_ID }}"
+          git config --global commit.gpgsign true
+          echo "${{ secrets.GPG_PASSPHRASE }}" | gpg --passphrase-fd 0 --pinentry-mode loopback -ab -u "${{ secrets.GPG_KEY_ID }}" -o signed.tag
+          git tag -s "${tag}" -m "${tag}" --local-user "${{ secrets.GPG_KEY_ID }}"
+          git push origin "${tag}"
+
+          # Create a release
+          gh release create "${tag}" -t "${tag}" -n "${tag}" -d
