@@ -5,7 +5,7 @@ import {
   HealthCheckResult,
 } from '@nestjs/terminus';
 import { HealthService } from './health.service';
-import { BasicAuthGuard } from '../auth/basic-auth.guard';
+import { BasicAuthGuard } from '../../shared/auth/basic-auth.guard';
 
 @Injectable()
 @Controller('health')

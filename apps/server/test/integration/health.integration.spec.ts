@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import { MockHealthCheckServiceInstance } from '../mock/MockHealthCheckService';
-import { AuthModule } from '../../src/modules/auth/auth.module';
+import { AuthModule } from '../../src/shared/auth/auth.module';
 
 describe('health (Integration)', () => {
   let app: INestApplication;
