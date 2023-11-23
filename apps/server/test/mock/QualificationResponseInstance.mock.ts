@@ -7,7 +7,7 @@ import {
 } from '../../src/dto/qualification.dto';
 import { NotionReadResult } from '../../src/shared/services/notion/notion.type';
 
-export const QualificationDataSerialized: IQualification = {
+export const QualificationDataSerialized: Qualification = {
   finalYear: 'finalYear',
   startYear: 'startYear',
   subtitle: 'subtitle',

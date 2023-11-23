@@ -3,25 +3,45 @@ import {
   Get,
   HttpException,
   Injectable,
-  Req,
+  Query,
 } from '@nestjs/common';
 import { Language } from '../../shared/constants/language.enum';
-import { Request } from 'express';
 import { SolutionDto } from '../../dto/solution.dto';
 import { SolutionService } from './solution.service';
-import { StatusCodes } from 'http-status-codes';
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import { ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ResponsePattern } from 'interceptors/response.interceptor';
+import { SwaggerResponsesDecorators } from 'shared/constants/swagger.decorators';
+
+class SolutionsResponse implements ResponsePattern<SolutionDto[]> {
+  @ApiProperty({ default: true })
+  ok: boolean;
+  @ApiProperty({ type: [SolutionDto] })
+  payload: SolutionDto[];
+}
 
 @Injectable()
 @Controller('solutions')
+@ApiTags('Solutions')
 export class SolutionController {
   constructor(private solutionService: SolutionService) {}
 
   @Get()
-  async getSolutions(@Req() req: Request): Promise<SolutionDto[]> {
+  @ApiQuery({ name: 'language', enum: Language })
+  @SwaggerResponsesDecorators(
+    [
+      {
+        status: StatusCodes.OK,
+        description: ReasonPhrases.OK,
+        type: SolutionsResponse,
+      },
+    ],
+    [StatusCodes.NOT_FOUND],
+  )
+  async getSolutions(
+    @Query('language') language: Language = Language['en-us'],
+  ): Promise<SolutionDto[]> {
     try {
-      const language =
-        Language[req.query.language as Language] || Language.ENGLISH;
-
       const solutions = await this.solutionService.getSolutions(language);
 
       if (!solutions.length)

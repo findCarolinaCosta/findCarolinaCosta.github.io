@@ -24,7 +24,7 @@ export class SkillService {
     );
 
     if (!skills) {
-      if (language === Language.PORTUGUESE) {
+      if (language === Language['pt-br']) {
         this._databaseId = NotionDatabase.NOTION_SKILL_DATABASE_ID_PT_BR;
       }
 

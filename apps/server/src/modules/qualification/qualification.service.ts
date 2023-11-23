@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import {
-  IQualification,
-  QualificationDataNotionResponseDto,
   QualificationDto,
+  QualificationDataNotionResponseDto,
+  QualificationsDto,
   QualificationsNotionResponseDto,
 } from '../../dto/qualification.dto';
 import { Language } from '../../shared/constants/language.enum';
@@ -25,12 +25,12 @@ export class QualificationService {
   ) {}
 
   public async getQualifications(language: Language) {
-    let qualifications: QualificationDto[] = await this.redisService.get(
+    let qualifications: QualificationsDto[] = await this.redisService.get(
       `qualifications_${language}`,
     );
 
     if (!qualifications) {
-      if (language === Language.PORTUGUESE) {
+      if (language === Language['pt-br']) {
         this._databaseId =
           NotionDatabase.NOTION_QUALIFICATION_TAB_DATABASE_ID_PT_BR;
 
@@ -56,7 +56,7 @@ export class QualificationService {
 
   private serializeQualifications = async ({
     properties,
-  }: NotionReadProperties<QualificationDto>) => {
+  }: NotionReadProperties<QualificationsDto>) => {
     properties = plainToClass(QualificationsNotionResponseDto, properties);
 
     if (properties.tab) {
@@ -70,7 +70,7 @@ export class QualificationService {
 
   private async getSerializedQualificationsData(
     tab: string,
-  ): Promise<IQualification[]> {
+  ): Promise<QualificationDto[]> {
     const {
       results: qualifications,
     }: { results: NotionReadProperties<QualificationDataNotionResponseDto>[] } =

@@ -22,7 +22,7 @@ export class PortfolioService {
       ProjectDto[]
     >(`projects_${language}`);
 
-    if (language === Language.PORTUGUESE)
+    if (language === Language['pt-br'])
       this._databaseId =
         NotionDatabase.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID_PT_BR;
 

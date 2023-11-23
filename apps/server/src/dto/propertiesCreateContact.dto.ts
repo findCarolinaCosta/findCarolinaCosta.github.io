@@ -1,9 +1,9 @@
 import { Transform } from 'class-transformer';
-import { ContactDTO } from './contact.dto';
+import { ContactDto } from './contact.dto';
 
 export class PropertiesCreateContactDto
-  extends ContactDTO
-  implements ContactDTO
+  extends ContactDto
+  implements ContactDto
 {
   @Transform(({ value }) => ({ title: [{ text: { content: value } }] }))
   ID: string;

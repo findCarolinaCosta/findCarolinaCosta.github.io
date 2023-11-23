@@ -1,5 +1,5 @@
 import { AppProviders } from '../../src/shared/constants/app.provider';
-import { ContactDTO } from '../../src/dto/contact.dto';
+import { ContactDto } from '../../src/dto/contact.dto';
 import { ContactModule } from '../../src/modules/contact/contact.module';
 import { ContactService } from '../../src/modules/contact/contact.service';
 import { INestApplication } from '@nestjs/common';
@@ -10,7 +10,7 @@ import MockNotionServiceMock from '../mock/MockNotionService.mock';
 describe('Contact me endpoint (Integration)', () => {
   let app: INestApplication;
   const MockContactService = new ContactService(MockNotionServiceMock);
-  let contactDTO: ContactDTO;
+  let contactDTO: ContactDto;
 
   beforeAll(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({

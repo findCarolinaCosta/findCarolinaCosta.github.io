@@ -23,7 +23,7 @@ export class CorsConfig {
       corsOrigin(origin, (err, allow) => {
         if (err) return next(err);
 
-        if (allow) {
+        if (allow && origin) {
           res.setHeader('Access-Control-Allow-Origin', origin);
         }
 
@@ -47,7 +47,9 @@ export class CorsConfig {
         if (isDevelopmentEnvironment) return callback(null, true);
 
         const requiresAuthorization =
-          origin && !allowedOrigins.includes(origin);
+          origin &&
+          origin != process.env.BASE_URL &&
+          !allowedOrigins.includes(origin);
 
         const isUnauthorized =
           requiresAuthorization || (!origin && !isDevelopmentEnvironment);

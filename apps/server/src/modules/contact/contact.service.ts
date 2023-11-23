@@ -5,7 +5,7 @@ import { NotionDatabase } from '../../shared/constants/notion.database';
 import { v4 as uuidv4 } from 'uuid';
 import { PropertiesCreateContactDto } from '../../dto/propertiesCreateContact.dto';
 import { plainToInstance } from 'class-transformer';
-import { ContactDTO } from '../../dto/contact.dto';
+import { ContactDto } from '../../dto/contact.dto';
 
 @Injectable()
 export class ContactService {
@@ -14,7 +14,7 @@ export class ContactService {
 
   constructor(private readonly notionService: NotionService) {}
 
-  async createContact(data: ContactDTO): Promise<void> {
+  async createContact(data: ContactDto): Promise<void> {
     const id = uuidv4();
 
     await this.notionService.create({
@@ -23,7 +23,7 @@ export class ContactService {
     });
   }
 
-  private serializeContact(data: ContactDTO): PropertiesCreateContact {
+  private serializeContact(data: ContactDto): PropertiesCreateContact {
     return plainToInstance(
       PropertiesCreateContactDto,
       data,
