@@ -28,7 +28,7 @@ export class SwaggerConfig {
     res: Response,
     next: NextFunction,
   ) => {
-    if (req.path != '/docs') return next();
+    if (!req.path.includes('/docs')) return next();
 
     const authHeader = req.headers.authorization;
 
