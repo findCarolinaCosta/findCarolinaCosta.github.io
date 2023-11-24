@@ -1,7 +1,4 @@
-import {
-  IContentInfo,
-  IContentInfoNotionResponse,
-} from '../../src/modules/contentInfo/contentInfo.type';
+import { IContentInfoNotionResponse } from '../../src/modules/contentInfo/contentInfo.type';
 import { AppProviders } from '../../src/shared/constants/app.provider';
 import { ContentInfoModule } from '../../src/modules/contentInfo/contentInfo.module';
 import { ContentInfoService } from '../../src/modules/contentInfo/contentInfo.service';
@@ -12,6 +9,7 @@ import { RedisServiceMockInstance } from '../mock/RedisService.mock';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import MockNotionServiceMock from '../mock/MockNotionService.mock';
+import { ContentInfoDto } from '../../src/dto/contentInfo.dto';
 
 describe('Test the endpoint to retrieve the main content (Integration)', () => {
   let app: INestApplication;
@@ -21,7 +19,7 @@ describe('Test the endpoint to retrieve the main content (Integration)', () => {
     MockNotionServiceMock,
   );
 
-  const ContentInfoSerialized: IContentInfo[] = [
+  const ContentInfoSerialized: ContentInfoDto[] = [
     {
       aboutDescription: 'aboutDescription',
       homeDescription: 'homeDescription',
@@ -55,7 +53,7 @@ describe('Test the endpoint to retrieve the main content (Integration)', () => {
 
   it('Successfully retrieved content information from Redis without invoking Notion.', () => {
     RedisServiceMockInstance.get.mockImplementation(
-      (): Promise<IContentInfo[]> => {
+      (): Promise<ContentInfoDto[]> => {
         return Promise.resolve(ContentInfoSerialized);
       },
     );

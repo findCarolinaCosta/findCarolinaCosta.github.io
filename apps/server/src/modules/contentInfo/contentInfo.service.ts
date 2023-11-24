@@ -3,8 +3,9 @@ import { Language } from '../../shared/constants/language.enum';
 import { NotionDatabase } from '../../shared/constants/notion.database';
 import { NotionService } from '../../shared/services/notion/notion.service';
 import { RedisService } from '../../shared/services/redis/redis.service';
-import { IContentInfo, IContentInfoNotionResponse } from './contentInfo.type';
+import { IContentInfoNotionResponse } from './contentInfo.type';
 import { NotionReadProperties } from '../../shared/services/notion/notion.type';
+import { ContentInfoDto } from '../../dto/contentInfo.dto';
 
 @Injectable()
 export class ContentInfoService {
@@ -16,9 +17,9 @@ export class ContentInfoService {
     private readonly notionService: NotionService,
   ) {}
 
-  async getContentInfo(language: Language): Promise<IContentInfo[]> {
-    let contentInfo: IContentInfo[] | null = await this.redisService.get<
-      IContentInfo[]
+  async getContentInfo(language: Language): Promise<ContentInfoDto[]> {
+    let contentInfo: ContentInfoDto[] | null = await this.redisService.get<
+      ContentInfoDto[]
     >(`content_${language}`);
 
     if (!contentInfo) {
@@ -30,7 +31,7 @@ export class ContentInfoService {
       ).results.map(this.serializeContentInfo);
 
       if (contentInfo)
-        this.redisService.set<IContentInfo[]>(
+        this.redisService.set<ContentInfoDto[]>(
           `content_${language}`,
           contentInfo,
         );
@@ -41,7 +42,7 @@ export class ContentInfoService {
 
   private serializeContentInfo({
     properties,
-  }: NotionReadProperties<IContentInfoNotionResponse>): IContentInfo {
+  }: NotionReadProperties<IContentInfoNotionResponse>): ContentInfoDto {
     return {
       role: properties.role.title[0].text.content,
       homeDescription: properties.homeDescription.rich_text[0].text.content,

@@ -2,7 +2,7 @@ import { CallHandler, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-interface ResponsePattern<T> {
+export interface ResponsePattern<T> {
   ok: boolean;
   payload: T;
 }

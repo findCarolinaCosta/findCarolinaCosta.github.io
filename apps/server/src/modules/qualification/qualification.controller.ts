@@ -1,27 +1,47 @@
-import { Request } from 'express';
 import { QualificationService } from './qualification.service';
 import {
   Controller,
   Get,
   HttpException,
   Injectable,
-  Req,
+  Query,
 } from '@nestjs/common';
-import { QualificationDto } from '../../dto/qualification.dto';
+import { QualificationsDto } from '../../dto/qualification.dto';
 import { Language } from '../../shared/constants/language.enum';
-import { StatusCodes } from 'http-status-codes';
+import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import { ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ResponsePattern } from '../../interceptors/response.interceptor';
+import { SwaggerResponsesDecorators } from '../../shared/constants/swagger.decorators';
+
+class QualificationsResponse implements ResponsePattern<QualificationsDto[]> {
+  @ApiProperty({ default: true })
+  ok: boolean;
+  @ApiProperty({ type: [QualificationsDto] })
+  payload: QualificationsDto[];
+}
 
 @Injectable()
 @Controller('qualifications')
+@ApiTags('Qualifications')
 export class QualificationController {
   constructor(private readonly qualificationService: QualificationService) {}
 
   @Get()
-  async getQualifications(@Req() req: Request): Promise<QualificationDto[]> {
+  @ApiQuery({ name: 'language', enum: Language })
+  @SwaggerResponsesDecorators(
+    [
+      {
+        status: StatusCodes.OK,
+        description: ReasonPhrases.OK,
+        type: QualificationsResponse,
+      },
+    ],
+    [StatusCodes.NOT_FOUND],
+  )
+  async getQualifications(
+    @Query('language') language: Language = Language['en-us'],
+  ): Promise<QualificationsDto[]> {
     try {
-      const language =
-        Language[req.query.language as Language] || Language.ENGLISH;
-
       const qualifications =
         await this.qualificationService.getQualifications(language);
 

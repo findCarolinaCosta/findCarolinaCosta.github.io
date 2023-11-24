@@ -7,6 +7,7 @@ import { PortfolioModule } from '../../modules/portfolio/portfolio.module';
 import { QualificationModule } from '../../modules/qualification/qualification.module';
 import { SkillModule } from '../../modules/skill/skill.module';
 import { SolutionModule } from '../../modules/solution/solution.module';
+import { AuthModule } from '../auth/auth.module';
 
 export const AppImports = [
   NotionModule,
@@ -18,4 +19,5 @@ export const AppImports = [
   QualificationModule,
   SkillModule,
   SolutionModule,
+  AuthModule,
 ];

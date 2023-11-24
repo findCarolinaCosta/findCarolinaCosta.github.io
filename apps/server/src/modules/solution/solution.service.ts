@@ -25,7 +25,7 @@ export class SolutionService {
     );
 
     if (!solutions) {
-      if (language === Language.PORTUGUESE) {
+      if (language === Language['pt-br']) {
         this._databaseId = NotionDatabase.NOTION_SERVICE_DATABASE_ID_PT_BR;
         this._databaseSolutionListId =
           NotionDatabase.NOTION_SERVICE_LIST_DATABASE_ID_PT_BR;

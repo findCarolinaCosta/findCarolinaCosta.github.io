@@ -1,20 +1,20 @@
 import {
-  IQualification,
   QualificationDataNotionResponseDto,
   QualificationDto,
+  QualificationsDto,
   QualificationsNotionResponseDto,
   Tab,
 } from '../../src/dto/qualification.dto';
 import { NotionReadResult } from '../../src/shared/services/notion/notion.type';
 
-export const QualificationDataSerialized: IQualification = {
+export const QualificationDataSerialized: QualificationDto = {
   finalYear: 'finalYear',
   startYear: 'startYear',
   subtitle: 'subtitle',
   title: 'title',
 };
 
-export const QualificationSerialized: QualificationDto = {
+export const QualificationSerialized: QualificationsDto = {
   data: [QualificationDataSerialized],
   ID: 'id',
   tab: Tab.WORK,
@@ -22,7 +22,7 @@ export const QualificationSerialized: QualificationDto = {
 };
 
 class QualificationsResponseNotionDefault extends QualificationsNotionResponseDto {
-  constructor({ ID, data, tab, unicon }: QualificationDto) {
+  constructor({ ID, data, tab, unicon }: QualificationsDto) {
     super();
     this.ID = ID;
     this.data = data;
@@ -76,7 +76,7 @@ export const QualificationsResponseInstance =
   ).toTransformedNotionDefault();
 
 class QualificationResponseNotion extends QualificationDataNotionResponseDto {
-  constructor({ finalYear, startYear, subtitle, title }: IQualification) {
+  constructor({ finalYear, startYear, subtitle, title }: QualificationDto) {
     super();
     this.finalYear = finalYear;
     this.startYear = startYear;

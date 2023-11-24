@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 
 export enum Tab {
@@ -5,21 +6,35 @@ export enum Tab {
   'WORK' = 'Work',
 }
 
-export interface IQualification {
+export class QualificationDto {
+  @ApiProperty()
   title: string;
+
+  @ApiProperty()
   subtitle: string;
+
+  @ApiProperty()
   startYear: string;
+
+  @ApiProperty()
   finalYear: string;
 }
 
-export interface QualificationDto {
+export class QualificationsDto {
+  @ApiProperty()
   ID: string;
+
+  @ApiProperty({ enum: Tab })
   tab: Tab;
+
+  @ApiProperty()
   unicon: string;
-  data: IQualification[];
+
+  @ApiProperty({ type: [QualificationDto] })
+  data: QualificationDto[];
 }
 
-export class QualificationsNotionResponseDto implements QualificationDto {
+export class QualificationsNotionResponseDto implements QualificationsDto {
   @Transform(({ value }) => value.rich_text[0].text.content)
   ID: string;
 
@@ -32,7 +47,7 @@ export class QualificationsNotionResponseDto implements QualificationDto {
   data: QualificationDataNotionResponseDto[];
 }
 
-export class QualificationDataNotionResponseDto implements IQualification {
+export class QualificationDataNotionResponseDto implements QualificationDto {
   @Transform(({ value }) => value.title[0].text.content)
   title: string;
 

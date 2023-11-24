@@ -1,6 +1,7 @@
 import { SolutionListDto } from '../../src/modules/solution/solution.type';
 import { SolutionDto } from '../../src/dto/solution.dto';
 import { NotionReadResult } from '../../src/shared/services/notion/notion.type';
+import { Section } from '../../src/dto/skill.dto';
 
 export const SolutionDataSerialized: SolutionListDto = {
   service: 'Web page development.',
@@ -56,7 +57,7 @@ class SolutionResponseNotionDefault extends SolutionDto {
 
 export const SolutionsResponseInstance = new SolutionResponseNotionDefault({
   title: SolutionSerialized[0].title,
-  tag: 'tag',
+  tag: Section.BACKEND,
   solutionsList: SolutionSerialized[0].solutionsList,
 }).toTransformedNotionDefault();
 

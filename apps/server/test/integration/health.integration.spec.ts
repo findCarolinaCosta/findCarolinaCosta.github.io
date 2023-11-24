@@ -11,6 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import { MockHealthCheckServiceInstance } from '../mock/MockHealthCheckService';
+import { AuthModule } from '../../src/shared/auth/auth.module';
 
 describe('health (Integration)', () => {
   let app: INestApplication;
@@ -26,6 +27,7 @@ describe('health (Integration)', () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       imports: [
         HealthModule,
+        AuthModule,
         ConfigModule.forRoot({
           envFilePath: '.env.test',
           isGlobal: true,
@@ -90,8 +92,16 @@ describe('health (Integration)', () => {
       info,
     };
 
+    const username = process.env.AUTH_USER;
+    const password = process.env.AUTH_PASSWORD;
+
+    const base64Credentials = Buffer.from(`${username}:${password}`).toString(
+      'base64',
+    );
+
     await request(app.getHttpServer())
       .get('/health')
+      .set('Authorization', `Basic ${base64Credentials}`)
       .expect(200)
       .expect('Content-Type', /json/)
       .expect({
@@ -148,8 +158,16 @@ describe('health (Integration)', () => {
       },
     };
 
+    const username = process.env.AUTH_USER;
+    const password = process.env.AUTH_PASSWORD;
+
+    const base64Credentials = Buffer.from(`${username}:${password}`).toString(
+      'base64',
+    );
+
     await request(app.getHttpServer())
       .get('/health')
+      .set('Authorization', `Basic ${base64Credentials}`)
       .expect(503)
       .expect('Content-Type', /json/)
       .expect(healthCheckResult);
@@ -157,5 +175,39 @@ describe('health (Integration)', () => {
     expect(RedisServiceMockInstance.healthCheck).toHaveBeenCalledTimes(1);
     expect(MockNotionService.healthCheck).toHaveBeenCalledTimes(1);
     expect(MockHealthCheckServiceInstance.check).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should return 401 Unauthorized when incorrect credentials are provided', async () => {
+    const username = 'wrong_user';
+    const password = 'wrong_password';
+
+    const base64Credentials = Buffer.from(`${username}:${password}`).toString(
+      'base64',
+    );
+
+    await request(app.getHttpServer())
+      .get('/health')
+      .set('Authorization', `Basic ${base64Credentials}`)
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .expect({
+        ok: false,
+        error: {
+          status: 401,
+          message: 'Unauthorized',
+        },
+      });
+
+    await request(app.getHttpServer())
+      .get('/health')
+      .expect(401)
+      .expect('Content-Type', /json/)
+      .expect({
+        ok: false,
+        error: {
+          status: 401,
+          message: 'Unauthorized',
+        },
+      });
   });
 });

@@ -27,11 +27,3 @@ export interface IContentInfoNotionResponse {
     url: string;
   };
 }
-
-export interface IContentInfo {
-  role: string;
-  homeDescription: string;
-  aboutDescription: string;
-  projects: number;
-  homeImg: string;
-}
