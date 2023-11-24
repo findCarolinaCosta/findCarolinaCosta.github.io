@@ -1,5 +1,5 @@
 {
-  "name": "find-carolina-costa-api",
+  "name": "portfolio-api",
   "version": 2,
   "public": true,
   "installCommand": "pnpm install",

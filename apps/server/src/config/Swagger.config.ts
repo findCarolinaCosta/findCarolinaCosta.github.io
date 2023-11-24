@@ -20,7 +20,12 @@ export class SwaggerConfig {
 
     app.use(SwaggerConfig.docsBasicAuthMiddleware);
 
-    SwaggerModule.setup('docs', app, document);
+    SwaggerModule.setup('docs', app, document, {
+      customSiteTitle: 'Swagger UI - Portfolio API',
+      customfavIcon: process.env.DOC_FAVICON,
+      customJs: process.env.DOC_JS.split(','),
+      customCssUrl: process.env.DOC_CSS.split(','),
+    });
   }
 
   private static docsBasicAuthMiddleware = (
