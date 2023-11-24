@@ -10,7 +10,7 @@ import { Language } from '../../shared/constants/language.enum';
 import { ProjectDto } from '../../dto/portfolio.dto';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { SwaggerResponsesDecorators } from 'shared/constants/swagger.decorators';
+import { SwaggerResponsesDecorators } from '../../shared/constants/swagger.decorators';
 import { ResponsePattern } from '../../interceptors/response.interceptor';
 
 class ProjectsResponse implements ResponsePattern<ProjectDto[]> {

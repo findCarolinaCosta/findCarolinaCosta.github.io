@@ -1,6 +1,6 @@
 import { AppProviders } from '../../src/shared/constants/app.provider';
 import { INestApplication } from '@nestjs/common';
-import { NotionReadResult } from 'shared/services/notion/notion.type';
+import { NotionReadResult } from '../../src/shared/services/notion/notion.type';
 import { PortfolioModule } from '../../src/modules/portfolio/portfolio.module';
 import { PortfolioService } from '../../src/modules/portfolio/portfolio.service';
 import { ProjectDto, ProjectResponseDto } from '../../src/dto/portfolio.dto';

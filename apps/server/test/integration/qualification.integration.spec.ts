@@ -2,8 +2,8 @@ import { NotionReadResult } from './../../src/shared/services/notion/notion.type
 import { AppProviders } from '../../src/shared/constants/app.provider';
 import { INestApplication } from '@nestjs/common';
 import {
-  IQualification,
   QualificationDto,
+  QualificationsDto,
 } from '../../src/dto/qualification.dto';
 import { QualificationModule } from '../../src/modules/qualification/qualification.module';
 import { QualificationService } from '../../src/modules/qualification/qualification.service';
@@ -25,7 +25,7 @@ describe('qualificationController (Integration)', () => {
     NotionServiceMock,
   );
 
-  const QualificationsSerialized: QualificationDto[] = [
+  const QualificationsSerialized: QualificationsDto[] = [
     QualificationSerialized,
   ];
 
@@ -53,7 +53,7 @@ describe('qualificationController (Integration)', () => {
 
   it('Successfully retrieved qualifications information from Redis without invoking Notion.', async () => {
     RedisServiceMockInstance.get.mockImplementation(
-      (): Promise<QualificationDto[]> => {
+      (): Promise<QualificationsDto[]> => {
         return Promise.resolve(QualificationsSerialized);
       },
     );
@@ -85,7 +85,7 @@ describe('qualificationController (Integration)', () => {
     );
 
     NotionServiceMock.read.mockImplementationOnce(
-      (): Promise<NotionReadResult<IQualification[]>> => {
+      (): Promise<NotionReadResult<QualificationsDto[]>> => {
         return Promise.resolve(QualificationResponseDataInstance);
       },
     );

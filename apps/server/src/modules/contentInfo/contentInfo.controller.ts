@@ -8,8 +8,8 @@ import {
 import { Language } from '../../shared/constants/language.enum';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { SwaggerResponsesDecorators } from 'shared/constants/swagger.decorators';
-import { ResponsePattern } from 'interceptors/response.interceptor';
+import { SwaggerResponsesDecorators } from '../../shared/constants/swagger.decorators';
+import { ResponsePattern } from '../../interceptors/response.interceptor';
 import { ContentInfoService } from './contentInfo.service';
 import { ContentInfoDto } from '../../dto/contentInfo.dto';
 

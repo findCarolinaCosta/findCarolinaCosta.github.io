@@ -11,7 +11,7 @@ import { SolutionService } from './solution.service';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { ResponsePattern } from 'interceptors/response.interceptor';
-import { SwaggerResponsesDecorators } from 'shared/constants/swagger.decorators';
+import { SwaggerResponsesDecorators } from '../../shared/constants/swagger.decorators';
 
 class SolutionsResponse implements ResponsePattern<SolutionDto[]> {
   @ApiProperty({ default: true })
