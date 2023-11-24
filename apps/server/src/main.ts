@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { INestApplication } from '@nestjs/common';
 import { Server as TServer } from 'http';
-import { SwaggerConfig } from './config/Swagger.config';
+import { SwaggerConfig } from 'config/Swagger.config';
 
 async function bootstrap() {
   const app: INestApplication<TServer> =
