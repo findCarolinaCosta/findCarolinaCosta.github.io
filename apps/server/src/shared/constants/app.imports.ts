@@ -8,8 +8,12 @@ import { QualificationModule } from '../../modules/qualification/qualification.m
 import { SkillModule } from '../../modules/skill/skill.module';
 import { SolutionModule } from '../../modules/solution/solution.module';
 import { AuthModule } from '../auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 export const AppImports = [
+  ConfigModule.forRoot({
+    isGlobal: true,
+  }),
   NotionModule,
   RedisModule,
   ContentInfoModule,

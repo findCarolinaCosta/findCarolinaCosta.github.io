@@ -9,7 +9,9 @@ export class RedisService {
     const stringValue =
       typeof value === 'string' ? value : JSON.stringify(value);
 
-    await this.redis.set(key, stringValue);
+    try {
+      await this.redis.set(key, stringValue);
+    } catch (error) {}
   }
 
   public async get<R>(key: string): Promise<R | null> {

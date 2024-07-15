@@ -1,4 +1,3 @@
-import { NotionDatabase } from '../../shared/constants/notion.database';
 import { NotionService } from '../../shared/services/notion/notion.service';
 import { RedisService } from '../../shared/services/redis/redis.service';
 import { plainToInstance } from 'class-transformer';
@@ -10,7 +9,7 @@ import { NotionReadProperties } from '../../shared/services/notion/notion.type';
 @Injectable()
 export class PortfolioService {
   private _databaseId: string =
-    NotionDatabase.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID;
+    process.env.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID;
 
   constructor(
     private readonly redisService: RedisService,
@@ -18,13 +17,17 @@ export class PortfolioService {
   ) {}
 
   public async getProjects(language: Language) {
-    let portfolios: ProjectDto[] | null = await this.redisService.get<
-      ProjectDto[]
-    >(`projects_${language}`);
+    let portfolios: ProjectDto[] | null = null;
+
+    try {
+      portfolios = await this.redisService.get<ProjectDto[]>(
+        `projects_${language}`,
+      );
+    } catch (e) {}
 
     if (language === Language['pt-br'])
       this._databaseId =
-        NotionDatabase.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID_PT_BR;
+        process.env.NOTION_PORTFOLIO_PROJECTS_DATABASE_ID_PT_BR;
 
     if (!portfolios) {
       portfolios = (
@@ -33,8 +36,14 @@ export class PortfolioService {
         })
       ).results.map(this.serializePortfolio);
 
-      if (!!portfolios.length)
-        this.redisService.set<ProjectDto[]>(`projects_${language}`, portfolios);
+      if (!!portfolios.length) {
+        try {
+          this.redisService.set<ProjectDto[]>(
+            `projects_${language}`,
+            portfolios,
+          );
+        } catch (error) {}
+      }
     }
 
     return portfolios;

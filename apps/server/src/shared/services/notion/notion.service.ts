@@ -6,7 +6,6 @@ import {
   NotionReadParams,
   NotionReadResult,
 } from './notion.type';
-import { NotionDatabase } from '../../../shared/constants/notion.database';
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 
 @Injectable()
@@ -57,7 +56,7 @@ export class NotionService {
     try {
       await this.read({
         language: null,
-        databaseId: NotionDatabase.NOTION_MAIN_CONTENT_DATABASE_ID,
+        databaseId: process.env.NOTION_MAIN_CONTENT_DATABASE_ID,
       });
 
       return {

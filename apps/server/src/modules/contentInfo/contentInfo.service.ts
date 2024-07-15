@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { Language } from '../../shared/constants/language.enum';
-import { NotionDatabase } from '../../shared/constants/notion.database';
 import { NotionService } from '../../shared/services/notion/notion.service';
 import { RedisService } from '../../shared/services/redis/redis.service';
 import { IContentInfoNotionResponse } from './contentInfo.type';
@@ -10,7 +9,7 @@ import { ContentInfoDto } from '../../dto/contentInfo.dto';
 @Injectable()
 export class ContentInfoService {
   private readonly _databaseId: string =
-    NotionDatabase.NOTION_MAIN_CONTENT_DATABASE_ID;
+    process.env.NOTION_MAIN_CONTENT_DATABASE_ID;
 
   constructor(
     private readonly redisService: RedisService,
@@ -18,9 +17,13 @@ export class ContentInfoService {
   ) {}
 
   async getContentInfo(language: Language): Promise<ContentInfoDto[]> {
-    let contentInfo: ContentInfoDto[] | null = await this.redisService.get<
-      ContentInfoDto[]
-    >(`content_${language}`);
+    let contentInfo: ContentInfoDto[] | null = null;
+
+    try {
+      contentInfo = await this.redisService.get<ContentInfoDto[]>(
+        `content_${language}`,
+      );
+    } catch (e) {}
 
     if (!contentInfo) {
       contentInfo = (
@@ -30,11 +33,14 @@ export class ContentInfoService {
         })
       ).results.map(this.serializeContentInfo);
 
-      if (contentInfo)
-        this.redisService.set<ContentInfoDto[]>(
-          `content_${language}`,
-          contentInfo,
-        );
+      if (contentInfo) {
+        try {
+          this.redisService.set<ContentInfoDto[]>(
+            `content_${language}`,
+            contentInfo,
+          );
+        } catch (error) {}
+      }
     }
 
     return contentInfo;

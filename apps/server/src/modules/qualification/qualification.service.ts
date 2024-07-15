@@ -7,7 +7,6 @@ import {
   QualificationsNotionResponseDto,
 } from '../../dto/qualification.dto';
 import { Language } from '../../shared/constants/language.enum';
-import { NotionDatabase } from '../../shared/constants/notion.database';
 import { NotionService } from '../../shared/services/notion/notion.service';
 import { NotionReadProperties } from '../../shared/services/notion/notion.type';
 import { RedisService } from '../../shared/services/redis/redis.service';
@@ -15,9 +14,9 @@ import { RedisService } from '../../shared/services/redis/redis.service';
 @Injectable()
 export class QualificationService {
   private _databaseId: string =
-    NotionDatabase.NOTION_QUALIFICATION_TAB_DATABASE_ID;
+    process.env.NOTION_QUALIFICATION_TAB_DATABASE_ID;
   private _databaseDataId: string =
-    NotionDatabase.NOTION_QUALIFICATION_DATA_DATABASE_ID;
+    process.env.NOTION_QUALIFICATION_DATA_DATABASE_ID;
 
   constructor(
     private readonly redisService: RedisService,
@@ -25,17 +24,21 @@ export class QualificationService {
   ) {}
 
   public async getQualifications(language: Language) {
-    let qualifications: QualificationsDto[] = await this.redisService.get(
-      `qualifications_${language}`,
-    );
+    let qualifications: QualificationsDto[] = null;
+
+    try {
+      qualifications = await this.redisService.get(
+        `qualifications_${language}`,
+      );
+    } catch (e) {}
 
     if (!qualifications) {
       if (language === Language['pt-br']) {
         this._databaseId =
-          NotionDatabase.NOTION_QUALIFICATION_TAB_DATABASE_ID_PT_BR;
+          process.env.NOTION_QUALIFICATION_TAB_DATABASE_ID_PT_BR;
 
         this._databaseDataId =
-          NotionDatabase.NOTION_QUALIFICATION_DATA_DATABASE_ID_PT_BR;
+          process.env.NOTION_QUALIFICATION_DATA_DATABASE_ID_PT_BR;
       }
 
       const { results: qualificationsDto } =
@@ -47,8 +50,11 @@ export class QualificationService {
         qualificationsDto.map(this.serializeQualifications),
       );
 
-      if (qualifications)
-        this.redisService.set(`qualifications_${language}`, qualifications);
+      if (qualifications) {
+        try {
+          this.redisService.set(`qualifications_${language}`, qualifications);
+        } catch (error) {}
+      }
     }
 
     return qualifications;

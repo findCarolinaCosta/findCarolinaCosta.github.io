@@ -1,6 +1,5 @@
 import { SkillDto, SkillListDto } from '../../dto/skill.dto';
 import { Language } from './../../shared/constants/language.enum';
-import { NotionDatabase } from '../../shared/constants/notion.database';
 import { NotionService } from '../../shared/services/notion/notion.service';
 import { RedisService } from '../../shared/services/redis/redis.service';
 import { NotionReadProperties } from '../../shared/services/notion/notion.type';
@@ -9,9 +8,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class SkillService {
-  private _databaseId: string = NotionDatabase.NOTION_SKILL_DATABASE_ID;
+  private _databaseId: string = process.env.NOTION_SKILL_DATABASE_ID;
   private _databaseSkillListId: string =
-    NotionDatabase.NOTION_SKILLLIST_DATABASE_ID;
+    process.env.NOTION_SKILLLIST_DATABASE_ID;
 
   constructor(
     private readonly redisService: RedisService,
@@ -19,13 +18,17 @@ export class SkillService {
   ) {}
 
   public async getSkills(language: Language): Promise<SkillListDto[]> {
-    let skills: SkillListDto[] = await this.redisService.get<SkillListDto[]>(
-      `skills_${language}`,
-    );
+    let skills: SkillListDto[] = null;
+
+    try {
+      skills = await this.redisService.get<SkillListDto[]>(
+        `skills_${language}`,
+      );
+    } catch (e) {}
 
     if (!skills) {
       if (language === Language['pt-br']) {
-        this._databaseId = NotionDatabase.NOTION_SKILL_DATABASE_ID_PT_BR;
+        this._databaseId = process.env.NOTION_SKILL_DATABASE_ID_PT_BR;
       }
 
       const { results: qualificationsDto } =
@@ -41,7 +44,11 @@ export class SkillService {
           Number(a.subtitle.replace(/\D/gim, '')),
       );
 
-      if (skills) await this.redisService.set(`skills_${language}`, skills);
+      if (skills) {
+        try {
+          await this.redisService.set(`skills_${language}`, skills);
+        } catch (error) {}
+      }
     }
 
     return skills;

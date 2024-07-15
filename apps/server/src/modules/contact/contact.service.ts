@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { NotionService } from '../../shared/services/notion/notion.service';
 import { PropertiesCreateContact } from './contact.type';
-import { NotionDatabase } from '../../shared/constants/notion.database';
 import { v4 as uuidv4 } from 'uuid';
 import { PropertiesCreateContactDto } from '../../dto/propertiesCreateContact.dto';
 import { plainToInstance } from 'class-transformer';
@@ -10,7 +9,7 @@ import { ContactDto } from '../../dto/contact.dto';
 @Injectable()
 export class ContactService {
   private readonly _databaseId: string =
-    NotionDatabase.NOTION_PORTFOLIO_EMAILS_DATABASE_ID;
+    process.env.NOTION_PORTFOLIO_EMAILS_DATABASE_ID;
 
   constructor(private readonly notionService: NotionService) {}
 
