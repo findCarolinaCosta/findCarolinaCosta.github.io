@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ProjectDto } from 'dto/portfolio.dto';
+import { ProjectDto } from '../dto/portfolio.dto';
 import * as cron from 'node-cron';
-import { Language } from 'shared/constants/language.enum';
-import { RedisService } from 'shared/services/redis/redis.service';
+import { Language } from '../shared/constants/language.enum';
+import { RedisService } from '../shared/services/redis/redis.service';
 
 @Injectable()
 export class ScheduledTasksService {
