@@ -45,7 +45,7 @@ export class ContactController {
     }
   }
 
-  @Options('*')
+  @Options()
   optionsHandler() {
     return HttpStatus.OK;
   }
