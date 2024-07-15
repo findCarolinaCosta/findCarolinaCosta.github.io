@@ -1,7 +1,9 @@
 import {
   Body,
   Controller,
+  HttpStatus,
   Injectable,
+  Options,
   Post,
   ValidationPipe,
 } from '@nestjs/common';
@@ -41,5 +43,10 @@ export class ContactController {
     } catch (error) {
       throw error;
     }
+  }
+
+  @Options('*')
+  optionsHandler() {
+    return HttpStatus.OK;
   }
 }
